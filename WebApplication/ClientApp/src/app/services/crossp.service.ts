@@ -21,16 +21,12 @@ export class CrosspService {
   }
 
   public getProjects(): Observable<Project[]> {
-    return this.http
-      .get<Project[]>(this.baseUrl + 'api/Projects');
-      //.pipe(
-      //  map(projects =>
-      //    projects.map(project => {
-      //      const temp = new Project(project.id, project.name);
-      //      return temp;
-      //    })));
+    return this.http.get<Project[]>(this.baseUrl + 'api/Projects');
   }
 
+  public getProject(id): Observable<Project> {
+    return this.http.get<Project>(this.baseUrl + 'api/Projects/' + id);
+  }
 }
 interface WeatherForecast {
   date: string;

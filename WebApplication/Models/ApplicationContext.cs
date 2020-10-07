@@ -11,19 +11,24 @@ namespace WebApplication.Models
     public class ApplicationContext : DbContext
     {
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Ad> Ads { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Project>().HasData(
-                new Project[]
-                {
-                new Project { Id=1, Name="Project1" },
-                new Project { Id=2, Name="Project2" },
-                new Project { Id=3, Name="Project3" }
-                });
+            Ad ad = new Ad() { Id = 1, Url = "url1" };
+            modelBuilder.Entity<Ad>().HasData(ad);
+
+            Project[] projects = new Project[3]
+            {
+                new Project {  Id = 1, Name="Project1", Ads=new List<Ad>(){ ad } },
+                new Project {  Id = 2, Name="Project2" },
+                new Project {  Id = 3, Name="Project3" }
+            };
+            modelBuilder.Entity<Project>().HasData(projects);
         }
     }
 }

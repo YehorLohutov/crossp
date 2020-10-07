@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebApplication.Models
 {
-    public class Project
+    public class Ad
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Name { get; set; }
-
-        public List<Ad> Ads { get; set; }
-
-        public Project()
-        {
-            Ads = new List<Ad>();
-        }
+        public string Url { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }
