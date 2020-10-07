@@ -7,13 +7,8 @@ import { CrosspService } from '../services/crossp.service';
 })
 
 export class HomeComponent {
-  projects: Project[];
+  protected projects: Project[];
   constructor(protected crosspService: CrosspService) {
-    crosspService.getProjects().subscribe(result =>  
-      result.map(project => {
-        let str = project['name'];
-        let id = project['id'];
-      })
-    );
+    crosspService.getProjects().subscribe(result => this.projects = result);
   }
 }

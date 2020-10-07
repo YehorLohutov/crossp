@@ -1,12 +1,17 @@
-{{this.crosspService.getStr()}}
-<div *ngFor="let project of this.projects">
-  <div>{{project.Id}}</div>
-  <div>{{project.Name}}</div>
-</div>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="row justify-content-center p-2">
+  <div class="card col-5" *ngFor="let project of this.projects">
+    <div class="card-body">
+      <h5 class="card-title">{{project.name}}</h5>
+      <h6 class="card-subtitle">{{project.id}}</h6>
+      <a href="#"  class="btn btn-primary">Open</a>
+    </div>
+  </div>
+  <div class="card col-5">
+    <div class="card-body">
+      <h5 class="card-title">New project</h5>
+      <h6 class="card-subtitle">ss</h6>
+      <a href="#" class="btn btn-primary">Create</a>
+    </div>
   </div>
 </div>
+
