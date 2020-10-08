@@ -19,16 +19,30 @@ namespace WebApplication.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Ad ad = new Ad() { Id = 1, Url = "url1" };
-            modelBuilder.Entity<Ad>().HasData(ad);
+            modelBuilder.Entity<Ad>()
+                .HasOne(ad => ad.Project)
+                .WithMany(project => project.Ads)
+                .HasForeignKey(key => key.ProjectId);
 
             Project[] projects = new Project[3]
             {
-                new Project {  Id = 1, Name="Project1", Ads=new List<Ad>(){ ad } },
+                new Project {  Id = 1, Name="Project1" },
                 new Project {  Id = 2, Name="Project2" },
                 new Project {  Id = 3, Name="Project3" }
             };
             modelBuilder.Entity<Project>().HasData(projects);
+
+
+            Ad[] ads = new Ad[]
+            {
+                new Ad() { Id = 1, Url = "url1", ProjectId = 1 },
+                new Ad() { Id = 2, Url = "url2", ProjectId = 1 },
+                new Ad() { Id = 3, Url = "url3", ProjectId = 2 },
+            };
+
+            modelBuilder.Entity<Ad>().HasData(ads);
+
+
         }
     }
 }
