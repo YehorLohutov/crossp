@@ -27,6 +27,11 @@ export class CrosspService {
   public getProject(id): Observable<Project> {
     return this.http.get<Project>(this.baseUrl + 'api/Projects/' + id);
   }
+
+  public addProject(project: Project): Observable<Project> {
+    console.log('asda');
+    return this.http.post<Project>(this.baseUrl + 'api/Projects', project);
+  }
 }
 interface WeatherForecast {
   date: string;
