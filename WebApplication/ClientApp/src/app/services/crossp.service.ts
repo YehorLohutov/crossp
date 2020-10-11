@@ -38,6 +38,10 @@ export class CrosspService {
   public createProject(): Observable<Project> {
     return this.http.get<Project>(this.baseUrl + 'api/Projects/Create');
   }
+
+  public deleteProject(id: number): Observable<Project> {
+    return this.http.delete(this.baseUrl + 'api/Projects/' + id);
+  }
 }
 interface WeatherForecast {
   date: string;
