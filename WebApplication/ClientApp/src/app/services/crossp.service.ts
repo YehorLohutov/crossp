@@ -16,6 +16,13 @@ export class CrosspService {
     return this.http.get<WeatherForecast[]>(this.baseUrl + 'weatherforecast');
   }
 
+  public debug(): Observable<any> {
+    let asda = { id: 99, name: 'adas'};
+    return this.http.post<string>(this.baseUrl + 'api/projects', asda, {
+      headers: { 'Content-Type': 'application/json'}
+    });
+  }
+
   public getStr() {
     return 'adasda';
   }
@@ -28,9 +35,8 @@ export class CrosspService {
     return this.http.get<Project>(this.baseUrl + 'api/Projects/' + id);
   }
 
-  public addProject(project: Project): Observable<Project> {
-    console.log('asda');
-    return this.http.post<Project>(this.baseUrl + 'api/Projects', project);
+  public createProject(): Observable<Project> {
+    return this.http.get<Project>(this.baseUrl + 'api/Projects/Create');
   }
 }
 interface WeatherForecast {

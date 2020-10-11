@@ -1,9 +1,14 @@
 class Project {
-  readonly id: number;
-  readonly name: string;
+  public id: number;
+  public name: string;
 
-  constructor(id: number, name: string) {
-    this.id = id;
-    this.name = name;
+  constructor() {
+    this.id = 99;
+    this.name = '99';
   }
+
+  //constructor(id: number, name: string) {
+  //  this.id = id;
+  //  this.name = name;
+  //}
 }

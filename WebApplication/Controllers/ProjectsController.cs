@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -18,6 +19,15 @@ namespace WebApplication.Controllers
         public ProjectsController(ApplicationContext context)
         {
             _context = context;
+            if(!_context.Projects.Any())
+            {
+                
+                Project project = new Project() { Name = "Proj1" };
+                _context.Projects.Add(new Project() { Name = "Proj1" });
+                _context.Projects.Add(new Project() { Name = "Proj2" });
+                _context.Projects.Add(new Project() { Name = "Proj3" });
+                _context.SaveChanges();
+            }
         }
 
         // GET: api/Projects
@@ -39,6 +49,15 @@ namespace WebApplication.Controllers
             }
 
             return project;
+        }
+
+        [Route("Create")]
+        public async Task<ActionResult<Project>> CreateProject()
+        {
+            Project newProject = new Project() { Name = "NewProject" };
+            await _context.Projects.AddAsync(newProject);
+            await _context.SaveChangesAsync();
+            return newProject;
         }
 
         // PUT: api/Projects/5
@@ -73,17 +92,17 @@ namespace WebApplication.Controllers
             return NoContent();
         }
 
-        // POST: api/Projects
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Project>> PostProject(Project project)
-        {
-            _context.Projects.Add(project);
-            await _context.SaveChangesAsync();
+        //// POST: api/Projects
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
+        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //[HttpPost]
+        //public async Task<ActionResult<Project>> PostProject([FromBody] Project project)
+        //{
+        //    _context.Projects.Add(project);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProject", new { id = project.Id }, project);
-        }
+        //    return CreatedAtAction("GetProject", new { id = project.Id }, project);
+        //}
 
         // DELETE: api/Projects/5
         [HttpDelete("{id}")]

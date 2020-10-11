@@ -34,8 +34,10 @@ namespace WebApplication.Controllers
 
         // POST api/<DebugController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post([FromBody] string value)
         {
+            return value + "success";
+            //return asd + "wwwww";
         }
 
         // PUT api/<DebugController>/5
