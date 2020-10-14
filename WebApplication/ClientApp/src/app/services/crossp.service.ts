@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -39,8 +39,24 @@ export class CrosspService {
     return this.http.get<Project>(this.baseUrl + 'api/Projects/Create');
   }
 
-  public deleteProject(id: number): Observable<Project> {
+  public putProject(project: Project): Observable<any> {
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+    return this.http.put<Project>(this.baseUrl + 'api/Projects/' + project.id, project, { headers });
+  }
+
+  public deleteProject(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + 'api/Projects/' + id);
+  }
+
+  public getAds(projectId: number): Observable<Ad[]> {
+    return this.http.get<Ad[]>(this.baseUrl + 'api/Ads/projectid-' + projectId);
+  }
+
+  public putAd(ad: Ad): Observable<any> {
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+    return this.http.put<Ad>(this.baseUrl + 'api/Ads/' + ad.id, ad, { headers });
   }
 }
 interface WeatherForecast {

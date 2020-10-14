@@ -19,15 +19,16 @@ namespace WebApplication.Controllers
         public ProjectsController(ApplicationContext context)
         {
             _context = context;
-            if(!_context.Projects.Any())
-            {
-                
-                Project project = new Project() { Name = "Proj1" };
-                _context.Projects.Add(new Project() { Name = "Proj1" });
-                _context.Projects.Add(new Project() { Name = "Proj2" });
-                _context.Projects.Add(new Project() { Name = "Proj3" });
-                _context.SaveChanges();
-            }
+            //if(!_context.Projects.Any())
+            //{
+            //    Project project = new Project() { Name = "Proj1" };
+            //    _context.Projects.Add(project);
+            //    _context.Projects.Add(new Project() { Name = "Proj2" });
+            //    _context.Projects.Add(new Project() { Name = "Proj3" });
+            //    _context.SaveChanges();
+            //    _context.Ads.Add(new Ad() { ProjectId = project.Id, Url = "https://github.com/" });
+            //    _context.SaveChanges();          
+            //}
         }
 
         // GET: api/Projects
@@ -64,7 +65,7 @@ namespace WebApplication.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProject(int id, Project project)
+        public async Task<IActionResult> PutProject(int id, [FromBody] Project project)
         {
             if (id != project.Id)
             {

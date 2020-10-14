@@ -10,6 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>1b9712ac-c841-4f8c-aac1-5c08fd3c0cd0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,10 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\ad.ts" />
     <None Remove="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\ad.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\page-not-found\page-not-found.component.ts" />
   </ItemGroup>
 
@@ -65,5 +68,7 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
             return await _context.Ads.ToListAsync();
         }
 
-        
+        [HttpGet]
         [Route("projectid-{projectId:int}")]
         public async Task<ActionResult<IEnumerable<Ad>>> GetAds(int projectId)
         {
@@ -52,7 +52,7 @@ namespace WebApplication.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAd(int id, Ad ad)
+        public async Task<IActionResult> PutAd(int id, [FromBody] Ad ad)
         {
             if (id != ad.Id)
             {
