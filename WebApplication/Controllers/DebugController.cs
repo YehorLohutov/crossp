@@ -9,8 +9,9 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+
+    [ApiController]    
+    [Route("[controller]")]
     public class DebugController : ControllerBase
     {
         private ApplicationContext ApplicationContext;

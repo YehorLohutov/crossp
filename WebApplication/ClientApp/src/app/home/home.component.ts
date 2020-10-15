@@ -8,8 +8,8 @@ import { CrosspService } from '../services/crossp.service';
 
 export class HomeComponent {
 
-  protected projectsLoaded: boolean;
-  protected projects: Project[];
+  public projectsLoaded: boolean;
+  public projects: Project[];
 
 
   constructor(protected crosspService: CrosspService) {

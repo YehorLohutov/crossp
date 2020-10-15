@@ -28,7 +28,10 @@ export class CrosspService {
   }
 
   public getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl + 'api/Projects');
+    return this.http.get<Project[]>(this.baseUrl + 'api/Projects').pipe(map(res => {
+      try { return res; }
+      catch (err) { console.log(err); return res; }
+    }));
   }
 
   public getProject(id): Observable<Project> {

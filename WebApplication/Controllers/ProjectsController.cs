@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using WebApplication.Models;
+using System.Text.Json;
 
 namespace WebApplication.Controllers
 {
@@ -32,10 +33,15 @@ namespace WebApplication.Controllers
         }
 
         // GET: api/Projects
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
+        //{
+        //    return await _context.Projects.ToListAsync();
+        //}
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
+        public async Task<JsonResult> GetProjects()
         {
-            return await _context.Projects.ToListAsync();
+            return new JsonResult(await _context.Projects.ToListAsync());
         }
 
         // GET: api/Projects/5
