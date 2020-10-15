@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +17,12 @@ namespace WebApplication.Controllers
     public class AdsController : ControllerBase
     {
         private readonly ApplicationContext _context;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public AdsController(ApplicationContext context)
+        public AdsController(ApplicationContext context, IWebHostEnvironment appEnvironment)
         {
             _context = context;
+            _appEnvironment = appEnvironment;
         }
 
         // GET: api/Ads
@@ -79,6 +84,56 @@ namespace WebApplication.Controllers
 
             return NoContent();
         }
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("UploadAdImage/{id}")]
+        public async Task<IActionResult> UploadAdImage(int id)
+        {
+            var ad = await _context.Ads.FindAsync(id);
+            if (ad == null)
+                return NotFound();
+
+            IFormFile file = Request.Form.Files[0];
+            if(file == null)
+                return BadRequest();
+
+
+            string path = $"/{file.FileName}";
+            using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    await file.CopyToAsync(fileStream);
+
+            ad.Img = path;
+            await _context.SaveChangesAsync();
+            return Ok();
+            //try
+            //{
+            //    var file = Request.Form.Files[0];
+            //    var folderName = "Images";// Path.Combine("Resources", "Images");
+            //    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            //    if (file.Length > 0)
+            //    {
+            //        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            //        var fullPath = Path.Combine(pathToSave, fileName);
+            //        var dbPath = Path.Combine(folderName, fileName);
+            //        using (var stream = new FileStream(fullPath, FileMode.Create))
+            //        {
+            //            file.CopyTo(stream);
+            //        }
+            //        return Ok(new { dbPath });
+            //    }
+            //    else
+            //    {
+            //        return BadRequest();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex}");
+            //}
+        }
+
+
+
 
         // POST: api/Ads
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

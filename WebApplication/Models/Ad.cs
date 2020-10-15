@@ -11,6 +11,7 @@ namespace WebApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Url { get; set; }
+        public string Img { get; set; }
         public int ProjectId { get; set; }
         public Project Project { get; set; }
     }

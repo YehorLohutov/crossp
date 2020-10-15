@@ -32,7 +32,6 @@ namespace WebApplication.Models
             };
             modelBuilder.Entity<Project>().HasData(projects);
 
-
             Ad[] ads = new Ad[]
             {
                 new Ad() { Id = 1, Url = "url1", ProjectId = 1 },

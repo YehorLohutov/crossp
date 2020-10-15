@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using UnityEngine.UI;
 public class MyScript : MonoBehaviour
 {
+    public Image image;
     void Start()
     {
         StartCoroutine(GetText());
@@ -23,9 +24,11 @@ public class MyScript : MonoBehaviour
         {
             // Show results as text
             Debug.Log(www.downloadHandler.text);
+            Ad ad = JsonUtility.FromJson<Ad>(www.downloadHandler.text);
 
             // Or retrieve results as binary data
             byte[] results = www.downloadHandler.data;
+            //
         }
     }
 }

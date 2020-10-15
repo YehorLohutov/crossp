@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -58,6 +58,26 @@ export class CrosspService {
       .set("Content-Type", "application/json");
     return this.http.put<Ad>(this.baseUrl + 'api/Ads/' + ad.id, ad, { headers });
   }
+
+  public uploadAdImage = (ad: Ad, files) => {
+    if (files.length === 0) {
+      return;
+    }
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    this.http.post(this.baseUrl + 'api/Ads/UploadAdImage/' + ad.id, formData, { reportProgress: true, observe: 'events' })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          //this.progress = Math.round(100 * event.loaded / event.total);
+        }
+        else if (event.type === HttpEventType.Response) {
+          //this.message = 'Upload success.';
+          //this.onUploadFinished.emit(event.body);
+        }
+      });
+  }
+
 }
 interface WeatherForecast {
   date: string;

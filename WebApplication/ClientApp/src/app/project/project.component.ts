@@ -36,4 +36,7 @@ export class ProjectComponent {
       console.log(res);
     });
   }
+  protected uploadFile = (files) => {
+    this.crosspService.uploadAdImage(this.ad, files);
+  }
 }
