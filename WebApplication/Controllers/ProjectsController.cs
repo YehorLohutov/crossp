@@ -11,8 +11,8 @@ using System.Text.Json;
 
 namespace WebApplication.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class ProjectsController : ControllerBase
     {
         private readonly ApplicationContext _context;
@@ -32,17 +32,17 @@ namespace WebApplication.Controllers
             //}
         }
 
-        // GET: api/Projects
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
-        //{
-        //    return await _context.Projects.ToListAsync();
-        //}
+        //GET: api/Projects
         [HttpGet]
-        public async Task<JsonResult> GetProjects()
+        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            return new JsonResult(await _context.Projects.ToListAsync());
+            return await _context.Projects.ToListAsync();
         }
+        //[HttpGet]
+        //public async Task<JsonResult> GetProjects()
+        //{
+        //    return new JsonResult(await _context.Projects.ToListAsync());
+        //}
 
         // GET: api/Projects/5
         [HttpGet("{id}")]

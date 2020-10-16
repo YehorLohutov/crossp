@@ -1,0 +1,29 @@
+<div class="row justify-content-start">
+  <div class="col-3 m-2 card">
+    <div class="card-body">
+      <h5 class="card-title">New project</h5>
+      <h6 class="card-subtitle mb-2 text-muted">&nbsp;</h6>
+      <p class="card-text">&nbsp;</p>
+      <a href="#" (click)="createProject()" class="btn btn-primary">Create</a>
+    </div>
+  </div>
+
+  <div *ngIf="!this.projectsLoaded" class="col-3 m-2 card">
+    <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 m-2 card" *ngFor="let project of this.projects">
+    <div class="card-body">
+      <h5 class="card-title">{{project.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{project.id}}</h6>
+      <p class="card-text">&nbsp;</p>
+      <a href="#" class="btn btn-primary" [routerLink]="['project', project.id]">Open</a>
+    </div>
+  </div>
+</div>

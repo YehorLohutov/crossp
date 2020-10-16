@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Ad
 {
-    public int Id { get; set; }
-    public string Url { get; set; }
-    public string Img { get; set; }
-    public int ProjectId { get; set; }
+    public int Id;
+    public string Url;
+    public string Img;
+    public int ProjectId;
 }
