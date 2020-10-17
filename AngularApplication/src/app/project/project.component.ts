@@ -13,7 +13,8 @@ import {switchMap} from 'rxjs/operators';
 export class ProjectComponent implements OnInit {
 
   public project: Project;
-  public ad: Ad;
+  public ads: Ad[];
+
   constructor(protected route: ActivatedRoute,
               protected crosspService: CrosspService,
               protected router: Router
@@ -26,25 +27,17 @@ export class ProjectComponent implements OnInit {
           this.project = result;
           this.crosspService.getAds(this.project.id)
             .subscribe(res =>
-              this.ad = res[0], error3 => console.log(error3));
+              this.ads = res, error3 => console.log(error3));
         }, error2 => console.log(error2)), error1 => console.log(error1));
   }
-
   ngOnInit(): void {
-    }
-  public deleteProject() {
+
+  }
+  public deleteProject(): void {
     this.crosspService.deleteProject(this.project.id).subscribe(result => this.router.navigate(['']));
   }
-  public putProject() {
-    this.crosspService.putProject(this.project);
+  public putProject(): void {
+    console.log('update project')
+    this.crosspService.putProject(this.project).subscribe(result => console.log(result));
   }
-  public putAd() {
-    this.crosspService.putAd(this.ad).subscribe(res => {
-      console.log(res);
-    });
-  }
-  public uploadFile = (files) => {
-    this.crosspService.uploadAdImage(this.ad, files);
-  }
-
 }

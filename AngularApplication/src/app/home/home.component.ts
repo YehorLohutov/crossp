@@ -15,11 +15,10 @@ export class HomeComponent implements OnInit {
 
   constructor(protected crosspService: CrosspService) {
     this.projectsLoaded = false;
-    crosspService.getAds(2).subscribe(result => console.log(result));
-    crosspService.getProjects().subscribe(result => { this.projects = result; this.projectsLoaded = true; });
   }
 
   ngOnInit(): void {
+    this.crosspService.getProjects().subscribe(result => { this.projects = result; this.projectsLoaded = true; });
   }
 
   public createProject(): void {

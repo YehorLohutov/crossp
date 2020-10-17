@@ -8,13 +8,15 @@ import { ProjectComponent } from './project/project.component';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdComponent } from './ad/ad.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProjectComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AdComponent
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,47 @@
+<div class="column is-4">
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="this.ad.name">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">ID</label>
+    <div class="control">
+      <input class="input" type="text" disabled placeholder="{{this.ad.id}}">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Project ID</label>
+    <div class="control">
+      <input class="input" type="text" disabled placeholder="{{this.ad.projectId}}">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Url</label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="this.ad.url">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Img</label>
+    <div class="control">
+      <input class="input" type="text" disabled placeholder="{{this.ad.img}}">
+    </div>
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button class="button is-primary" (click)="file.click()">Upload File</button>
+  </div>
+
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button class="button is-link is-success" (click)="putAd()">Save</button>
+    </div>
+  </div>
+
+</div>
+

@@ -34,9 +34,9 @@ namespace WebApplication.Models
 
             Ad[] ads = new Ad[]
             {
-                new Ad() { Id = 1, Url = "url1", ProjectId = 1 },
-                new Ad() { Id = 2, Url = "url2", ProjectId = 2 },
-                new Ad() { Id = 3, Url = "url3", ProjectId = 3 },
+                new Ad() { Id = 1, Name = "Ad1",  Url = "url1", ProjectId = 1 },
+                new Ad() { Id = 2, Name = "Ad2", Url = "url2", ProjectId = 2 },
+                new Ad() { Id = 3, Name = "Ad3", Url = "url3", ProjectId = 3 },
             };
 
             modelBuilder.Entity<Ad>().HasData(ads);

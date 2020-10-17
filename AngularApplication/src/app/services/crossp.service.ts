@@ -21,11 +21,6 @@ export class CrosspService {
     });
   }
 
-
-  public getStr(): string {
-    return 'adasda';
-  }
-
   public getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.baseUrl + 'Projects').pipe(map(res => {
       try { return res; }
@@ -53,6 +48,10 @@ export class CrosspService {
 
   public getAds(projectId: number): Observable<Ad[]> {
     return this.http.get<Ad[]>(this.baseUrl + 'Ads/projectid-' + projectId);
+  }
+
+  public getAd(id): Observable<Ad> {
+    return this.http.get<Ad>(this.baseUrl + 'Ads/' + id);
   }
 
   public putAd(ad: Ad): Observable<any> {

@@ -97,7 +97,7 @@ namespace WebApplication.Controllers
             if(file == null)
                 return BadRequest();
 
-
+            
             string path = $"/{file.FileName}";
             using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     await file.CopyToAsync(fileStream);

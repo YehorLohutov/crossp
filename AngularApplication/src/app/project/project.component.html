@@ -1,24 +1,64 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Project
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="columns is-centered">
+  <div class="column is-4">
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input class="input" type="text" [(ngModel)]="this.project.name">
+      </div>
+    </div>
 
-<input type="text" class="form-control" [(ngModel)]="this.project.name">
-{{this.project.id}}
+    <div class="field">
+      <label class="label">ID</label>
+      <div class="control">
+        <input class="input" type="text" disabled placeholder="{{this.project.id}}">
+      </div>
+    </div>
 
-<a (click)="putProject()" class="btn btn-primary">Save</a>
-<a (click)="deleteProject()" class="btn btn-danger">Delete</a>
-
-
-
-{{ad.id}}
-{{ad.projectId}}
-<input type="text" class="form-control" [(ngModel)]="this.ad.url">
-{{ad.img}}
-<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-<button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-
-<a (click)="putAd()" class="btn btn-primary">Save</a>
-<!--<div *ngFor="let ad of this.ads">
-  ---------------
-  {{ad.id}}
-  {{ad.projectId}}
-  {{ad.url}}
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link is-success" (click)="putProject()">Save</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-danger" (click)="deleteProject()">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>
-  -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Ads
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="columns">
+  <div class="column is-3" *ngFor="let ad of this.ads">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          {{ad.name}}
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          ID: {{ad.id}}
+        </div>
+      </div>
+      <footer class="card-footer">
+        <a href="#" [routerLink]="['/ad', ad.id]" class="card-footer-item">Open</a>
+      </footer>
+    </div>
+  </div>
+
+</div>

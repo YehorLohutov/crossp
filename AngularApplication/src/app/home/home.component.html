@@ -1,29 +1,46 @@
-<div class="row justify-content-start">
-  <div class="col-3 m-2 card">
-    <div class="card-body">
-      <h5 class="card-title">New project</h5>
-      <h6 class="card-subtitle mb-2 text-muted">&nbsp;</h6>
-      <p class="card-text">&nbsp;</p>
-      <a href="#" (click)="createProject()" class="btn btn-primary">Create</a>
-    </div>
-  </div>
+<div *ngIf="!this.projectsLoaded; then progressBarBlock else projectsBlock"></div>
+<ng-template #progressBarBlock>
+  <progress class="progress is-small is-primary" max="100"></progress>
+</ng-template>
+<ng-template #projectsBlock>
+  <div class="columns is-multiline">
 
-  <div *ngIf="!this.projectsLoaded" class="col-3 m-2 card">
-    <div class="card-body">
-      <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
+    <div class="column is-3">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Empty
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            New project
+          </div>
         </div>
+        <footer class="card-footer">
+          <a href="#" (click)="createProject()" class="card-footer-item">Create</a>
+        </footer>
       </div>
     </div>
-  </div>
 
-  <div class="col-3 m-2 card" *ngFor="let project of this.projects">
-    <div class="card-body">
-      <h5 class="card-title">{{project.name}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{project.id}}</h6>
-      <p class="card-text">&nbsp;</p>
-      <a href="#" class="btn btn-primary" [routerLink]="['project', project.id]">Open</a>
+    <div class="column is-3" *ngFor="let project of this.projects">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{project.name}}
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            ID: {{project.id}}
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" [routerLink]="['/project', project.id]" class="card-footer-item">Open</a>
+        </footer>
+      </div>
     </div>
+
   </div>
-</div>
+</ng-template>
+
