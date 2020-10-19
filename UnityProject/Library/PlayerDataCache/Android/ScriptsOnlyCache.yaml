@@ -49,21 +49,21 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11172}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11460}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11514}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 12174}
     - Class: 114
-      Script: {instanceID: 12876}
+      Script: {instanceID: 12874}
     - Class: 114
-      Script: {instanceID: 13632}
+      Script: {instanceID: 13630}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 13694}
     - Class: 114
-      Script: {instanceID: 14246}
+      Script: {instanceID: 14244}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -455,7 +455,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 882ed0dff2b74514dde871a2763e73a8
+      Hash: 5eb7121a1a3efaad6f9f43dc55495bc2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MyScript
@@ -570,4 +570,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/GitHub/crossp/UnityProject/ggg.apk
+  playerPath: C:/GitRepositories/crossp/UnityProject/ggg.apk

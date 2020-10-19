@@ -60,22 +60,16 @@ export class CrosspService {
     return this.http.put<Ad>(this.baseUrl + 'Ads/' + ad.id, ad, { headers });
   }
 
-  public uploadAdImage = (ad: Ad, files) => {
+  public uploadAdImage(ad: Ad, files): Observable<any> {
     if (files.length === 0) {
       return;
     }
     const fileToUpload = files[0] as File;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    this.http.post(this.baseUrl + 'Ads/UploadAdImage/' + ad.id, formData, { reportProgress: true, observe: 'events' })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          // this.progress = Math.round(100 * event.loaded / event.total);
-        }
-        else if (event.type === HttpEventType.Response) {
-          // this.message = 'Upload success.';
-          // this.onUploadFinished.emit(event.body);
-        }
-      });
+    return this.http.post(this.baseUrl + 'Ads/UploadAdImage/' + ad.id, formData, { reportProgress: true, observe: 'events' });
+  }
+  public getAdImgSrc(ad: Ad): any {
+    return this.baseUrl + ad.img;
   }
 }
