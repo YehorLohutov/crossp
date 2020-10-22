@@ -1,31 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj": {}
+    "C:\\GitRepositories\\crossp\\WebApplication\\WebApplication.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj": {
+    "C:\\GitRepositories\\crossp\\WebApplication\\WebApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj",
+        "projectUniqueName": "C:\\GitRepositories\\crossp\\WebApplication\\WebApplication.csproj",
         "projectName": "WebApplication",
-        "projectPath": "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj",
-        "packagesPath": "C:\\Users\\logut\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\crossp\\WebApplication\\obj\\",
+        "projectPath": "C:\\GitRepositories\\crossp\\WebApplication\\WebApplication.csproj",
+        "packagesPath": "C:\\Users\\Yehor Lohutov\\.nuget\\packages\\",
+        "outputPath": "C:\\GitRepositories\\crossp\\WebApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\logut\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Yehor Lohutov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\logut\\source\\repos\\TextRPG\\TextRPGClassLibrary": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,9 +42,27 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             }
           },
           "imports": [

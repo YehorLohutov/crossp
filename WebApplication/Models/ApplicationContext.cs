@@ -12,6 +12,7 @@ namespace WebApplication.Models
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ad> Ads { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -41,7 +42,7 @@ namespace WebApplication.Models
 
             modelBuilder.Entity<Ad>().HasData(ads);
 
-
+            modelBuilder.Entity<User>().HasData(new User() { Login = "admin", Password = "admin" });
         }
     }
 }
