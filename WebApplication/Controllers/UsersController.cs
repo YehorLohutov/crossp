@@ -23,8 +23,9 @@ namespace WebApplication.Controllers
             _context = context;
         }
 
-        [HttpPost("/token")]
-        public async Task<ActionResult<Token>> Token(string username, string password)
+        [HttpGet]
+        [Route("token")]
+        public async Task<ActionResult<Token>> Token([FromQuery] string username, [FromQuery] string password)
         {
             ClaimsIdentity identity = await GetIdentity(username, password);
             if (identity == null)

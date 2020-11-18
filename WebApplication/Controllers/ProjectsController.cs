@@ -20,40 +20,21 @@ namespace WebApplication.Controllers
         public ProjectsController(ApplicationContext context)
         {
             _context = context;
-            //if(!_context.Projects.Any())
-            //{
-            //    Project project = new Project() { Name = "Proj1" };
-            //    _context.Projects.Add(project);
-            //    _context.Projects.Add(new Project() { Name = "Proj2" });
-            //    _context.Projects.Add(new Project() { Name = "Proj3" });
-            //    _context.SaveChanges();
-            //    _context.Ads.Add(new Ad() { ProjectId = project.Id, Url = "https://github.com/" });
-            //    _context.SaveChanges();          
-            //}
         }
 
-        //GET: api/Projects
+        //GET: Projects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
-        {
-            return await _context.Projects.ToListAsync();
-        }
-        //[HttpGet]
-        //public async Task<JsonResult> GetProjects()
-        //{
-        //    return new JsonResult(await _context.Projects.ToListAsync());
-        //}
+        public async Task<ActionResult<IEnumerable<Project>>> GetProjects() => await _context.Projects.ToListAsync();
+        
 
-        // GET: api/Projects/5
+        // GET: Projects/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
             var project = await _context.Projects.FindAsync(id);
 
-            if (project == null)
-            {
+            if (project is null)
                 return NotFound();
-            }
 
             return project;
         }
@@ -67,16 +48,14 @@ namespace WebApplication.Controllers
             return newProject;
         }
 
-        // PUT: api/Projects/5
+        // PUT: Projects/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProject(int id, [FromBody] Project project)
         {
             if (id != project.Id)
-            {
                 return BadRequest();
-            }
 
             _context.Entry(project).State = EntityState.Modified;
 
@@ -87,31 +66,15 @@ namespace WebApplication.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!ProjectExists(id))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
 
             return NoContent();
         }
 
-        //// POST: api/Projects
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPost]
-        //public async Task<ActionResult<Project>> PostProject([FromBody] Project project)
-        //{
-        //    _context.Projects.Add(project);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetProject", new { id = project.Id }, project);
-        //}
-
-        // DELETE: api/Projects/5
+        // DELETE: Projects/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Project>> DeleteProject(int id)
         {

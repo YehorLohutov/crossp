@@ -42,7 +42,13 @@ namespace WebApplication.Models
 
             modelBuilder.Entity<Ad>().HasData(ads);
 
-            modelBuilder.Entity<User>().HasData(new User() { Login = "admin", Password = "admin" });
+            User[] users = new User[]
+            {
+                new User() { Id = 1, Login = "user1", Password = "user1" },
+                new User() { Id = 2, Login = "user2", Password = "user2" }
+            };
+
+            modelBuilder.Entity<User>().HasData(users);
         }
     }
 }

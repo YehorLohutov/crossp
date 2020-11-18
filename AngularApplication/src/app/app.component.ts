@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {CrosspService} from './services/crossp.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularApplication';
+
+  constructor(public crosspService: CrosspService
+  ) {
+
+  }
+
+  public logout(): void {
+    this.crosspService.logout();
+  }
 }

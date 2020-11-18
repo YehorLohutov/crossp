@@ -22,11 +22,11 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
+          <a *ngIf="!this.crosspService.userAuthenticated()" class="button is-light" [routerLink]="['/login']">
             Log in
+          </a>
+          <a *ngIf="this.crosspService.userAuthenticated()" class="button is-light" (click)="logout()">
+            Log out
           </a>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdComponent } from './ad/ad.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AdComponent } from './ad/ad.component';
     HomeComponent,
     ProjectComponent,
     PageNotFoundComponent,
-    AdComponent
+    AdComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,

@@ -37,7 +37,6 @@ export class ProjectComponent implements OnInit {
     this.crosspService.deleteProject(this.project.id).subscribe(result => this.router.navigate(['']));
   }
   public putProject(): void {
-    console.log('update project')
     this.crosspService.putProject(this.project).subscribe(result => console.log(result));
   }
 }

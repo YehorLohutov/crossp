@@ -4,14 +4,35 @@ import {Observable} from 'rxjs';
 import {Project} from '../models/project';
 import {Ad} from '../models/ad';
 import {map} from 'rxjs/operators';
+import {Token} from '../models/token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrosspService {
-  protected baseUrl = 'https://crossp.azurewebsites.net/';
+  protected baseUrl = 'https://localhost:44389/';
+    //'https://crossp.azurewebsites.net/';
+  protected token: Token;
 
   constructor(protected http: HttpClient) {
+  }
+
+  public login(username: string, password: string): Observable<boolean> {
+    return this.http.get<Token>(`${this.baseUrl}users/token?username=${username}&password=${password}`)
+      .pipe(
+        map(result => {
+          this.token = result;
+          return this.token !== null;
+        })
+      );
+  }
+
+  public logout(): void {
+    delete this.token;
+  }
+
+  public userAuthenticated(): boolean {
+    return this.token !== null;
   }
 
   public debug(): Observable<any> {
