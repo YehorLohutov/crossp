@@ -12,8 +12,8 @@ import {switchMap} from 'rxjs/operators';
 })
 export class ProjectComponent implements OnInit {
 
-  public project: Project;
-  public ads: Ad[];
+  public project: Project = null;
+  public ads: Ad[] = null;
 
   constructor(protected route: ActivatedRoute,
               protected crosspService: CrosspService,
@@ -39,4 +39,7 @@ export class ProjectComponent implements OnInit {
   public putProject(): void {
     this.crosspService.putProject(this.project).subscribe(result => console.log(result));
   }
+
+  public projectLoaded(): boolean { return true; }
+  public adsLoaded(): boolean { return true; }
 }

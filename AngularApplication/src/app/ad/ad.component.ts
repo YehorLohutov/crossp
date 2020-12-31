@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CrosspService} from "../services/crossp.service";
 import {switchMap} from "rxjs/operators";
 import {HttpEventType} from '@angular/common/http';
+import { FileM } from "../models/file";
 
 @Component({
   selector: 'app-ad',
@@ -16,6 +17,7 @@ export class AdComponent implements OnInit {
   public uploadingImg: boolean;
   public uploadingImgProgress;
   public adImgSrc;
+  public possibleAdFiles: FileM[];
 
   constructor(protected route: ActivatedRoute,
               protected crosspService: CrosspService,
@@ -28,6 +30,7 @@ export class AdComponent implements OnInit {
           this.ad = result;
           this.adImgSrc = this.crosspService.getAdImgSrc(this.ad);
         }));
+    this.crosspService.getFiles(this.crosspService.getUserLogin()).subscribe(res => this.possibleAdFiles = res);
   }
 
   ngOnInit(): void {

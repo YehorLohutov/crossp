@@ -1,4 +1,4 @@
-<div *ngIf="!this.projectsLoaded; then progressBarBlock else projectsBlock"></div>
+<div *ngIf="!this.projectsLoaded(); then progressBarBlock else projectsBlock"></div>
 <ng-template #progressBarBlock>
   <progress class="progress is-small is-primary" max="100"></progress>
 </ng-template>

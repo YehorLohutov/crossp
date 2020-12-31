@@ -1,64 +1,81 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Project
-      </h1>
-    </div>
-  </div>
-</section>
-<div class="columns is-centered">
-  <div class="column is-4">
-    <div class="field">
-      <label class="label">Name</label>
-      <div class="control">
-        <input class="input" type="text" [(ngModel)]="this.project.name">
+<div *ngIf="!this.projectLoaded(); then progressBarBlockProject else projectBlock"></div>
+<ng-template #progressBarBlockProject>
+  <progress class="progress is-small is-primary" max="100"></progress>
+</ng-template>
+<ng-template #projectBlock>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Project
+        </h1>
       </div>
     </div>
-
-    <div class="field">
-      <label class="label">ID</label>
-      <div class="control">
-        <input class="input" type="text" disabled placeholder="{{this.project.id}}">
-      </div>
-    </div>
-
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link is-success" (click)="putProject()">Save</button>
-      </div>
-      <div class="control">
-        <button class="button is-link is-danger" (click)="deleteProject()">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Ads
-      </h1>
-    </div>
-  </div>
-</section>
-<div class="columns">
-  <div class="column is-3" *ngFor="let ad of this.ads">
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          {{ad.name}}
-        </p>
-      </header>
-      <div class="card-content">
-        <div class="content">
-          ID: {{ad.id}}
+  </section>
+  <div class="columns is-centered">
+    <div class="column is-4">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" [(ngModel)]="this.project.name">
         </div>
       </div>
-      <footer class="card-footer">
-        <a href="#" [routerLink]="['/ad', ad.id]" class="card-footer-item">Open</a>
-      </footer>
+
+      <div class="field">
+        <label class="label">ID</label>
+        <div class="control">
+          <input class="input" type="text" disabled placeholder="{{this.project.id}}">
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link is-success" (click)="putProject()">Save</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-danger" (click)="deleteProject()">Delete</button>
+        </div>
+      </div>
     </div>
   </div>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Ads
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div *ngIf="!this.adsLoaded(); then progressBarBlockAds else adsBlock"></div>
+  <ng-template #progressBarBlockAds>
+    <progress class="progress is-small is-primary" max="100"></progress>
+  </ng-template>
+  <ng-template #adsBlock>
+    <div class="columns">
+      <div class="column is-3" *ngFor="let ad of this.ads">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              {{ad.name}}
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              ID: {{ad.id}}
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="#" [routerLink]="['/ad', ad.id]" class="card-footer-item">Open</a>
+          </footer>
+        </div>
+      </div>
 
-</div>
+    </div>
+  </ng-template>
+
+
+</ng-template>
+
+
+

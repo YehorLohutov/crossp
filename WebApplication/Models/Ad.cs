@@ -14,6 +14,5 @@ namespace WebApplication.Models
         public string Url { get; set; }
         public string Img { get; set; }
         public int ProjectId { get; set; }
-        public Project Project { get; set; }
     }
 }

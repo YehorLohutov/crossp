@@ -10,6 +10,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HttpClientModule } from '@angular/common/http';
 import { AdComponent } from './ad/ad.component';
 import { LoginComponent } from './login/login.component';
+import {CookieService} from 'ngx-cookie-service';
+import { StorageComponent } from './storage/storage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { LoginComponent } from './login/login.component';
     ProjectComponent,
     PageNotFoundComponent,
     AdComponent,
-    LoginComponent
+    LoginComponent,
+    StorageComponent
   ],
     imports: [
         BrowserModule,
@@ -26,7 +29,7 @@ import { LoginComponent } from './login/login.component';
         FormsModule,
         HttpClientModule
     ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

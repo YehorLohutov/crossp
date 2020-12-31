@@ -8,20 +8,18 @@ import {CrosspService} from '../services/crossp.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  public projectsLoaded: boolean;
-  public projects: Project[];
-
+  public projects: Project[] = null;
 
   constructor(protected crosspService: CrosspService) {
-    this.projectsLoaded = false;
   }
 
   ngOnInit(): void {
-    this.crosspService.getProjects().subscribe(result => { this.projects = result; this.projectsLoaded = true; });
+    this.crosspService.getProjects().subscribe(result => { this.projects = result; });
   }
 
   public createProject(): void {
     this.crosspService.createProject().subscribe(result => this.projects.push(result));
   }
+
+  public projectsLoaded(): boolean { return this.projects != null; }
 }

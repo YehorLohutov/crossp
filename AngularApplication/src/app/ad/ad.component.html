@@ -43,6 +43,19 @@
     </div>
 
 
+    <div class="field">
+      <label class="label">Subject</label>
+      <div class="control">
+        <div class="select">
+          <select>
+            <option *ngFor="let file of this.possibleAdFiles">{{file.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="field is-grouped">
       <div class="control">
         <button class="button is-link is-success" (click)="putAd()">Save</button>

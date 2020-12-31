@@ -12,5 +12,11 @@ namespace WebApplication.Models
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+       //public List<Storage> Storages { get; set; }
+
+        public User()
+        {
+            //Storages = new List<Storage>();
+        }
     }
 }

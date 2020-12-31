@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using WebApplication.Models;
 
 
 namespace WebApplication.Models
@@ -13,6 +15,7 @@ namespace WebApplication.Models
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ad> Ads { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<File> Files { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -20,10 +23,13 @@ namespace WebApplication.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ad>()
-                .HasOne(ad => ad.Project)
-                .WithMany(project => project.Ads)
-                .HasForeignKey(key => key.ProjectId);
+            //modelBuilder.Entity<Ad>()
+            //    .HasOne(ad => ad.Project)
+            //    .WithMany(project => project.Ads)
+            //    .HasForeignKey(key => key.ProjectId);
+
+            //modelBuilder.Entity<Storage>().HasOne(storage => storage.User);
+            //modelBuilder.Entity<Storage>().HasOne(storage => storage.File);
 
             Project[] projects = new Project[3]
             {
@@ -49,6 +55,20 @@ namespace WebApplication.Models
             };
 
             modelBuilder.Entity<User>().HasData(users);
+
+            File[] files = new File[]
+            {
+                new File() {Id = 1, Path = "/Storages/1/image1.jpg", UserId = 1 },
+                new File() {Id = 2, Path = "/Storages/2/image2.jpg", UserId = 2 }
+            };
+            foreach (File file in files)
+            {
+                file.Name = Path.GetFileNameWithoutExtension(file.Path);
+                file.Extension = Path.GetExtension(file.Path);
+            }
+
+
+            modelBuilder.Entity<File>().HasData(files);
         }
     }
 }

@@ -3,18 +3,24 @@ import {HttpClient, HttpEventType, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Project} from '../models/project';
 import {Ad} from '../models/ad';
+import { FileM } from '../models/file';
 import {map} from 'rxjs/operators';
 import {Token} from '../models/token';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrosspService {
-  protected baseUrl = 'https://localhost:44389/';
+  protected readonly baseUrl = 'https://localhost:44389/';
+  protected readonly cookieTokenName = 'token';
     //'https://crossp.azurewebsites.net/';
-  protected token: Token;
+  protected token: Token = null;
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient, protected cookieService: CookieService) {
+    if (this.cookieService.check(this.cookieTokenName)) {
+      this.token = JSON.parse(this.cookieService.get(this.cookieTokenName));
+    }
   }
 
   public login(username: string, password: string): Observable<boolean> {
@@ -22,17 +28,28 @@ export class CrosspService {
       .pipe(
         map(result => {
           this.token = result;
+          if (this.cookieService.check(this.cookieTokenName)) {
+            this.cookieService.delete(this.cookieTokenName);
+          }
+          this.cookieService.set(this.cookieTokenName, JSON.stringify(result));
           return this.token !== null;
         })
       );
   }
 
   public logout(): void {
-    delete this.token;
+    this.token = null;
+    if (this.cookieService.check(this.cookieTokenName)) {
+      this.cookieService.delete(this.cookieTokenName);
+    }
   }
 
   public userAuthenticated(): boolean {
-    return this.token !== null;
+    return this.token != null;
+  }
+
+  public getUserLogin(): string {
+    return this.token.login;
   }
 
   public debug(): Observable<any> {
@@ -40,6 +57,13 @@ export class CrosspService {
     return this.http.post<string>(this.baseUrl + 'api/projects', asda, {
       headers: { 'Content-Type': 'application/json'}
     });
+  }
+
+  public getFiles(userLogin): Observable<FileM[]> {
+    return this.http.get<FileM[]>(this.baseUrl + 'Files/userlogin-' + userLogin).pipe(map(res => {
+      try { return res; }
+      catch (err) { console.log(err); return res; }
+    }));
   }
 
   public getProjects(): Observable<Project[]> {
@@ -90,7 +114,26 @@ export class CrosspService {
     formData.append('file', fileToUpload, fileToUpload.name);
     return this.http.post(this.baseUrl + 'Ads/UploadAdImage/' + ad.id, formData, { reportProgress: true, observe: 'events' });
   }
+
   public getAdImgSrc(ad: Ad): any {
     return this.baseUrl + ad.img;
+  }
+
+  public uploadFile(userLogin, files): Observable<any> {
+    if (files.length === 0) {
+      return;
+    }
+    const fileToUpload = files[0] as File;
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    return this.http.post(this.baseUrl + 'Files/uploadfile-' + userLogin, formData, { reportProgress: true, observe: 'events' });
+  }
+
+  public deleteFile(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + 'Files/' + id);
+  }
+
+  public getFileSrc(path): any {
+    return this.baseUrl + path;
   }
 }
