@@ -85,52 +85,66 @@ namespace WebApplication.Controllers
             return NoContent();
         }
 
-        [HttpPost, DisableRequestSizeLimit]
-        [Route("UploadAdImage/{id}")]
-        public async Task<IActionResult> UploadAdImage(int id)
+        [Route("Create/{id}")]
+        public async Task<ActionResult<Ad>> CreateAd(int id)
         {
-            var ad = await _context.Ads.FindAsync(id);
-            if (ad == null)
+            var project = await _context.Projects.FindAsync(id);
+
+            if (project is null)
                 return NotFound();
 
-            IFormFile file = Request.Form.Files[0];
-            if(file == null)
-                return BadRequest();
-
-            
-            string path = $"/{file.FileName}";
-            using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
-                    await file.CopyToAsync(fileStream);
-
-            ad.Img = path;
+            Ad newAd = new Ad() { Name = "New Ad", ProjectId = project.Id };
+            await _context.Ads.AddAsync(newAd);
             await _context.SaveChangesAsync();
-            return Ok();
-            //try
-            //{
-            //    var file = Request.Form.Files[0];
-            //    var folderName = "Images";// Path.Combine("Resources", "Images");
-            //    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            //    if (file.Length > 0)
-            //    {
-            //        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-            //        var fullPath = Path.Combine(pathToSave, fileName);
-            //        var dbPath = Path.Combine(folderName, fileName);
-            //        using (var stream = new FileStream(fullPath, FileMode.Create))
-            //        {
-            //            file.CopyTo(stream);
-            //        }
-            //        return Ok(new { dbPath });
-            //    }
-            //    else
-            //    {
-            //        return BadRequest();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, $"Internal server error: {ex}");
-            //}
+            return newAd;
         }
+
+        //[HttpPost, DisableRequestSizeLimit]
+        //[Route("UploadAdImage/{id}")]
+        //public async Task<IActionResult> UploadAdImage(int id)
+        //{
+        //    var ad = await _context.Ads.FindAsync(id);
+        //    if (ad == null)
+        //        return NotFound();
+
+        //    IFormFile file = Request.Form.Files[0];
+        //    if(file == null)
+        //        return BadRequest();
+
+
+        //    string path = $"/{file.FileName}";
+        //    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+        //            await file.CopyToAsync(fileStream);
+
+        //    ad.Img = path;
+        //    await _context.SaveChangesAsync();
+        //    return Ok();
+        //    //try
+        //    //{
+        //    //    var file = Request.Form.Files[0];
+        //    //    var folderName = "Images";// Path.Combine("Resources", "Images");
+        //    //    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+        //    //    if (file.Length > 0)
+        //    //    {
+        //    //        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+        //    //        var fullPath = Path.Combine(pathToSave, fileName);
+        //    //        var dbPath = Path.Combine(folderName, fileName);
+        //    //        using (var stream = new FileStream(fullPath, FileMode.Create))
+        //    //        {
+        //    //            file.CopyTo(stream);
+        //    //        }
+        //    //        return Ok(new { dbPath });
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return BadRequest();
+        //    //    }
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    return StatusCode(500, $"Internal server error: {ex}");
+        //    //}
+        //}
 
 
 

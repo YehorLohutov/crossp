@@ -24,6 +24,19 @@ namespace WebApplication.Controllers
             this.appEnvironment = appEnvironment;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<WebApplication.Models.File>> GetFile(int id)
+        {
+            var file = await context.Files.FindAsync(id);
+
+            if (file == null)
+            {
+                return NotFound();
+            }
+
+            return file;
+        }
+
         [HttpGet]
         [Route("userlogin-{userLogin}")]
         public async Task<ActionResult<IEnumerable<WebApplication.Models.File>>> GetFiles(string userLogin)

@@ -33,15 +33,11 @@
 
       <div class="control">
         <figure class="image is-256x256">
-          <img src="{{this.adImgSrc}}">
+          <img *ngIf="this.crosspService.isFileImage(this.file)" src="{{this.crosspService.getFileSrc(this.file.path)}}">
+          <video *ngIf="this.crosspService.isFileVideo(this.file)" src="{{this.crosspService.getFileSrc(this.file.path)}}" autoplay [muted]="'muted'" loop> </video>
         </figure>
-        <input *ngIf="!uploadingImg" class="input" type="text" disabled placeholder="{{this.ad.img}}">
-        <progress *ngIf="uploadingImg" class="progress is-success" value="{{this.uploadingImgProgress}}" max="100"></progress>
-        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-        <button class="button is-primary" (click)="file.click()">Upload image</button>
       </div>
     </div>
-
 
     <div class="field">
       <label class="label">Subject</label>

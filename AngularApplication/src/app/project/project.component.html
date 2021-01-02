@@ -53,6 +53,27 @@
   </ng-template>
   <ng-template #adsBlock>
     <div class="columns">
+
+      <div class="column is-3">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Empty
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              New Ad
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a (click)="createAd()" class="card-footer-item">Create</a>
+          </footer>
+        </div>
+      </div>
+
+
+
       <div class="column is-3" *ngFor="let ad of this.ads">
         <div class="card">
           <header class="card-header">

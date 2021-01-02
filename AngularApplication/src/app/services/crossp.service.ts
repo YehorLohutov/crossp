@@ -99,24 +99,18 @@ export class CrosspService {
     return this.http.get<Ad>(this.baseUrl + 'Ads/' + id);
   }
 
+  public createAd(id): Observable<Ad> {
+    return this.http.get<Ad>(this.baseUrl + 'Ads/Create/' + id);
+  }
+
   public putAd(ad: Ad): Observable<any> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
     return this.http.put<Ad>(this.baseUrl + 'Ads/' + ad.id, ad, { headers });
   }
 
-  public uploadAdImage(ad: Ad, files): Observable<any> {
-    if (files.length === 0) {
-      return;
-    }
-    const fileToUpload = files[0] as File;
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    return this.http.post(this.baseUrl + 'Ads/UploadAdImage/' + ad.id, formData, { reportProgress: true, observe: 'events' });
-  }
-
-  public getAdImgSrc(ad: Ad): any {
-    return this.baseUrl + ad.img;
+  public getFile(id): Observable<FileM> {
+    return this.http.get<FileM>(this.baseUrl + 'Files/' + id);
   }
 
   public uploadFile(userLogin, files): Observable<any> {
@@ -135,5 +129,13 @@ export class CrosspService {
 
   public getFileSrc(path): any {
     return this.baseUrl + path;
+  }
+
+  public isFileImage(file: FileM): boolean {
+    return file.extension === '.png' || file.extension === '.jpg';
+  }
+
+  public isFileVideo(file: FileM): boolean {
+    return file.extension === '.mp4';
   }
 }

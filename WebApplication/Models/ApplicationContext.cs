@@ -39,15 +39,6 @@ namespace WebApplication.Models
             };
             modelBuilder.Entity<Project>().HasData(projects);
 
-            Ad[] ads = new Ad[]
-            {
-                new Ad() { Id = 1, Name = "Ad1",  Url = "url1", ProjectId = 1 },
-                new Ad() { Id = 2, Name = "Ad2", Url = "url2", ProjectId = 2 },
-                new Ad() { Id = 3, Name = "Ad3", Url = "url3", ProjectId = 3 },
-            };
-
-            modelBuilder.Entity<Ad>().HasData(ads);
-
             User[] users = new User[]
             {
                 new User() { Id = 1, Login = "user1", Password = "user1" },
@@ -67,8 +58,27 @@ namespace WebApplication.Models
                 file.Extension = Path.GetExtension(file.Path);
             }
 
-
             modelBuilder.Entity<File>().HasData(files);
+
+            Ad[] ads = new Ad[]
+{
+                new Ad() { Id = 1, Name = "Ad1",  Url = "url1", ProjectId = 1, FileId = 1 },
+                new Ad() { Id = 2, Name = "Ad2", Url = "url2", ProjectId = 2, FileId = 2 },
+                new Ad() { Id = 3, Name = "Ad3", Url = "url3", ProjectId = 3, FileId = 1 },
+};
+
+            modelBuilder.Entity<Ad>().HasData(ads);
         }
+
+        //public async Models.File GetDefaultImageFile(User )
+        //{
+        //    Models.File defaultImageFile = await Files.FirstOrDefaultAsync(file => file.Path == "/default.png");
+            
+        //    if(defaultImageFile is null)
+        //    {
+        //        defaultImageFile = new File() { Name = }
+        //    }
+        //    return defaultImageFile;
+        //}
     }
 }

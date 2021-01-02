@@ -3,5 +3,5 @@ export class Ad {
   public name: string;
   public projectId: number;
   public url: string;
-  public img: string;
+  public fileId: string;
 }

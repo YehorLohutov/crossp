@@ -39,7 +39,10 @@ export class ProjectComponent implements OnInit {
   public putProject(): void {
     this.crosspService.putProject(this.project).subscribe(result => console.log(result));
   }
+  public createAd(): void {
+    this.crosspService.createAd(this.project.id).subscribe(result => this.ads.push(result));
+  }
 
-  public projectLoaded(): boolean { return true; }
-  public adsLoaded(): boolean { return true; }
+  public projectLoaded(): boolean { return this.project != null; }
+  public adsLoaded(): boolean { return this.ads != null; }
 }

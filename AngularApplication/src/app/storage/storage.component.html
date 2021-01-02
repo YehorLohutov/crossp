@@ -35,7 +35,8 @@
         </header>
         <div class="card-content">
           <figure class="image is-64x64">
-            <img src="{{this.crosspService.getFileSrc(file.path)}}">
+            <img *ngIf="this.crosspService.isFileImage(file)" src="{{this.crosspService.getFileSrc(file.path)}}">
+            <video *ngIf="this.crosspService.isFileVideo(file)" src="{{this.crosspService.getFileSrc(file.path)}}" autoplay [muted]="'muted'" loop> </video>
           </figure>
           ID: {{file.id}}
           Extension: {{file.extension}}
