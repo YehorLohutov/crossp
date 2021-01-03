@@ -14,8 +14,8 @@ namespace WebApplication.Controllers
     [Route("[controller]")]
     public class DebugController : ControllerBase
     {
-        private ApplicationContext ApplicationContext;
-        public DebugController(ApplicationContext applicationContext)
+        private ApplicationDBContext ApplicationContext;
+        public DebugController(ApplicationDBContext applicationContext)
         {
             ApplicationContext = applicationContext;
         }

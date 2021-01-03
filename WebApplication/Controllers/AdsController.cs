@@ -16,10 +16,10 @@ namespace WebApplication.Controllers
     [ApiController]
     public class AdsController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationDBContext _context;
         private readonly IWebHostEnvironment _appEnvironment;
 
-        public AdsController(ApplicationContext context, IWebHostEnvironment appEnvironment)
+        public AdsController(ApplicationDBContext context, IWebHostEnvironment appEnvironment)
         {
             _context = context;
             _appEnvironment = appEnvironment;

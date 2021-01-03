@@ -15,9 +15,9 @@ namespace WebApplication.Controllers
     [Route("[controller]")]
     public class ProjectsController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationDBContext _context;
 
-        public ProjectsController(ApplicationContext context)
+        public ProjectsController(ApplicationDBContext context)
         {
             _context = context;
         }

@@ -16,9 +16,9 @@ namespace WebApplication.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationDBContext _context;
 
-        public UsersController(ApplicationContext context)
+        public UsersController(ApplicationDBContext context)
         {
             _context = context;
         }

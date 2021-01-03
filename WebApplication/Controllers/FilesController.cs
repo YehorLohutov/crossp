@@ -15,10 +15,10 @@ namespace WebApplication.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        private readonly ApplicationContext context;
+        private readonly ApplicationDBContext context;
         private readonly IWebHostEnvironment appEnvironment;
 
-        public FilesController(ApplicationContext context, IWebHostEnvironment appEnvironment)
+        public FilesController(ApplicationDBContext context, IWebHostEnvironment appEnvironment)
         {
             this.context = context;
             this.appEnvironment = appEnvironment;
