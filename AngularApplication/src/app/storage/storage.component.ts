@@ -23,7 +23,7 @@ export class StorageComponent implements OnInit {
 
   private loadFiles(): void {
     this.files = null;
-    this.crosspService.getFiles(this.crosspService.getUserLogin()).subscribe(result => { this.files = result; });
+    this.crosspService.getFiles(this.crosspService.getUserId()).subscribe(result => { this.files = result; });
   }
 
   public uploadFile = (files) => {

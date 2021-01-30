@@ -15,11 +15,16 @@ export class CrosspService {
   protected readonly baseUrl = 'https://localhost:44389/';
   protected readonly cookieTokenName = 'token';
     //'https://crossp.azurewebsites.net/';
+  protected headers: HttpHeaders;
+
   protected token: Token = null;
 
   constructor(protected http: HttpClient, protected cookieService: CookieService) {
     if (this.cookieService.check(this.cookieTokenName)) {
       this.token = JSON.parse(this.cookieService.get(this.cookieTokenName));
+      this.headers = new HttpHeaders()
+        .set('Authorization', 'Bearer ' + this.token.accessToken)
+        .set('Content-Type', 'application/json');
     }
   }
 
@@ -28,6 +33,10 @@ export class CrosspService {
       .pipe(
         map(result => {
           this.token = result;
+          console.log(this.token);
+          this.headers = new HttpHeaders()
+            .set('Authorization', 'Bearer ' + this.token.accessToken)
+            .set('Content-Type', 'application/json');
           if (this.cookieService.check(this.cookieTokenName)) {
             this.cookieService.delete(this.cookieTokenName);
           }
@@ -52,6 +61,10 @@ export class CrosspService {
     return this.token.login;
   }
 
+  public getUserId(): string {
+    return this.token.id;
+  }
+
   public debug(): Observable<any> {
     const asda = { id: 99, name: 'adas'};
     return this.http.post<string>(this.baseUrl + 'api/projects', asda, {
@@ -59,58 +72,58 @@ export class CrosspService {
     });
   }
 
-  public getFiles(userLogin): Observable<FileM[]> {
-    return this.http.get<FileM[]>(this.baseUrl + 'Files/userlogin-' + userLogin).pipe(map(res => {
+  public getFiles(userId): Observable<FileM[]> {
+    return this.http.get<FileM[]>(this.baseUrl + 'Files/userfiles?userId=' + userId, { headers: this.headers }).pipe(map(res => {
       try { return res; }
       catch (err) { console.log(err); return res; }
     }));
   }
 
   public getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl + 'Projects').pipe(map(res => {
+    return this.http.get<Project[]>(this.baseUrl + 'Projects', { headers: this.headers }).pipe(map(res => {
       try { return res; }
       catch (err) { console.log(err); return res; }
     }));
   }
 
   public getProject(id): Observable<Project> {
-    return this.http.get<Project>(this.baseUrl + 'Projects/' + id);
+    return this.http.get<Project>(this.baseUrl + 'Projects/' + id, { headers: this.headers });
   }
 
-  public createProject(): Observable<Project> {
-    return this.http.get<Project>(this.baseUrl + 'Projects/Create');
+  public createProject(userId): Observable<Project> {
+    return this.http.get<Project>(this.baseUrl + 'Projects/create?userid=' + userId, { headers: this.headers });
   }
 
   public putProject(project: Project): Observable<any> {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json');
-    return this.http.put<Project>(this.baseUrl + 'Projects/' + project.id, project, { headers });
+    // const headers = new HttpHeaders()
+    //  .set('Content-Type', 'application/json');
+    return this.http.put<Project>(this.baseUrl + 'Projects/' + project.id, project, { headers: this.headers });
   }
 
   public deleteProject(id: number): Observable<any> {
-    return this.http.delete(this.baseUrl + 'Projects/' + id);
+    return this.http.delete(this.baseUrl + 'Projects/' + id,{ headers: this.headers });
   }
 
   public getAds(projectId: number): Observable<Ad[]> {
-    return this.http.get<Ad[]>(this.baseUrl + 'Ads/projectid-' + projectId);
+    return this.http.get<Ad[]>(this.baseUrl + 'Ads/projectid-' + projectId, { headers: this.headers });
   }
 
   public getAd(id): Observable<Ad> {
-    return this.http.get<Ad>(this.baseUrl + 'Ads/' + id);
+    return this.http.get<Ad>(this.baseUrl + 'Ads/' + id, { headers: this.headers });
   }
 
   public createAd(id): Observable<Ad> {
-    return this.http.get<Ad>(this.baseUrl + 'Ads/Create/' + id);
+    return this.http.get<Ad>(this.baseUrl + 'Ads/Create/' + id, { headers: this.headers });
   }
 
   public putAd(ad: Ad): Observable<any> {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json');
-    return this.http.put<Ad>(this.baseUrl + 'Ads/' + ad.id, ad, { headers });
+    // const headers = new HttpHeaders()
+    //  .set('Content-Type', 'application/json');
+    return this.http.put<Ad>(this.baseUrl + 'Ads/' + ad.id, ad, { headers: this.headers });
   }
 
   public getFile(id): Observable<FileM> {
-    return this.http.get<FileM>(this.baseUrl + 'Files/' + id);
+    return this.http.get<FileM>(this.baseUrl + 'Files/' + id, { headers: this.headers });
   }
 
   public uploadFile(userLogin, files): Observable<any> {
@@ -120,11 +133,11 @@ export class CrosspService {
     const fileToUpload = files[0] as File;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    return this.http.post(this.baseUrl + 'Files/uploadfile-' + userLogin, formData, { reportProgress: true, observe: 'events' });
+    return this.http.post(this.baseUrl + 'Files/uploadfile-' + userLogin, formData, { headers: this.headers, reportProgress: true, observe: 'events' });
   }
 
   public deleteFile(id: number): Observable<any> {
-    return this.http.delete(this.baseUrl + 'Files/' + id);
+    return this.http.delete(this.baseUrl + 'Files/' + id, { headers: this.headers });
   }
 
   public getFileSrc(path): any {

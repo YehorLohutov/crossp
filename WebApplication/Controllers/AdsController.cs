@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace WebApplication.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class AdsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
@@ -43,12 +45,17 @@ namespace WebApplication.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Ad>> GetAd(int id)
         {
-            var ad = await _context.Ads.FindAsync(id);
+            var ad = await _context.Ads.FirstOrDefaultAsync(ad => ad.Id.Equals(id));
 
             if (ad == null)
             {
                 return NotFound();
             }
+            //if (ad.FileId == null)
+            //{
+            //    Models.File defaultFile = await _context.GetDefaultPNGFileAsync();
+            //    ad.FileId = defaultFile.Id;
+            //}
 
             return ad;
         }

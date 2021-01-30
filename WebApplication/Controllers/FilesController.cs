@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ namespace WebApplication.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class FilesController : ControllerBase
     {
         private readonly ApplicationDBContext context;
@@ -37,14 +39,22 @@ namespace WebApplication.Controllers
             return file;
         }
 
-        [HttpGet]
-        [Route("userlogin-{userLogin}")]
-        public async Task<ActionResult<IEnumerable<WebApplication.Models.File>>> GetFiles(string userLogin)
+        [Route("userfiles")]
+        //[Route("getuserfiles/userlogin-{userLogin}")]
+        public async Task<ActionResult<List<WebApplication.Models.File>>> GetFiles([FromQuery] int userId)
         {
-            User user = await context.Users.FirstOrDefaultAsync(user => user.Login == userLogin);
+            User user = await context.Users.FirstOrDefaultAsync(user => user.Id == userId);
+
             if (user is null)
                 return NotFound();
-            return await context.Files.Where(file => file.UserId == user.Id).ToListAsync();
+
+            List<Models.File> files = await context.Files.Where(file => file.UserId == user.Id).ToListAsync();
+            
+            files.Add(await context.GetDefaultPNGFileAsync());
+            files.Add(await context.GetDefaultMP4FileAsync());
+
+
+            return files;
         }
 
         [HttpPost, DisableRequestSizeLimit]
@@ -86,9 +96,10 @@ namespace WebApplication.Controllers
         {
             Models.File file = await context.Files.FindAsync(id);
             if (file == null)
-            {
                 return NotFound();
-            }
+
+            if (ApplicationDBContext.IsFileDefault(file))
+                return BadRequest();
 
             FileInfo fileInf = new FileInfo(appEnvironment.WebRootPath + file.Path);
             if (fileInf.Exists)

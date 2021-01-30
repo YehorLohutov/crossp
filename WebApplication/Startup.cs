@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace WebApplication
 {
@@ -60,7 +61,7 @@ namespace WebApplication
                         // установка потребителя токена
                         ValidAudience = AuthOptions.AUDIENCE,
                         // будет ли валидироваться время существования
-                        ValidateLifetime = true,
+                        //ValidateLifetime = true,
 
                         // установка ключа безопасности
                         IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
@@ -69,7 +70,23 @@ namespace WebApplication
                     };
                 });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => 
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+            //    .AddJsonOptions(options => 
+            //{
+                
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //    //options. OutputFormatters.RemoveType<SystemTextJsonOutputFormatter>();
+            //    //options.OutputFormatters.Add(new SystemTextJsonOutputFormatter(new JsonSerializerOptions(JsonSerializerDefaults.Web)
+            //    //{
+            //    //    ReferenceHandler = ReferenceHandler.Preserve,
+            //    //});
+            //});
+
+
+
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connection));

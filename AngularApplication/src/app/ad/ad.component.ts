@@ -29,7 +29,7 @@ export class AdComponent implements OnInit {
           this.crosspService.getFile(this.ad.fileId).subscribe(adFile => this.file = adFile );
           // this.adImgSrc = this.crosspService.getAdImgSrc(this.ad);
         }));
-    this.crosspService.getFiles(this.crosspService.getUserLogin()).subscribe(res => this.possibleAdFiles = res);
+    this.crosspService.getFiles(this.crosspService.getUserId()).subscribe(res => this.possibleAdFiles = res);
   }
 
   ngOnInit(): void {

@@ -9,22 +9,25 @@ using WebApplication.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext context;
 
         public UsersController(ApplicationDBContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         [HttpGet]
         [Route("token")]
+        [AllowAnonymous]
         public async Task<ActionResult<Token>> Token([FromQuery] string username, [FromQuery] string password)
         {
             ClaimsIdentity identity = await GetIdentity(username, password);
@@ -44,20 +47,21 @@ namespace WebApplication.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            Token token = new Token() { Login = identity.Name, AccessToken = encodedJwt };
+            Token token = new Token(identity.Name, identity.FindFirst("id").Value,  encodedJwt);
             return token;
         }
 
         private async Task<ClaimsIdentity> GetIdentity(string login, string password)
         {                
-            User person = await _context.Users.FirstOrDefaultAsync(user => user.Login == login && user.Password == password);
+            User user = await context.Users.FirstOrDefaultAsync(user => user.Login == login && user.Password == password);
 
-            if (person is null)
+            if (user is null)
                 return null;
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                new Claim("id", user.Id.ToString())
                 //new Claim(ClaimsIdentity.DefaultRoleClaimType, person.Role)
             };
             ClaimsIdentity claimsIdentity =

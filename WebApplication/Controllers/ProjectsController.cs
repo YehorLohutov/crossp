@@ -8,30 +8,32 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using WebApplication.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class ProjectsController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext context;
 
         public ProjectsController(ApplicationDBContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         //GET: Projects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects() => await _context.Projects.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Project>>> GetProjects() => await context.Projects.ToListAsync();
         
 
         // GET: Projects/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            var project = await context.Projects.FindAsync(id);
 
             if (project is null)
                 return NotFound();
@@ -39,29 +41,32 @@ namespace WebApplication.Controllers
             return project;
         }
 
-        [Route("Create")]
-        public async Task<ActionResult<Project>> CreateProject()
+        // GET: Projects/create?userid={userid}
+        [Route("create")]
+        public async Task<ActionResult<Project>> CreateProject([FromQuery]int userId)
         {
-            Project newProject = new Project() { Name = "NewProject" };
-            await _context.Projects.AddAsync(newProject);
-            await _context.SaveChangesAsync();
+            User user = await context.Users.FirstOrDefaultAsync(user => user.Id == userId);
+            if (user is null)
+                return BadRequest();
+
+            Project newProject = new Project(user);
+            await context.Projects.AddAsync(newProject);
+            await context.SaveChangesAsync();
             return newProject;
         }
 
         // PUT: Projects/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProject(int id, [FromBody] Project project)
         {
             if (id != project.Id)
                 return BadRequest();
 
-            _context.Entry(project).State = EntityState.Modified;
+            context.Entry(project).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,21 +83,21 @@ namespace WebApplication.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Project>> DeleteProject(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            var project = await context.Projects.FindAsync(id);
             if (project == null)
             {
                 return NotFound();
             }
 
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
+            context.Projects.Remove(project);
+            await context.SaveChangesAsync();
 
             return project;
         }
 
         private bool ProjectExists(int id)
         {
-            return _context.Projects.Any(e => e.Id == id);
+            return context.Projects.Any(e => e.Id == id);
         }
     }
 }

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   public createProject(): void {
-    this.crosspService.createProject().subscribe(result => this.projects.push(result));
+    this.crosspService.createProject(this.crosspService.getUserId()).subscribe(result => this.projects.push(result));
   }
 
   public projectsLoaded(): boolean { return this.projects != null; }
