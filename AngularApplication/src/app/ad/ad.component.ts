@@ -5,6 +5,7 @@ import {CrosspService} from '../services/crossp.service';
 import {switchMap} from 'rxjs/operators';
 import {HttpEventType} from '@angular/common/http';
 import { FileM } from '../models/file';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-ad',
@@ -36,8 +37,13 @@ export class AdComponent implements OnInit {
   }
 
   public putAd() {
+    this.ad.fileId = this.file.id.toString();
     this.crosspService.putAd(this.ad).subscribe(res => {
       console.log(res);
     });
   }
+
+  public adLoaded(): boolean { return this.ad != null; }
+  public fileLoaded(): boolean { return this.file != null; }
+  public possibleAdFilesLoaded(): boolean { return this.possibleAdFiles != null; }
 }

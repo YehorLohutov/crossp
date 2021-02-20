@@ -20,7 +20,10 @@
     "@angular/platform-browser-dynamic": "~10.0.5",
     "@angular/router": "~10.0.5",
     "bulma": "^0.9.1",
+    "echarts": "^5.0.2",
     "ngx-cookie-service": "^11.0.2",
+    "ngx-echarts": "^6.0.0",
+    "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

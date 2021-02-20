@@ -15,6 +15,9 @@ namespace WebApplication.Models
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ad> Ads { get; set; }
+        public DbSet<AdLoadsStats> AdLoadsStats { get; set; }
+
+
         public DbSet<User> Users { get; set; }
         public DbSet<File> Files { get; set; }
 

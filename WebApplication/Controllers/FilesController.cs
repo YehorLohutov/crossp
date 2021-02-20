@@ -58,10 +58,10 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost, DisableRequestSizeLimit]
-        [Route("uploadfile-{userLogin}")]
-        public async Task<IActionResult> UploadFile(string userLogin)
+        [Route("uploadfile")]
+        public async Task<IActionResult> UploadFile([FromQuery] int userId)
         {
-            User user = await context.Users.FirstOrDefaultAsync(user => user.Login == userLogin);
+            User user = await context.Users.FirstOrDefaultAsync(user => user.Id == userId);
             if (user is null)
                 return NotFound();
 
@@ -99,7 +99,10 @@ namespace WebApplication.Controllers
                 return NotFound();
 
             if (ApplicationDBContext.IsFileDefault(file))
-                return BadRequest();
+                return BadRequest("The file can't be deleted.");
+
+            if (await context.Ads.AnyAsync(ad=>ad.FileId == id))
+                return BadRequest("The file cannot be deleted because it is being used in ad.");
 
             FileInfo fileInf = new FileInfo(appEnvironment.WebRootPath + file.Path);
             if (fileInf.Exists)

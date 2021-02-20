@@ -28,7 +28,7 @@ export class StorageComponent implements OnInit {
 
   public uploadFile = (files) => {
     this.uploadingImg = true;
-    this.crosspService.uploadFile(this.crosspService.getUserLogin(), files).subscribe(event => {
+    this.crosspService.uploadFile(this.crosspService.getUserId(), files).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.uploadingImgProgress = Math.round(100 * event.loaded / event.total);
       }

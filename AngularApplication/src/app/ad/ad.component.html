@@ -1,4 +1,9 @@
-<div class="columns is-centered">
+<div *ngIf="!this.adLoaded(); then progressBarBlock else adBlock"></div>
+<ng-template #progressBarBlock>
+  <progress class="progress is-small is-primary" max="100"></progress>
+</ng-template>
+<ng-template #adBlock>
+  <div class="columns is-centered">
   <div class="column is-4">
     <div class="field">
       <label class="label">Name</label>
@@ -28,7 +33,7 @@
       </div>
     </div>
 
-    <div class="field">
+    <div class="field" *ngIf="this.fileLoaded()">
       <label class="label">Img</label>
 
       <div class="control">
@@ -39,12 +44,14 @@
       </div>
     </div>
 
-    <div class="field">
+    <div class="field" *ngIf="this.possibleAdFilesLoaded()">
       <label class="label">Subject</label>
       <div class="control">
         <div class="select">
-          <select>
-            <option *ngFor="let file of this.possibleAdFiles">{{file.name}}</option>
+          <select #fileSelect [(ngModel)]="this.file">
+            <option *ngFor="let file of this.possibleAdFiles"
+              [ngValue]="file"
+            >{{file.name}}</option>
           </select>
         </div>
       </div>
@@ -60,5 +67,11 @@
 
   </div>
 </div>
+</ng-template>
+
+
+
+
+
 
 

@@ -12,6 +12,7 @@ import { AdComponent } from './ad/ad.component';
 import { LoginComponent } from './login/login.component';
 import {CookieService} from 'ngx-cookie-service';
 import { StorageComponent } from './storage/storage.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,10 @@ import { StorageComponent } from './storage/storage.component';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NgxEchartsModule.forRoot({
+          echarts: () => import('echarts')
+        })
     ],
   providers: [CookieService],
   bootstrap: [AppComponent]

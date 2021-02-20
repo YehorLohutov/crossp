@@ -73,6 +73,7 @@ export class CrosspService {
   }
 
   public getFiles(userId): Observable<FileM[]> {
+    console.log(this.token);
     return this.http.get<FileM[]>(this.baseUrl + 'Files/userfiles?userId=' + userId, { headers: this.headers }).pipe(map(res => {
       try { return res; }
       catch (err) { console.log(err); return res; }
@@ -126,14 +127,15 @@ export class CrosspService {
     return this.http.get<FileM>(this.baseUrl + 'Files/' + id, { headers: this.headers });
   }
 
-  public uploadFile(userLogin, files): Observable<any> {
+  public uploadFile(userId, files): Observable<any> {
     if (files.length === 0) {
       return;
     }
     const fileToUpload = files[0] as File;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    return this.http.post(this.baseUrl + 'Files/uploadfile-' + userLogin, formData, { headers: this.headers, reportProgress: true, observe: 'events' });
+    let tempHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + this.token.accessToken);
+    return this.http.post(this.baseUrl + 'Files/uploadfile?userId=' + userId, formData, { headers: tempHeaders, reportProgress: true, observe: 'events' });
   }
 
   public deleteFile(id: number): Observable<any> {
