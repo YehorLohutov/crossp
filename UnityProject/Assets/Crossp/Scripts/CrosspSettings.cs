@@ -16,48 +16,51 @@ namespace Crossp
         private string externalId = default;
         public string ExternalId => externalId;
 
+        [SerializeField]
+        private RenderTexture renderTexture = default;
+        public RenderTexture RenderTexture => renderTexture;
 
 
+        private const string CrosspSettingsDir = "Assets/Crossp";
 
+        private const string CrosspSettingsResDir = CrosspSettingsDir + "/Resources";
 
+        private const string CrosspSettingsFile = CrosspSettingsResDir + "/CrosspSettings.asset";
 
-
-        private static CrosspSettings instance = default;
+        private static CrosspSettings instance;
         public static CrosspSettings Instance
         {
             get
             {
                 if (instance == null)
-                    instance = Resources.FindObjectsOfTypeAll(typeof(CrosspSettings)).First() as CrosspSettings;
+                {
+                    if (!AssetDatabase.IsValidFolder(CrosspSettingsResDir))
+                    {
+                        AssetDatabase.CreateFolder(CrosspSettingsDir, "Resources");
+                    }
+
+                    instance = (CrosspSettings)AssetDatabase.LoadAssetAtPath(
+                        CrosspSettingsFile, typeof(CrosspSettings));
+
+                    if (instance == null)
+                    {
+                        instance = ScriptableObject.CreateInstance<CrosspSettings>();
+                        AssetDatabase.CreateAsset(instance, CrosspSettingsFile);
+                    }
+                }
                 return instance;
             }
         }
 
         [MenuItem("Edit/Crossp")]
-        static void OpenCrosspSettings()
+        public static void OpenInspector()
         {
-            string[] guids = AssetDatabase.FindAssets($"t:{nameof(CrosspSettings)}");
-            switch(guids.Length)
-            {
-                case 0:
-                    CrosspSettings crosspSettings = ScriptableObject.CreateInstance<CrosspSettings>();
-                    AssetDatabase.CreateAsset(crosspSettings, "Assets/Crossp/CrosspSettings.asset");
-                    AssetDatabase.SaveAssets();
-
-                    EditorUtility.FocusProjectWindow();
-                    Selection.activeObject = crosspSettings;
-                    break;
-                case 1:
-                    string crosspSettingsGUID = guids[0];
-                    Debug.Log(AssetDatabase.GUIDToAssetPath(crosspSettingsGUID));
-
-                    EditorUtility.FocusProjectWindow();
-                    Selection.activeObject = AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GUIDToAssetPath(crosspSettingsGUID));
-                    break;
-                default:
-                    Debug.LogError($"{nameof(CrosspSettings)} assets > 1");
-                    break;
-            }
+            Selection.activeObject = Instance;
         }
+
+        //internal void WriteSettingsToFile()
+        //{
+        //    AssetDatabase.SaveAssets();
+        //}
     }
 }

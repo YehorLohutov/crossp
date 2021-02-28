@@ -5,30 +5,33 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System;
+using System.IO;
 
 namespace Crossp
 {
     public class Crossp
     {
         private const string API_CONTROLLER = "Clients";
-        private static string serverURL = default;
-        private static string externalId = default;
+        private string serverURL = default;
+        private string externalId = default;
 
-        public static byte[] image = default;
-        public static void Initialize(string serverURL, string externalId)
+        private List<AvailableAd> availableAds = new List<AvailableAd>();
+
+        public Crossp(string serverURL, string externalId)
         {
-            Crossp.serverURL = serverURL;
-            Crossp.externalId = externalId;
+            this.serverURL = serverURL;
+            this.externalId = externalId;
             Task.Run(Run);
-            //CrosspSettings.Instance
         }
-        private static async void Run()
+        private async void Run()
         {
-            List<Ad> availableAds = await GetAvailableAds();
-            Ad firstAd = availableAds[0];
-            image = await DownloadFile($"{serverURL}{firstAd.File.Path}");
+            foreach(Ad ad in await GetAds())
+            {
+                byte[] fileData = await DownloadFile(ad.File.Id);
+                availableAds.Add(new AvailableAd(ad, fileData, ad.File.Extension.Equals(".mp4") ? AvailableAd.FileType.Video : AvailableAd.FileType.Image));
+            }
         }
-        private static async Task<List<Ad>> GetAvailableAds()
+        private async Task<List<Ad>> GetAds()
         {
             string responseJson = default;
             using (HttpClient httpClient = new HttpClient())
@@ -41,24 +44,41 @@ namespace Crossp
             return deserializedAds;
         }
 
-        private static async Task<byte[]> DownloadFile(string url) {
-            Uri uri = new Uri(url);
+        //private static async Task<byte[]> DownloadFile(string url) {
+        //    Uri uri = new Uri(url);
+        //    byte[] file = default;
+        //    using (WebClient webClient = new WebClient())
+        //    {
+        //        file = await webClient.DownloadDataTaskAsync(uri);
+        //    }
+        //    return file;
+        //}
+
+        private async Task<byte[]> DownloadFile(int adFileId)
+        {
             byte[] file = default;
-            using (WebClient webClient = new WebClient())
+            using (HttpClient httpClient = new HttpClient())
             {
-                file = await webClient.DownloadDataTaskAsync(uri);
-                
-                //webClient.DownloadFile(new Uri(url), @"c:\temp\image35.png");
-                // OR 
-                //client.DownloadFileAsync(new Uri(url), @"c:\temp\image35.png");
+                string url = $"{serverURL}/{API_CONTROLLER}/adfile?adFileId={adFileId}";
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+                file = await httpResponseMessage.Content.ReadAsByteArrayAsync();
             }
             return file;
         }
 
-
-        public static bool IsReady()
+        public bool IsReady()
         {
-            return image != default;
+            return availableAds?.Count > 0;
         }
+
+        public AvailableAd GetRandomAvailableAd()
+        {
+            if (!IsReady())
+                throw new System.Exception("No ads available");
+            Random random = new Random();
+            int randomIndex = random.Next(0, availableAds.Count);
+            return availableAds[randomIndex];
+        }
+
     }
 }

@@ -64,14 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Ad.cs" />
     <Compile Include="Assets\Crossp\Scripts\Crossp.cs" />
     <Compile Include="Assets\Crossp\Scripts\CrosspAd.cs" />
     <Compile Include="Assets\Crossp\Scripts\CrosspModels.cs" />
     <Compile Include="Assets\Crossp\Scripts\CrosspSettings.cs" />
-    <Compile Include="Assets\Crossp\Test\CrosspTestScript.cs" />
-    <Compile Include="Assets\MyScript.cs" />
-    <None Include="Assets\net40\Newtonsoft.Json.xml" />
+    <Compile Include="Assets\Crossp\Scripts\CrosspSticker.cs" />
+    <Compile Include="Assets\Crossp\Scripts\CrosspUnity.cs" />
+    <None Include="Assets\Crossp\net40\Newtonsoft.Json.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -250,7 +249,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.1f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/GitHub/crossp/UnityProject/Assets/net40/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/GitHub/crossp/UnityProject/Assets/Crossp/net40/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.1f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
