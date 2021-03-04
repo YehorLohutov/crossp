@@ -10,7 +10,7 @@ using WebApplication.Models;
 namespace WebApplication.Controllers
 {
 
-    [ApiController]    
+    [ApiController]
     [Route("[controller]")]
     public class DebugController : ControllerBase
     {

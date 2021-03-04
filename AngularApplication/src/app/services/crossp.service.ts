@@ -7,6 +7,7 @@ import { FileM } from '../models/file';
 import {map} from 'rxjs/operators';
 import {Token} from '../models/token';
 import {CookieService} from 'ngx-cookie-service';
+import { AdClicksStats } from '../models/adclicksstats'
 
 @Injectable({
   providedIn: 'root'
@@ -111,6 +112,10 @@ export class CrosspService {
 
   public getAd(id): Observable<Ad> {
     return this.http.get<Ad>(this.baseUrl + 'Ads/' + id, { headers: this.headers });
+  }
+
+  public getAdClickStats(id): Observable<AdClicksStats[]> {
+    return this.http.get<AdClicksStats[]>(this.baseUrl + 'Ads/adclicksstats?adId=' + id, { headers: this.headers });
   }
 
   public createAd(id): Observable<Ad> {

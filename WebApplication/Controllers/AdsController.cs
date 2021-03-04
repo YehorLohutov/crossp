@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,17 +14,17 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
     [Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class AdsController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext context;
         private readonly IWebHostEnvironment _appEnvironment;
 
         public AdsController(ApplicationDBContext context, IWebHostEnvironment appEnvironment)
         {
-            _context = context;
+            this.context = context;
             _appEnvironment = appEnvironment;
         }
 
@@ -31,21 +32,21 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ad>>> GetAds()
         {
-            return await _context.Ads.ToListAsync();
+            return await context.Ads.ToListAsync();
         }
 
         [HttpGet]
         [Route("projectid-{projectId:int}")]
         public async Task<ActionResult<IEnumerable<Ad>>> GetAds(int projectId)
         {
-            return await _context.Ads.Where(ad => ad.ProjectId == projectId).ToListAsync();
+            return await context.Ads.Where(ad => ad.ProjectId == projectId).ToListAsync();
         }
 
         // GET: api/Ads/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Ad>> GetAd(int id)
         {
-            var ad = await _context.Ads.FirstOrDefaultAsync(ad => ad.Id.Equals(id));
+            var ad = await context.Ads.FirstOrDefaultAsync(ad => ad.Id.Equals(id));
 
             if (ad == null)
             {
@@ -71,11 +72,11 @@ namespace WebApplication.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(ad).State = EntityState.Modified;
+            context.Entry(ad).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -95,63 +96,18 @@ namespace WebApplication.Controllers
         [Route("Create/{id}")]
         public async Task<ActionResult<Ad>> CreateAd(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            var project = await context.Projects.FindAsync(id);
 
             if (project is null)
                 return NotFound();
 
             Ad newAd = new Ad() { Name = "New Ad", ProjectId = project.Id };
-            await _context.Ads.AddAsync(newAd);
-            await _context.SaveChangesAsync();
+            await context.Ads.AddAsync(newAd);
+            await context.SaveChangesAsync();
             return newAd;
         }
 
-        //[HttpPost, DisableRequestSizeLimit]
-        //[Route("UploadAdImage/{id}")]
-        //public async Task<IActionResult> UploadAdImage(int id)
-        //{
-        //    var ad = await _context.Ads.FindAsync(id);
-        //    if (ad == null)
-        //        return NotFound();
 
-        //    IFormFile file = Request.Form.Files[0];
-        //    if(file == null)
-        //        return BadRequest();
-
-
-        //    string path = $"/{file.FileName}";
-        //    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
-        //            await file.CopyToAsync(fileStream);
-
-        //    ad.Img = path;
-        //    await _context.SaveChangesAsync();
-        //    return Ok();
-        //    //try
-        //    //{
-        //    //    var file = Request.Form.Files[0];
-        //    //    var folderName = "Images";// Path.Combine("Resources", "Images");
-        //    //    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-        //    //    if (file.Length > 0)
-        //    //    {
-        //    //        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-        //    //        var fullPath = Path.Combine(pathToSave, fileName);
-        //    //        var dbPath = Path.Combine(folderName, fileName);
-        //    //        using (var stream = new FileStream(fullPath, FileMode.Create))
-        //    //        {
-        //    //            file.CopyTo(stream);
-        //    //        }
-        //    //        return Ok(new { dbPath });
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        return BadRequest();
-        //    //    }
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    return StatusCode(500, $"Internal server error: {ex}");
-        //    //}
-        //}
 
 
 
@@ -162,8 +118,8 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<ActionResult<Ad>> PostAd(Ad ad)
         {
-            _context.Ads.Add(ad);
-            await _context.SaveChangesAsync();
+            context.Ads.Add(ad);
+            await context.SaveChangesAsync();
 
             return CreatedAtAction("GetAd", new { id = ad.Id }, ad);
         }
@@ -172,21 +128,32 @@ namespace WebApplication.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Ad>> DeleteAd(int id)
         {
-            var ad = await _context.Ads.FindAsync(id);
+            var ad = await context.Ads.FindAsync(id);
             if (ad == null)
             {
                 return NotFound();
             }
 
-            _context.Ads.Remove(ad);
-            await _context.SaveChangesAsync();
+            context.Ads.Remove(ad);
+            await context.SaveChangesAsync();
 
             return ad;
         }
 
         private bool AdExists(int id)
         {
-            return _context.Ads.Any(e => e.Id == id);
+            return context.Ads.Any(e => e.Id == id);
+        }
+
+        [HttpGet]
+        [Route("adclicksstats")]
+        public async Task<ActionResult<IEnumerable<AdClicksStats>>> GetAdClicksStats([FromQuery] int adId)
+        {
+            Ad ad = await context.Ads.FirstOrDefaultAsync(ad => ad.Id == adId);
+            if (ad == null)
+                return BadRequest();
+
+            return await context.AdClicksStats.Where(st => st.AdId == adId).ToListAsync();
         }
     }
 }

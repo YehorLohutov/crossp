@@ -21,6 +21,7 @@ namespace WebApplication
 {
     public class Startup
     {
+        public const string CORS_POLICY = "DefaultPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,13 +36,11 @@ namespace WebApplication
             {
                 options.AddDefaultPolicy(
                     builder =>
-                    {
                         builder
-                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
                             .AllowAnyHeader()
-                            .AllowAnyMethod();
-                        //builder.WithOrigins("http://localhost:4200/");
-                    });
+                            .AllowAnyOrigin()
+                    );
             });
 
             services
@@ -70,6 +69,10 @@ namespace WebApplication
                     };
                 });
 
+
+
+
+
             services.AddControllers().AddNewtonsoftJson(options => 
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -94,30 +97,34 @@ namespace WebApplication
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseStaticFiles();
-            //app.UseFileServer(enableDirectoryBrowsing: true);
-            
+        {            
+            app.UseCors();
             //if (env.IsDevelopment())
             //{
             app.UseDeveloperExceptionPage();
             //}
 
 
-            app.UseHttpsRedirection();
+            //app.UseAuthorization();
+            //app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            //app.UseFileServer(enableDirectoryBrowsing: true);
+            app.UseRouting();   
 
-            app.UseRouting();
-
-            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+
+
+            //app.UseCors(CORS_POLICY);
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
+           
         }
     }
 }

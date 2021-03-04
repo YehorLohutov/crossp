@@ -12,6 +12,8 @@ namespace Crossp
         private VideoPlayer videoPlayer = default;
         private CrosspUnity crosspUnity = default;
 
+        private AvailableAd currentAd = default;
+
         void Awake()
         {
             rawImage = GetComponentInChildren<RawImage>();
@@ -23,16 +25,16 @@ namespace Crossp
         {
             if (Input.GetKeyDown(KeyCode.Space) && crosspUnity.IsReady())
             {
-                AvailableAd randomAd = crosspUnity.GetRandomAvailableAd();
-                switch (randomAd.Type)
+                currentAd = crosspUnity.GetRandomAvailableAd();
+                switch (currentAd.Type)
                 {
                     case AvailableAd.FileType.Image:
-                        rawImage.texture = CrosspUnity.GetTexture2DFrom(randomAd);
+                        rawImage.texture = CrosspUnity.GetTexture2DFrom(currentAd);
                         break;
                     case AvailableAd.FileType.Video:
                         rawImage.texture = CrosspSettings.Instance.RenderTexture;
                         videoPlayer.Stop();
-                        videoPlayer.url = CrosspUnity.GetVideoFilePathFrom(randomAd);
+                        videoPlayer.url = CrosspUnity.GetVideoFilePathFrom(currentAd);
                         videoPlayer.Prepare();
                         break;
                 }
@@ -42,6 +44,14 @@ namespace Crossp
             {
                 videoPlayer.Play();
             }
+        }
+
+        public void OpenUrl()
+        {
+            crosspUnity.OpenAdUrl(currentAd, (result) => {
+                Debug.Log($"Ad id: {currentAd.Ad.Id} report result {result}");
+            });
+            //Application.OpenURL(currentAd.Ad.Url);
         }
     }
 }

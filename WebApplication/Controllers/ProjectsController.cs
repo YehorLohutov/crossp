@@ -9,12 +9,13 @@ using Microsoft.EntityFrameworkCore.Internal;
 using WebApplication.Models;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
     public class ProjectsController : ControllerBase
     {
         private readonly ApplicationDBContext context;

@@ -3,6 +3,14 @@
   <progress class="progress is-small is-primary" max="100"></progress>
 </ng-template>
 <ng-template #adBlock>
+
+  <section class="section is-centered">
+    <h1 class="title">Settings</h1>
+    <h2 class="subtitle">
+      asdsds
+    </h2>
+  </section>
+
   <div class="columns is-centered">
   <div class="column is-4">
     <div class="field">
@@ -67,6 +75,23 @@
 
   </div>
 </div>
+
+  <section class="section is-centered">
+    <h1 class="title is-centered">Analytics</h1>
+    <h2 class="subtitle">
+      adsd
+    </h2>
+  </section>
+  
+  <input type="date" class="is-datetimepicker-range">
+
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div echarts [options]="chartOption" class="demo-chart"></div>
+    </div>
+  </div>
+
+
 </ng-template>
 
 

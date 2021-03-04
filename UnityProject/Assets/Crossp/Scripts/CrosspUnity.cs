@@ -45,5 +45,13 @@ namespace Crossp {
             return videoFilePath;
         }
 
+        public void OpenAdUrl(AvailableAd availableAd, ReportCallback reportCallback = default)
+        {
+            if (availableAd == null)
+                throw new System.NullReferenceException();
+            Application.OpenURL(availableAd.Ad.Url);
+            this.AdClickReport(availableAd, reportCallback);
+        }
+
     }
 }

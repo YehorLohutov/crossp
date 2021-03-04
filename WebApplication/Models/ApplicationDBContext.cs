@@ -15,8 +15,9 @@ namespace WebApplication.Models
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ad> Ads { get; set; }
-        public DbSet<AdLoadsStats> AdLoadsStats { get; set; }
-
+        
+        public DbSet<AdClicksStats> AdClicksStats { get; set; }
+        public DbSet<AdShowStats> AdShowStats { get; set; }
 
         public DbSet<User> Users { get; set; }
         public DbSet<File> Files { get; set; }
@@ -97,6 +98,20 @@ namespace WebApplication.Models
 
             Ad ad = new Ad(1, DEFAULT_AD_NAME, DEFAULT_AD_URL, project) { FileId = defaultFiles[0].Id };
             modelBuilder.Entity<Ad>().HasData(ad);
+
+            List<AdClicksStats> adClicksStats = new List<AdClicksStats>();
+            for (int i = 1; i < 30; i++)
+            {
+                adClicksStats.Add(new AdClicksStats(i, new DateTime(2021, 1, i), ad) { Number = new Random().Next(1, 50) });
+            }
+            modelBuilder.Entity<AdClicksStats>().HasData(adClicksStats);
+
+            List<AdShowStats> adShowStats = new List<AdShowStats>();
+            for (int i = 1; i < 30; i++)
+            {
+                adShowStats.Add(new AdShowStats(i, new DateTime(2021, 1, i), ad) { Number = new Random().Next(1, 50) });
+            }
+            modelBuilder.Entity<AdShowStats>().HasData(adShowStats);
         }
 
 

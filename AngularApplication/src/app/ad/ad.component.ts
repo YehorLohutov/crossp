@@ -6,7 +6,9 @@ import {switchMap} from 'rxjs/operators';
 import {HttpEventType} from '@angular/common/http';
 import { FileM } from '../models/file';
 import { stringify } from '@angular/compiler/src/util';
-
+import { EChartsOption } from 'echarts';
+import { getLocaleDateTimeFormat } from '@angular/common';
+import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min.js';
 @Component({
   selector: 'app-ad',
   templateUrl: './ad.component.html',
@@ -18,6 +20,25 @@ export class AdComponent implements OnInit {
   public file: FileM;
   public possibleAdFiles: FileM[];
 
+  public chartOption: EChartsOption;
+  //  = {
+  //   xAxis: {
+  //     type: 'value',
+  //     data: [1, 2, 3, 4, 5, 6, 7],
+  //   },
+  //   yAxis: {
+  //     type: 'value',
+  //   },
+  //   series: [
+  //     {
+  //       data: [1, 2, 3, 4, 5, 6, 7],
+  //       type: 'line',
+  //     },
+  //   ],
+  // };
+
+
+
   constructor(protected route: ActivatedRoute,
               public crosspService: CrosspService,
               protected router: Router) {
@@ -28,6 +49,38 @@ export class AdComponent implements OnInit {
         .subscribe(result => {
           this.ad = result;
           this.crosspService.getFile(this.ad.fileId).subscribe(adFile => this.file = adFile );
+          this.crosspService.getAdClickStats(this.ad.id).subscribe(res => { 
+            //console.log(res); 
+            
+            //var ad = new Date(res[0].date);
+            //console.log(ad);
+
+            let numbers = res.map(ds => ds.number);
+            console.log(numbers);
+
+            let date = res.map(ds => new Date(ds.date).toDateString());
+            console.log(date);
+            this.chartOption = {
+              xAxis: {
+                type: 'category',
+                data: date,
+              },
+              yAxis: {
+                type: 'value',
+              },
+              series: [
+                {
+                  data: numbers,
+                  type: 'line',
+                },
+              ],
+              dataZoom: [
+                {
+                  type: 'inside',
+                },
+              ],
+            };
+          } );
           // this.adImgSrc = this.crosspService.getAdImgSrc(this.ad);
         }));
     this.crosspService.getFiles(this.crosspService.getUserId()).subscribe(res => this.possibleAdFiles = res);

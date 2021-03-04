@@ -77,8 +77,53 @@ namespace Crossp
                 throw new System.Exception("No ads available");
             Random random = new Random();
             int randomIndex = random.Next(0, availableAds.Count);
+            //
+            AdShowReport(availableAds[randomIndex]);
+            //
             return availableAds[randomIndex];
         }
 
+        public delegate void ReportCallback(bool success);
+
+        protected void AdClickReport(AvailableAd availableAd, ReportCallback reportCallback = default)
+        {
+            Task.Run(async () => { 
+                bool result = await AdClickReportAsync(availableAd);
+                reportCallback?.Invoke(result);
+            });
+        }
+
+        protected async Task<bool> AdClickReportAsync(AvailableAd availableAd)
+        {
+            bool result = false;
+            using (HttpClient httpClient = new HttpClient())
+            {
+                string url = $"{serverURL}/{API_CONTROLLER}/adclickreport?externalId={externalId}&adId={availableAd.Ad.Id}";
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+                result = httpResponseMessage.IsSuccessStatusCode;
+            }
+            return result;
+        }
+
+
+        protected void AdShowReport(AvailableAd availableAd, ReportCallback reportCallback = default)
+        {
+            Task.Run(async () => {
+                bool result = await AdShowReportAsync(availableAd);
+                reportCallback?.Invoke(result);
+            });
+        }
+
+        protected async Task<bool> AdShowReportAsync(AvailableAd availableAd)
+        {
+            bool result = false;
+            using (HttpClient httpClient = new HttpClient())
+            {
+                string url = $"{serverURL}/{API_CONTROLLER}/adshowreport?externalId={externalId}&adId={availableAd.Ad.Id}";
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+                result = httpResponseMessage.IsSuccessStatusCode;
+            }
+            return result;
+        }
     }
 }

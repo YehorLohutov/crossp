@@ -10,12 +10,13 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebApplication.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
     [Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDBContext context;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CrosspSettings
   m_EditorClassIdentifier: 
   serverURL: https://localhost:44389
-  externalId: 600e99e7-1fc3-4457-a63d-d6df2a4a3dec
+  externalId: 9da1c297-cca3-44c7-9b07-4a8867295a7c
   renderTexture: {fileID: 8400000, guid: 13fe93ff7c040224088b44106b6e9c50, type: 2}

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,9 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
     [Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class FilesController : ControllerBase
     {
         private readonly ApplicationDBContext context;
