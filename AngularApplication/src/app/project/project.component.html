@@ -24,18 +24,21 @@
       <div class="field">
         <label class="label">ID</label>
         <div class="control">
-          <input class="input" type="text" disabled placeholder="{{this.project.id}}">
+          <input class="input" type="text" readonly value="{{this.project.id}}">
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">External ID</label>
+      <label class="label">External ID</label>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" readonly  [value]="this.project.externalId" #inputTarget>
+        </div>
         <div class="control">
-          <input class="input" type="text"  [value]="this.project.externalId">
+          <button class="button" [ngxClipboard]="inputTarget">Copy</button>
         </div>
       </div>
 
-      <div class="field is-grouped">
+      <div class="field is-grouped is-grouped-centered">
         <div class="control">
           <button class="button is-link is-success" (click)="putProject()">Save</button>
         </div>

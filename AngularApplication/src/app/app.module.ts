@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import {CookieService} from 'ngx-cookie-service';
 import { StorageComponent } from './storage/storage.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     StorageComponent
   ],
     imports: [
+        ClipboardModule,
         BrowserModule,
         AppRoutingModule,
         FormsModule,

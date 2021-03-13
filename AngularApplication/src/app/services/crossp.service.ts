@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEventType, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {from, Observable} from 'rxjs';
 import {Project} from '../models/project';
 import {Ad} from '../models/ad';
 import { FileM } from '../models/file';
@@ -8,6 +8,7 @@ import {map} from 'rxjs/operators';
 import {Token} from '../models/token';
 import {CookieService} from 'ngx-cookie-service';
 import { AdClicksStats } from '../models/adclicksstats'
+import { AdShowStats } from '../models/adshowstats'
 
 @Injectable({
   providedIn: 'root'
@@ -103,7 +104,7 @@ export class CrosspService {
   }
 
   public deleteProject(id: number): Observable<any> {
-    return this.http.delete(this.baseUrl + 'Projects/' + id,{ headers: this.headers });
+    return this.http.delete(this.baseUrl + 'Projects/' + id, { headers: this.headers });
   }
 
   public getAds(projectId: number): Observable<Ad[]> {
@@ -114,10 +115,25 @@ export class CrosspService {
     return this.http.get<Ad>(this.baseUrl + 'Ads/' + id, { headers: this.headers });
   }
 
+  public deleteAd(id): Observable<any> {
+    return this.http.delete(this.baseUrl + 'Ads/' + id, { headers: this.headers });
+  }
+
   public getAdClickStats(id): Observable<AdClicksStats[]> {
     return this.http.get<AdClicksStats[]>(this.baseUrl + 'Ads/adclicksstats?adId=' + id, { headers: this.headers });
   }
 
+  public getAdClickStatsRange(id, from: Date, to: Date): Observable<AdClicksStats[]> {
+    return this.http.get<AdClicksStats[]>(this.baseUrl + 'Ads/adclicksstatsrange?adId=' + id + '&from=' + from.toUTCString() + '&to=' + to.toUTCString(), { headers: this.headers });
+  }
+
+  public getAdShowStats(id): Observable<AdShowStats[]> {
+    return this.http.get<AdShowStats[]>(this.baseUrl + 'Ads/adshowstats?adId=' + id, { headers: this.headers });
+  }
+  
+  public getAdShowStatsRange(id, from: Date, to: Date): Observable<AdShowStats[]> {
+    return this.http.get<AdShowStats[]>(this.baseUrl + 'Ads/adshowstatsrange?adId=' + id + '&from=' + from.toUTCString() + '&to=' + to.toUTCString(), { headers: this.headers });
+  }
   public createAd(id): Observable<Ad> {
     return this.http.get<Ad>(this.baseUrl + 'Ads/Create/' + id, { headers: this.headers });
   }

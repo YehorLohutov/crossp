@@ -7,7 +7,6 @@
   <section class="section is-centered">
     <h1 class="title">Settings</h1>
     <h2 class="subtitle">
-      asdsds
     </h2>
   </section>
 
@@ -42,7 +41,7 @@
     </div>
 
     <div class="field" *ngIf="this.fileLoaded()">
-      <label class="label">Img</label>
+      <label class="label">Ad material</label>
 
       <div class="control">
         <figure class="image is-256x256">
@@ -53,25 +52,26 @@
     </div>
 
     <div class="field" *ngIf="this.possibleAdFilesLoaded()">
-      <label class="label">Subject</label>
+      <label class="label">Ad material variants</label>
       <div class="control">
         <div class="select">
           <select #fileSelect [(ngModel)]="this.file">
-            <option *ngFor="let file of this.possibleAdFiles"
-              [ngValue]="file"
-            >{{file.name}}</option>
+            <option *ngFor="let file of this.possibleAdFiles" [ngValue]="file">{{file.name}}</option>
           </select>
         </div>
       </div>
     </div>
 
-
-
-    <div class="field is-grouped">
+    <div class="field is-grouped is-grouped-centered">
       <div class="control">
         <button class="button is-link is-success" (click)="putAd()">Save</button>
       </div>
+      <div class="control">
+        <button class="button is-link is-danger" (click)="deleteAd()">Delete</button>
+      </div>
     </div>
+
+
 
   </div>
 </div>
@@ -79,18 +79,31 @@
   <section class="section is-centered">
     <h1 class="title is-centered">Analytics</h1>
     <h2 class="subtitle">
-      adsd
     </h2>
   </section>
   
-  <input type="date" class="is-datetimepicker-range">
-
-  <div class="columns is-centered">
-    <div class="column is-8">
-      <div echarts [options]="chartOption" class="demo-chart"></div>
+  <div class="field is-grouped is-grouped-centered">
+    <label class="label">Date range</label>
+    <div class="control">
+      <input type="date" [(ngModel)]="this.dateFrom">
+      <input type="date" [(ngModel)]="this.dateTo">
+      <button class="button is-link is-success" (click)="updateAnalytics()">Update</button>
     </div>
   </div>
 
+
+
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div echarts [options]="chartClicksOption" class="demo-chart"></div>
+    </div>
+  </div>
+
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div echarts [options]="chartShowOption" class="demo-chart"></div>
+    </div>
+  </div>
 
 </ng-template>
 

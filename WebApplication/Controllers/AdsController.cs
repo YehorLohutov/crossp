@@ -101,7 +101,9 @@ namespace WebApplication.Controllers
             if (project is null)
                 return NotFound();
 
-            Ad newAd = new Ad() { Name = "New Ad", ProjectId = project.Id };
+            Ad newAd = new Ad(ApplicationDBContext.DEFAULT_AD_NAME, ApplicationDBContext.DEFAULT_AD_URL, project);
+            newAd.FileId = (await context.GetDefaultPNGFileAsync()).Id;
+
             await context.Ads.AddAsync(newAd);
             await context.SaveChangesAsync();
             return newAd;
@@ -154,6 +156,75 @@ namespace WebApplication.Controllers
                 return BadRequest();
 
             return await context.AdClicksStats.Where(st => st.AdId == adId).ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("adclicksstatsrange")]
+        public async Task<ActionResult<IEnumerable<AdClicksStats>>> GetAdClicksStatsRange([FromQuery] int adId, [FromQuery] DateTime from, [FromQuery] DateTime to)
+        {
+            Ad ad = await context.Ads.FirstOrDefaultAsync(ad => ad.Id == adId);
+            if (ad == null)
+                return BadRequest();
+
+            if(DateTime.Compare(from, to) > 0)
+                return BadRequest();
+
+            List<AdClicksStats> result = new List<AdClicksStats>();
+
+
+
+            for (DateTime temp = from; DateTime.Compare(temp, to) <= 0; temp = temp.AddDays(1))
+            {
+                AdClicksStats tempDateAdClicksStats = await context.AdClicksStats
+                    .Where(st => st.AdId == adId && st.Date.Date == temp.Date)
+                    .FirstOrDefaultAsync();
+                if (tempDateAdClicksStats == default)
+                    tempDateAdClicksStats = new AdClicksStats(temp, ad) { Number = 0 };
+                result.Add(tempDateAdClicksStats);
+            }
+            return result;
+        }
+
+
+
+
+
+        [HttpGet]
+        [Route("adshowstats")]
+        public async Task<ActionResult<IEnumerable<AdShowStats>>> GetAdShowStats([FromQuery] int adId)
+        {
+            Ad ad = await context.Ads.FirstOrDefaultAsync(ad => ad.Id == adId);
+            if (ad == null)
+                return BadRequest();
+
+            return await context.AdShowStats.Where(st => st.AdId == adId).ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("adshowstatsrange")]
+        public async Task<ActionResult<IEnumerable<AdShowStats>>> GetAdShowStatsRange([FromQuery] int adId, [FromQuery] DateTime from, [FromQuery] DateTime to)
+        {
+            Ad ad = await context.Ads.FirstOrDefaultAsync(ad => ad.Id == adId);
+            if (ad == null)
+                return BadRequest();
+
+            if (DateTime.Compare(from, to) > 0)
+                return BadRequest();
+
+            List<AdShowStats> result = new List<AdShowStats>();
+
+
+
+            for (DateTime temp = from; DateTime.Compare(temp, to) <= 0; temp = temp.AddDays(1))
+            {
+                AdShowStats tempDateAdClicksStats = await context.AdShowStats
+                    .Where(st => st.AdId == adId && st.Date.Date == temp.Date)
+                    .FirstOrDefaultAsync();
+                if (tempDateAdClicksStats == default)
+                    tempDateAdClicksStats = new AdShowStats(temp, ad) { Number = 0 };
+                result.Add(tempDateAdClicksStats);
+            }
+            return result;
         }
     }
 }
