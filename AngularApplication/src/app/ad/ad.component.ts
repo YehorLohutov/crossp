@@ -89,7 +89,8 @@ export class AdComponent implements OnInit {
 
   public dateFrom: any;
   public dateTo: any;
-
+  public totalClicks = 0;
+  public totalShow = 0;
 
   constructor(protected route: ActivatedRoute,
               public crosspService: CrosspService,
@@ -139,6 +140,7 @@ export class AdComponent implements OnInit {
     this.crosspService.getAdClickStatsRange(this.ad.id, dateFrom, dateTo).subscribe(res => {
       let numbers = res.map(ds => ds.number);
       console.log(numbers);
+      this.totalClicks = numbers.reduce((sum, current) => sum + current, 0);
 
       let date = res.map(ds => new Date(ds.date).toDateString());
       console.log(date);
@@ -182,6 +184,7 @@ export class AdComponent implements OnInit {
     this.crosspService.getAdShowStatsRange(this.ad.id, dateFrom, dateTo).subscribe(res => {
       let numbers = res.map(ds => ds.number);
       console.log(numbers);
+      this.totalShow = numbers.reduce((sum, current) => sum + current, 0);
 
       let date = res.map(ds => new Date(ds.date).toDateString());
       console.log(date);
