@@ -102,6 +102,7 @@ export class AdComponent implements OnInit {
         .subscribe(result => {
           this.ad = result;
           this.crosspService.getFile(this.ad.fileId).subscribe(adFile => this.file = adFile );
+          this.updateAnalyticsAllTime();
         }));
     this.crosspService.getFiles(this.crosspService.getUserId()).subscribe(res => this.possibleAdFiles = res);
   }
@@ -132,12 +133,18 @@ export class AdComponent implements OnInit {
     const tempDateTo = new Date(this.dateTo);
 
     console.log(tempDateFrom.toUTCString() + ' - ' + tempDateTo.toUTCString());
-    this.updateChartClicks(tempDateFrom, tempDateTo);
-    this.updateChartShow(tempDateFrom, tempDateTo);
+
+    this.crosspService.getAdClickStatsRange(this.ad.id, tempDateFrom, tempDateTo).subscribe(res => this.updateChartClicks(res));
+    this.crosspService.getAdShowStatsRange(this.ad.id, tempDateFrom, tempDateTo).subscribe(res => this.updateChartShow(res));
   }
 
-  private updateChartClicks(dateFrom: Date, dateTo: Date) {
-    this.crosspService.getAdClickStatsRange(this.ad.id, dateFrom, dateTo).subscribe(res => {
+  public updateAnalyticsAllTime() {
+    this.crosspService.getAdClickStats(this.ad.id).subscribe(res => this.updateChartClicks(res));
+    this.crosspService.getAdShowStats(this.ad.id).subscribe(res => this.updateChartShow(res));
+  }
+
+  private updateChartClicks(res) {
+
       let numbers = res.map(ds => ds.number);
       console.log(numbers);
       this.totalClicks = numbers.reduce((sum, current) => sum + current, 0);
@@ -177,11 +184,9 @@ export class AdComponent implements OnInit {
           }
         },
       };
-    });
   }
 
-  private updateChartShow(dateFrom: Date, dateTo: Date) {
-    this.crosspService.getAdShowStatsRange(this.ad.id, dateFrom, dateTo).subscribe(res => {
+  private updateChartShow(res) {
       let numbers = res.map(ds => ds.number);
       console.log(numbers);
       this.totalShow = numbers.reduce((sum, current) => sum + current, 0);
@@ -221,7 +226,6 @@ export class AdComponent implements OnInit {
           }
         },
       };
-    });
   }
 
 

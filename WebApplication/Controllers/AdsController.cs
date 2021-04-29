@@ -155,7 +155,26 @@ namespace WebApplication.Controllers
             if (ad == null)
                 return BadRequest();
 
-            return await context.AdClicksStats.Where(st => st.AdId == adId).ToListAsync();
+            AdClicksStats firstAdClicksStats = await context.AdClicksStats.Where(st => st.AdId == adId).OrderBy(o => o.Date).FirstOrDefaultAsync();
+            if (firstAdClicksStats == null)
+                return BadRequest();
+            DateTime from = firstAdClicksStats.Date;
+
+            AdClicksStats lastAdClicksStats = await context.AdClicksStats.Where(st => st.AdId == adId).OrderBy(o => o.Date).LastAsync();
+            DateTime to = lastAdClicksStats.Date;
+
+            List<AdClicksStats> result = new List<AdClicksStats>();
+
+            for (DateTime temp = from; DateTime.Compare(temp, to) <= 0; temp = temp.AddDays(1))
+            {
+                AdClicksStats tempDateAdClicksStats = await context.AdClicksStats
+                    .Where(st => st.AdId == adId && st.Date.Date == temp.Date)
+                    .FirstOrDefaultAsync();
+                if (tempDateAdClicksStats == default)
+                    tempDateAdClicksStats = new AdClicksStats(temp, ad) { Number = 0 };
+                result.Add(tempDateAdClicksStats);
+            }
+            return result;
         }
 
         [HttpGet]
@@ -197,7 +216,26 @@ namespace WebApplication.Controllers
             if (ad == null)
                 return BadRequest();
 
-            return await context.AdShowStats.Where(st => st.AdId == adId).ToListAsync();
+            AdShowStats firstAdShowStats = await context.AdShowStats.Where(st => st.AdId == adId).OrderBy(o => o.Date).FirstOrDefaultAsync();
+            if (firstAdShowStats == null)
+                return BadRequest();
+            DateTime from = firstAdShowStats.Date;
+
+            AdShowStats lastAdShowStats = await context.AdShowStats.Where(st => st.AdId == adId).OrderBy(o => o.Date).LastAsync();
+            DateTime to = lastAdShowStats.Date;
+
+            List<AdShowStats> result = new List<AdShowStats>();
+
+            for (DateTime temp = from; DateTime.Compare(temp, to) <= 0; temp = temp.AddDays(1))
+            {
+                AdShowStats tempDateAdClicksStats = await context.AdShowStats
+                    .Where(st => st.AdId == adId && st.Date.Date == temp.Date)
+                    .FirstOrDefaultAsync();
+                if (tempDateAdClicksStats == default)
+                    tempDateAdClicksStats = new AdShowStats(temp, ad) { Number = 0 };
+                result.Add(tempDateAdClicksStats);
+            }
+            return result;
         }
 
         [HttpGet]

@@ -71,7 +71,8 @@ namespace WebApplication.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(id))
+                bool exists = await ProjectExists(id);
+                if (!exists)
                     return NotFound();
                 else
                     throw;
@@ -96,9 +97,6 @@ namespace WebApplication.Controllers
             return project;
         }
 
-        private bool ProjectExists(int id)
-        {
-            return context.Projects.Any(e => e.Id == id);
-        }
+        private async Task<bool> ProjectExists(int id) => await context.Projects.AnyAsync(e => e.Id == id);
     }
 }

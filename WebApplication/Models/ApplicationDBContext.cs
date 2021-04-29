@@ -96,20 +96,26 @@ namespace WebApplication.Models
             Project project = new Project(1, DEFAULT_PROJECT_NAME, admin);
             modelBuilder.Entity<Project>().HasData(project);
 
-            Ad ad = new Ad(1, DEFAULT_AD_NAME, DEFAULT_AD_URL, project) { FileId = defaultFiles[0].Id };
-            modelBuilder.Entity<Ad>().HasData(ad);
+            Ad[] ads = new Ad[2]
+            {
+                new Ad(1, DEFAULT_AD_NAME, DEFAULT_AD_URL, project) { FileId = defaultFiles[0].Id },
+                new Ad(2, DEFAULT_AD_NAME, DEFAULT_AD_URL, project) { FileId = defaultFiles[0].Id }
+            };
+            modelBuilder.Entity<Ad>().HasData(ads);
 
             List<AdClicksStats> adClicksStats = new List<AdClicksStats>();
-            for (int i = 1; i < 30; i++)
+            for (int i = 1; i < 30; i+=2)
             {
-                adClicksStats.Add(new AdClicksStats(i, new DateTime(2021, 1, i), ad) { Number = new Random().Next(1, 50) });
+                adClicksStats.Add(new AdClicksStats(i, new DateTime(2021, 1, i), ads[0]) { Number = new Random().Next(1, 50) });
+                adClicksStats.Add(new AdClicksStats(i + 1, new DateTime(2021, 1, i), ads[1]) { Number = new Random().Next(1, 50) });
             }
             modelBuilder.Entity<AdClicksStats>().HasData(adClicksStats);
 
             List<AdShowStats> adShowStats = new List<AdShowStats>();
-            for (int i = 1; i < 30; i++)
+            for (int i = 1; i < 30; i+=2)
             {
-                adShowStats.Add(new AdShowStats(i, new DateTime(2021, 1, i), ad) { Number = new Random().Next(1, 50) });
+                adShowStats.Add(new AdShowStats(i, new DateTime(2021, 1, i), ads[0]) { Number = new Random().Next(1, 50) });
+                adShowStats.Add(new AdShowStats(i + 1, new DateTime(2021, 1, i), ads[1]) { Number = new Random().Next(1, 50) });
             }
             modelBuilder.Entity<AdShowStats>().HasData(adShowStats);
         }
