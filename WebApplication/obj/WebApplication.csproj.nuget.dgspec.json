@@ -1,33 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj": {}
+    "C:\\Repositories\\crossp\\WebApplication\\WebApplication.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj": {
+    "C:\\Repositories\\crossp\\WebApplication\\WebApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj",
+        "projectUniqueName": "C:\\Repositories\\crossp\\WebApplication\\WebApplication.csproj",
         "projectName": "WebApplication",
-        "projectPath": "C:\\GitHub\\crossp\\WebApplication\\WebApplication.csproj",
+        "projectPath": "C:\\Repositories\\crossp\\WebApplication\\WebApplication.csproj",
         "packagesPath": "C:\\Users\\logut\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\crossp\\WebApplication\\obj\\",
+        "outputPath": "C:\\Repositories\\crossp\\WebApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\logut\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\logut\\source\\repos\\TextRPG\\TextRPGClassLibrary": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,6 +50,10 @@
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[3.1.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -91,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

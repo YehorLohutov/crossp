@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
@@ -10,13 +8,13 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 
 namespace WebApplication.Controllers
 {
+    [ApiVersion("1.0")]
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("V{version:apiVersion}/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDBContext context;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Models;
 
@@ -9,9 +6,9 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("V{version:apiVersion}/[controller]")]
     public class DebugController : ControllerBase
     {
         private ApplicationDBContext ApplicationContext;

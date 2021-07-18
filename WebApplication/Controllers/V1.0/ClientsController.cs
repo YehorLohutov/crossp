@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Models;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace WebApplication.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("V{version:apiVersion}/[controller]")]
     public class ClientsController : ControllerBase
     {
         private readonly ApplicationDBContext context;

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using WebApplication.Models;
-using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 
 namespace WebApplication.Controllers
 {
+    [ApiVersion("1.0")]
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("V{version:apiVersion}/[controller]")]
     public class ProjectsController : ControllerBase
     {
         private readonly ApplicationDBContext context;

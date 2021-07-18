@@ -2,21 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
+    [ApiVersion("1.0")]
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("V{version:apiVersion}/[controller]")]
     public class AdsController : ControllerBase
     {
         private readonly ApplicationDBContext context;
