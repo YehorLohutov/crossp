@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d63268d40f037f48ae7636365218e78, type: 3}
   m_Name: CrosspSettings
   m_EditorClassIdentifier: 
-  serverURL: https://localhost:44389
-  externalId: d66e755a-7d00-4a45-be56-71415d03a4b8
+  serverURL: https://crossp.azurewebsites.net
+  externalId: 7c18aa28-6bf1-43f4-a868-f2848c110b3a
   renderTexture: {fileID: 8400000, guid: 13fe93ff7c040224088b44106b6e9c50, type: 2}

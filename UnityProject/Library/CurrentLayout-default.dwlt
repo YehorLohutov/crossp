@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -72,10 +72,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 881, y: 342}
-  m_MaxSize: {x: 16006, y: 8042}
+  m_MinSize: {x: 880, y: 342}
+  m_MaxSize: {x: 16005, y: 8042}
   vertical: 0
-  controlID: 154
+  controlID: 106
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 703
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 0
     width: 355
     height: 580
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 342}
   m_MaxSize: {x: 12005, y: 8042}
   vertical: 1
-  controlID: 69
+  controlID: 111
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 221}
   m_MaxSize: {x: 12005, y: 4021}
   vertical: 0
-  controlID: 70
+  controlID: 112
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 14522
+  m_LastSelectedObjectID: 14554
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1106,20 +1106,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Crossp/Resources
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets
+  - Assets/Crossp/Resources
   m_LastFoldersGridSize: 96
-  m_LastProjectPath: C:\GitHub\crossp\UnityProject
+  m_LastProjectPath: C:\Repositories\crossp\UnityProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 14390000
-    m_LastClickedID: 14612
-    m_ExpandedIDs: 000000001e390000
+    m_SelectedIDs: 5c390000
+    m_LastClickedID: 14684
+    m_ExpandedIDs: 00000000463900005639000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1147,7 +1147,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001e390000
+    m_ExpandedIDs: 0000000046390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1172,8 +1172,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: da380000
+    m_LastClickedInstanceID: 14554
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000a23700008a430000d442000058f6ffff00000000
     m_RenameOverlay:
@@ -1270,9 +1270,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 5efbffff
+      m_SelectedIDs: da380000
+      m_LastClickedID: 14554
+      m_ExpandedIDs: e2faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_VSyncEnabled: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 09000000000000000000000005000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 08000000000000000000000005000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
@@ -1470,7 +1470,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 1
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -1483,7 +1483,7 @@ MonoBehaviour:
       y: 21
       width: 493
       height: 538
-    m_Scale: {x: 0.29114583, y: 0.29114583}
+    m_Scale: {x: 0.28020832, y: 0.28020832}
     m_Translation: {x: 246.5, y: 269}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1491,12 +1491,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -846.6547
-      y: -923.9356
-      width: 1693.3094
-      height: 1847.8712
+      x: -879.70264
+      y: -960.00006
+      width: 1759.4053
+      height: 1920.0001
     m_MinimalGUI: 1
-  m_defaultScale: 0.29114583
+  m_defaultScale: 0.28020832
   m_LastWindowPixelSize: {x: 493, y: 559}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
