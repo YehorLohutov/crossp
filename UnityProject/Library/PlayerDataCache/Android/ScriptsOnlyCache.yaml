@@ -1,7 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - MyScript
+    - Crossp.Crossp
+    - Crossp.CrosspSettings
+    - Crossp.CrosspSticker
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
@@ -29,9 +31,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
-    - UnityEngine.UI.Text
+    - UnityEngine.UI.RawImage
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Crossp/Test/CrosspTestScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -46,27 +48,31 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11172}
     - Class: 114
-      Script: {instanceID: 11460}
-    - Class: 114
       Script: {instanceID: 11514}
     - Class: 114
-      Script: {instanceID: 12174}
+      Script: {instanceID: 11602}
     - Class: 114
-      Script: {instanceID: 12874}
+      Script: {instanceID: 12178}
     - Class: 114
-      Script: {instanceID: 13630}
+      Script: {instanceID: 12876}
     - Class: 114
-      Script: {instanceID: 13694}
+      Script: {instanceID: 12910}
     - Class: 114
-      Script: {instanceID: 14244}
+      Script: {instanceID: 13484}
+    - Class: 114
+      Script: {instanceID: 13634}
+    - Class: 114
+      Script: {instanceID: 13872}
+    - Class: 114
+      Script: {instanceID: 14248}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -79,6 +85,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 328
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -177,6 +185,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: cdf0546bec580186f37be20c871d5c0d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Crossp
+    className: CrosspSticker
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -431,6 +445,12 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 609b2de29fe66a738c294e4514514013
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Crossp
+    className: Crossp
+  - hash:
+      serializedVersion: 2
       Hash: 8001a5f7502aab37e42206da015e6914
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -455,16 +475,16 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 5eb7121a1a3efaad6f9f43dc55495bc2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MyScript
-  - hash:
-      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: MarkerTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 32c92ee5d82a5aac9b8f1c2c9280eab7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Crossp
+    className: CrosspSettings
   - hash:
       serializedVersion: 2
       Hash: d791aa6007fa3640be1164ea75bb087d
@@ -569,5 +589,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
-  playerPath: C:/GitRepositories/crossp/UnityProject/ggg.apk
+  - Assets/Crossp/Test/CrosspTestScene.unity
+  playerPath: C:/Repositories/crossp/UnityProject/crossp.apk

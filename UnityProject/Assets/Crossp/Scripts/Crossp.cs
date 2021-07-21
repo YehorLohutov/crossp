@@ -1,129 +1,211 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Networking;
 using System;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace Crossp
 {
-    public class Crossp
+    public class Crossp : MonoBehaviour
     {
-        private const string API_CONTROLLER = "Clients";
-        private string serverURL = default;
-        private string externalId = default;
+        [SerializeField]
+        private CrosspSettings crosspSettings = default;
+        public CrosspSettings CrosspSettings => crosspSettings;
 
-        private List<AvailableAd> availableAds = new List<AvailableAd>();
+        private List<AvailableAd> availableAds = default;
+        public bool IsReady => availableAds?.Count > 0;
 
-        public Crossp(string serverURL, string externalId)
+        void Awake()
         {
-            this.serverURL = serverURL;
-            this.externalId = externalId;
-            Task.Run(Run);
+            StartCoroutine(GetAvailableAds(response => availableAds = response));
         }
-        private async void Run()
+
+        IEnumerator GetAvailableAds(Action<List<AvailableAd>> response)
         {
-            foreach(Ad ad in await GetAds())
+            if (Application.internetReachability == NetworkReachability.NotReachable)
             {
-                byte[] fileData = await DownloadFile(ad.File.Id);
-                availableAds.Add(new AvailableAd(ad, fileData, ad.File.Extension.Equals(".mp4") ? AvailableAd.FileType.Video : AvailableAd.FileType.Image));
+                response(default);
+                yield break;
             }
-        }
-        private async Task<List<Ad>> GetAds()
-        {
-            string responseJson = default;
-            using (HttpClient httpClient = new HttpClient())
+
+            List<Ad> ads = default;
+            yield return StartCoroutine(GetAds(responseAds => ads = responseAds));
+
+            if (ads == default || ads.Count == 0)
             {
-                string url = $"{serverURL}/{API_CONTROLLER}/availableads?externalId={externalId}";
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-                responseJson = await httpResponseMessage.Content.ReadAsStringAsync();
+                response(default);
+                yield break;
             }
-            List<Ad> deserializedAds = JsonConvert.DeserializeObject<List<Ad>>(responseJson);
-            return deserializedAds;
-        }
 
-        //private static async Task<byte[]> DownloadFile(string url) {
-        //    Uri uri = new Uri(url);
-        //    byte[] file = default;
-        //    using (WebClient webClient = new WebClient())
-        //    {
-        //        file = await webClient.DownloadDataTaskAsync(uri);
-        //    }
-        //    return file;
-        //}
-
-        private async Task<byte[]> DownloadFile(int adFileId)
-        {
-            byte[] file = default;
-            using (HttpClient httpClient = new HttpClient())
+            List<AvailableAd> availableAds = new List<AvailableAd>();
+            foreach (Ad ad in ads)
             {
-                string url = $"{serverURL}/{API_CONTROLLER}/adfile?adFileId={adFileId}";
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-                file = await httpResponseMessage.Content.ReadAsByteArrayAsync();
+                byte[] fileData = default;
+                yield return StartCoroutine(DownloadFile(ad.File.Id, responseFileData => fileData = responseFileData));
+
+                if (fileData != default)
+                    availableAds.Add(new AvailableAd(ad, fileData, ad.File.Extension.Equals(".mp4") ? AvailableAd.FileType.Video : AvailableAd.FileType.Image));
             }
-            return file;
+
+            response(availableAds);
         }
 
-        public bool IsReady()
+        IEnumerator GetAds(Action<List<Ad>> response)
         {
-            return availableAds?.Count > 0;
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                response(default);
+                yield break;
+            }
+
+            string url = $"{crosspSettings.ServerURL}/Clients/availableads?api-version={crosspSettings.ApiVersion}&externalId={crosspSettings.ExternalId}";
+            UnityWebRequest request = UnityWebRequest.Get(url);
+
+            yield return request.SendWebRequest();
+
+            if (!request.isHttpError && !request.isNetworkError)
+            {
+                string responseJson = request.downloadHandler.text;
+                List<Ad> deserializedAds = JsonConvert.DeserializeObject<List<Ad>>(responseJson);
+                response(deserializedAds);
+            }
+            else
+            {
+                Debug.LogError($"Get ads request error. Url: {url}. Error: {request.error}");
+                response(default);
+            }
+
+            request.Dispose();
+        }
+
+        IEnumerator DownloadFile(int adFileId, Action<byte[]> response)
+        {
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                response(default);
+                yield break;
+            }
+
+            string url = $"{crosspSettings.ServerURL}/Clients/adfile?api-version={crosspSettings.ApiVersion}&adFileId={adFileId}";
+            UnityWebRequest request = UnityWebRequest.Get(url);
+
+            yield return request.SendWebRequest();
+
+            if (!request.isHttpError && !request.isNetworkError)
+            {
+                byte[] fileData = request.downloadHandler.data;
+                response(fileData);
+            }
+            else
+            {
+                Debug.LogError($"DownloadFile request error. Url: {url}. Error: {request.error}.");
+                response(null);
+            }
+            request.Dispose();
         }
 
         public AvailableAd GetRandomAvailableAd()
         {
-            if (!IsReady())
+            if (!IsReady)
                 throw new System.Exception("No ads available");
-            Random random = new Random();
-            int randomIndex = random.Next(0, availableAds.Count);
+            int randomIndex = UnityEngine.Random.Range(0, availableAds.Count);
             //
-            AdShowReport(availableAds[randomIndex]);
+            StartCoroutine(AdShowReport(availableAds[randomIndex]));
             //
             return availableAds[randomIndex];
         }
 
-        public delegate void ReportCallback(bool success);
-
-        protected void AdClickReport(AvailableAd availableAd, ReportCallback reportCallback = default)
+        private IEnumerator AdShowReport(AvailableAd availableAd)
         {
-            Task.Run(async () => { 
-                bool result = await AdClickReportAsync(availableAd);
-                reportCallback?.Invoke(result);
-            });
-        }
-
-        protected async Task<bool> AdClickReportAsync(AvailableAd availableAd)
-        {
-            bool result = false;
-            using (HttpClient httpClient = new HttpClient())
+            if (Application.internetReachability == NetworkReachability.NotReachable)
             {
-                string url = $"{serverURL}/{API_CONTROLLER}/adclickreport?externalId={externalId}&adId={availableAd.Ad.Id}";
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-                result = httpResponseMessage.IsSuccessStatusCode;
+                yield break;
             }
-            return result;
-        }
 
+            string url = $"{crosspSettings.ServerURL}/Clients/adshowreport?api-version={crosspSettings.ApiVersion}&externalId={crosspSettings.ExternalId}&adId={availableAd.Ad.Id}";
+            UnityWebRequest request = UnityWebRequest.Get(url);
 
-        protected void AdShowReport(AvailableAd availableAd, ReportCallback reportCallback = default)
-        {
-            Task.Run(async () => {
-                bool result = await AdShowReportAsync(availableAd);
-                reportCallback?.Invoke(result);
-            });
-        }
+            yield return request.SendWebRequest();
 
-        protected async Task<bool> AdShowReportAsync(AvailableAd availableAd)
-        {
-            bool result = false;
-            using (HttpClient httpClient = new HttpClient())
+            if (!request.isHttpError && !request.isNetworkError)
             {
-                string url = $"{serverURL}/{API_CONTROLLER}/adshowreport?externalId={externalId}&adId={availableAd.Ad.Id}";
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-                result = httpResponseMessage.IsSuccessStatusCode;
+                Debug.Log($"AdShowReport response code {request.responseCode}");
             }
-            return result;
+            else
+            {
+                Debug.LogError($"DownloadFile request error. Url: {url}. Error: {request.error}.");
+            }
+            request.Dispose();
         }
+
+
+        private IEnumerator AdClickReport(AvailableAd availableAd)
+        {
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                yield break;
+            }
+
+            string url = $"{crosspSettings.ServerURL}/Clients/adclickreport?api-version={crosspSettings.ApiVersion}&externalId={crosspSettings.ExternalId}&adId={availableAd.Ad.Id}";
+            UnityWebRequest request = UnityWebRequest.Get(url);
+
+            yield return request.SendWebRequest();
+
+            if (!request.isHttpError && !request.isNetworkError)
+            {
+                Debug.Log($"AdShowReport response code {request.responseCode}");
+            }
+            else
+            {
+                Debug.LogError($"DownloadFile request error. Url: {url}. Error: {request.error}.");
+            }
+            request.Dispose();
+        }
+
+        public void OpenAdUrl(AvailableAd availableAd)
+        {
+            if (availableAd == null)
+                throw new System.NullReferenceException();
+            Application.OpenURL(availableAd.Ad.Url);
+            StartCoroutine(AdClickReport(availableAd));
+        }
+
+        public Texture2D GetTexture2DFrom(AvailableAd availableAd)
+        {
+            if (availableAd.Type != AvailableAd.FileType.Image)
+                throw new System.Exception("Incorrect AvailableAd FileType.");
+            Texture2D texture2D = new Texture2D(0, 0);
+            texture2D.LoadImage(availableAd.FileData);// LoadRawTextureData(pcxFile);
+            texture2D.Apply();
+            texture2D.EncodeToPNG();
+            return texture2D;
+        }
+        public Sprite GetSpriteFrom(AvailableAd availableAd)
+        {
+            Texture2D texture2D = GetTexture2DFrom(availableAd);
+            Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
+            return sprite;
+        }
+
+        public string GetVideoFilePathFrom(AvailableAd availableAd)
+        {
+            if (availableAd.Type != AvailableAd.FileType.Video)
+                throw new System.Exception("Incorrect AvailableAd FileType.");
+
+            string videoFilePath = $"{UnityEngine.Application.persistentDataPath}/crossptemp.mp4";
+
+            if (System.IO.File.Exists(videoFilePath))
+                System.IO.File.Delete(videoFilePath);
+
+            using (FileStream fstream = new FileStream(videoFilePath, FileMode.Create))
+            {
+                fstream.Write(availableAd.FileData, 0, availableAd.FileData.Length);
+            }
+
+            return videoFilePath;
+        }
+
     }
 }

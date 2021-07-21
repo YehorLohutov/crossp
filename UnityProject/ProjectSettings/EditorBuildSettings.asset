@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Crossp/Test/CrosspTestScene.unity
+    guid: 055ace7736c04c641a5f0e06d07eb326
   m_configObjects: {}

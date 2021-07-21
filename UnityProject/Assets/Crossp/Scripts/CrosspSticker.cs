@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 
@@ -10,7 +8,10 @@ namespace Crossp
     {
         private RawImage rawImage = default;
         private VideoPlayer videoPlayer = default;
-        private CrosspUnity crosspUnity = default;
+        [SerializeField]
+        private Crossp crossp = default;
+
+
 
         private AvailableAd currentAd = default;
 
@@ -18,23 +19,23 @@ namespace Crossp
         {
             rawImage = GetComponentInChildren<RawImage>();
             videoPlayer = GetComponentInChildren<VideoPlayer>();
-            crosspUnity = new CrosspUnity(CrosspSettings.Instance.ServerURL, CrosspSettings.Instance.ExternalId);
         }
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && crosspUnity.IsReady())
+            
+            if (Input.GetMouseButtonDown(0) && crossp.IsReady)
             {
-                currentAd = crosspUnity.GetRandomAvailableAd();
+                currentAd = crossp.GetRandomAvailableAd();
                 switch (currentAd.Type)
                 {
                     case AvailableAd.FileType.Image:
-                        rawImage.texture = CrosspUnity.GetTexture2DFrom(currentAd);
+                        rawImage.texture = crossp.GetTexture2DFrom(currentAd);
                         break;
                     case AvailableAd.FileType.Video:
-                        rawImage.texture = CrosspSettings.Instance.RenderTexture;
+                        rawImage.texture = crossp.CrosspSettings.RenderTexture;
                         videoPlayer.Stop();
-                        videoPlayer.url = CrosspUnity.GetVideoFilePathFrom(currentAd);
+                        videoPlayer.url = crossp.GetVideoFilePathFrom(currentAd);
                         videoPlayer.Prepare();
                         break;
                 }
@@ -48,10 +49,7 @@ namespace Crossp
 
         public void OpenUrl()
         {
-            crosspUnity.OpenAdUrl(currentAd, (result) => {
-                Debug.Log($"Ad id: {currentAd.Ad.Id} report result {result}");
-            });
-            //Application.OpenURL(currentAd.Ad.Url);
+            crossp.OpenAdUrl(currentAd);
         }
     }
 }

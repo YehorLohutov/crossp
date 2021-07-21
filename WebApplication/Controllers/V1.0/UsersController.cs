@@ -9,12 +9,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebApplication.Controllers
+namespace WebApplication.Controllers.Version_1_0
 {
     [ApiVersion("1.0")]
     [Authorize]
     [ApiController]
-    [Route("V{version:apiVersion}/[controller]")]
+    [Route("[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDBContext context;

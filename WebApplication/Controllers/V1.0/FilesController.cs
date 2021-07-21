@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
 
-namespace WebApplication.Controllers
+namespace WebApplication.Controllers.Version_1_0
 {
     [ApiVersion("1.0")]
     [Authorize]
     [ApiController]
-    [Route("V{version:apiVersion}/[controller]")]
+    [Route("[controller]")]
     public class FilesController : ControllerBase
     {
         private readonly ApplicationDBContext context;
@@ -49,10 +49,15 @@ namespace WebApplication.Controllers
                 return NotFound();
 
             List<Models.File> files = await context.Files.Where(file => file.UserId == user.Id).ToListAsync();
-            
-            files.Add(await context.GetDefaultPNGFileAsync());
-            files.Add(await context.GetDefaultMP4FileAsync());
 
+            Models.File defaultPNGFile = await context.GetDefaultPNGFileAsync();
+            Models.File defaultMP4File = await context.GetDefaultMP4FileAsync();
+
+            if (user.Id != defaultPNGFile.UserId)
+            {
+                files.Add(defaultPNGFile);
+                files.Add(defaultMP4File);
+            }
 
             return files;
         }

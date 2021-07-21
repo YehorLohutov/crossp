@@ -7,11 +7,11 @@ using WebApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApplication.Controllers
+namespace WebApplication.Controllers.Version_1_0
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("V{version:apiVersion}/[controller]")]
+    [Route("[controller]")]
     public class ClientsController : ControllerBase
     {
         private readonly ApplicationDBContext context;
@@ -119,32 +119,5 @@ namespace WebApplication.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-
-
-
-        //[HttpGet]
-        //[Route("adfile")]
-        //public async Task<ActionResult<FileResult>> GetAdFile([FromQuery] int adFileId)
-        //{
-        //    Models.File adFile = await context.Files.FirstOrDefaultAsync(f => f.Id == adFileId);
-        //    if (adFile == null)
-        //        return BadRequest();
-
-        //    byte[] bytes = await System.IO.File.ReadAllBytesAsync(appEnvironment.WebRootPath + adFile.Path);
-
-        //    return File(bytes, "application/octet-stream", "asdasds");
-        //}
-
-        //public FileResult DownloadFile(string fileName)
-        //{
-        //    //Build the File Path.
-        //    string path = Path.Combine(this.Environment.WebRootPath, "Files/") + fileName;
-
-        //    //Read the File data into Byte Array.
-        //    byte[] bytes = System.IO.File.ReadAllBytes(path);
-
-        //    //Send the File to Download.
-        //    return File(bytes, "application/octet-stream", fileName);
-        //}
     }
 }

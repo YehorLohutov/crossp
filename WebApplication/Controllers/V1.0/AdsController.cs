@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -9,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
 
-namespace WebApplication.Controllers
+namespace WebApplication.Controllers.Version_1_0
 {
     [ApiVersion("1.0")]
     [Authorize]
     [ApiController]
-    [Route("V{version:apiVersion}/[controller]")]
+    [Route("[controller]")]
     public class AdsController : ControllerBase
     {
         private readonly ApplicationDBContext context;

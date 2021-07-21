@@ -1,26 +1,20 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using WebApplication.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace WebApplication.Controllers
+namespace WebApplication.Controllers.Version_1_0
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("V{version:apiVersion}/[controller]")]
+    [Route("[controller]")]
     public class DebugController : ControllerBase
     {
-        private ApplicationDBContext ApplicationContext;
-        public DebugController(ApplicationDBContext applicationContext)
+        public DebugController()
         {
-            ApplicationContext = applicationContext;
         }
         // GET: api/<DebugController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            return "api1";
         }
 
         // GET api/<DebugController>/5
