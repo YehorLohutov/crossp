@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System;
-using Newtonsoft.Json;
 using System.IO;
 
 namespace Crossp
@@ -52,6 +51,14 @@ namespace Crossp
             response(availableAds);
         }
 
+        [Serializable]
+        private class AdsWrapper
+        {
+            [SerializeField]
+            private List<Ad> ads = new List<Ad>();
+            public List<Ad> Ads => ads;
+        }
+
         IEnumerator GetAds(Action<List<Ad>> response)
         {
             if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -68,7 +75,7 @@ namespace Crossp
             if (!request.isHttpError && !request.isNetworkError)
             {
                 string responseJson = request.downloadHandler.text;
-                List<Ad> deserializedAds = JsonConvert.DeserializeObject<List<Ad>>(responseJson);
+                List<Ad> deserializedAds = JsonUtility.FromJson<AdsWrapper>("{\"ads\":" + responseJson + "}").Ads;
                 response(deserializedAds);
             }
             else
