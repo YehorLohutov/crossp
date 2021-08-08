@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LoginPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <StackLayout 
+        HorizontalOptions="Fill"
+        
+        VerticalOptions="CenterAndExpand">
+            <StackLayout.Padding>
+                <Thickness>
+                    <Thickness.Left>128</Thickness.Left>
+                    <Thickness.Right>128</Thickness.Right>
+                </Thickness>
+            </StackLayout.Padding>
+
+            <Label Text="Name"/>
+            <Entry x:Name="NameEntry"/>
+            <Label Text="Password"/>
+            <Entry x:Name="PasswordEntry"/>
+            <Button Clicked="OnLoginButtonClick" Text="Login"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
