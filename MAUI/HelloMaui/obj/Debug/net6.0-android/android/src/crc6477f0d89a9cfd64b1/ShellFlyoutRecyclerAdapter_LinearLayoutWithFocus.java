@@ -10,7 +10,6 @@ public class ShellFlyoutRecyclerAdapter_LinearLayoutWithFocus
 	public static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_focusSearch:(I)Landroid/view/View;:GetFocusSearch_IHandler\n" +
 			"";
 		mono.android.Runtime.register ("Microsoft.Maui.Controls.Compatibility.Platform.Android.ShellFlyoutRecyclerAdapter+LinearLayoutWithFocus, Microsoft.Maui.Controls.Compatibility", ShellFlyoutRecyclerAdapter_LinearLayoutWithFocus.class, __md_methods);
 	}
@@ -46,14 +45,6 @@ public class ShellFlyoutRecyclerAdapter_LinearLayoutWithFocus
 		if (getClass () == ShellFlyoutRecyclerAdapter_LinearLayoutWithFocus.class)
 			mono.android.TypeManager.Activate ("Microsoft.Maui.Controls.Compatibility.Platform.Android.ShellFlyoutRecyclerAdapter+LinearLayoutWithFocus, Microsoft.Maui.Controls.Compatibility", "Android.Content.Context, Mono.Android:Android.Util.IAttributeSet, Mono.Android:System.Int32, System.Private.CoreLib:System.Int32, System.Private.CoreLib", this, new java.lang.Object[] { p0, p1, p2, p3 });
 	}
-
-
-	public android.view.View focusSearch (int p0)
-	{
-		return n_focusSearch (p0);
-	}
-
-	private native android.view.View n_focusSearch (int p0);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     "net6.0-android30.0": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6",
           "Xamarin.Android.Glide": "4.11.0.1",
           "Xamarin.AndroidX.Browser": "1.3.0.5",
@@ -18,7 +18,7 @@
           "Xamarin.Google.Android.Material": "1.3.0.1"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-android30.0/Microsoft.Maui.Graphics.dll": {}
@@ -1005,10 +1005,10 @@
       }
     },
     "net6.0-android30.0/android-arm64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6",
           "Xamarin.Android.Glide": "4.11.0.1",
           "Xamarin.AndroidX.Browser": "1.3.0.5",
@@ -1021,7 +1021,7 @@
           "Xamarin.Google.Android.Material": "1.3.0.1"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-android30.0/Microsoft.Maui.Graphics.dll": {}
@@ -2008,10 +2008,10 @@
       }
     },
     "net6.0-android30.0/android-x86": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6",
           "Xamarin.Android.Glide": "4.11.0.1",
           "Xamarin.AndroidX.Browser": "1.3.0.5",
@@ -2024,7 +2024,7 @@
           "Xamarin.Google.Android.Material": "1.3.0.1"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-android30.0/Microsoft.Maui.Graphics.dll": {}
@@ -3011,10 +3011,10 @@
       }
     },
     "net6.0-android30.0/iossimulator-x64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6",
           "Xamarin.Android.Glide": "4.11.0.1",
           "Xamarin.AndroidX.Browser": "1.3.0.5",
@@ -3027,7 +3027,7 @@
           "Xamarin.Google.Android.Material": "1.3.0.1"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-android30.0/Microsoft.Maui.Graphics.dll": {}
@@ -4014,10 +4014,10 @@
       }
     },
     "net6.0-android30.0/maccatalyst-x64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6",
           "Xamarin.Android.Glide": "4.11.0.1",
           "Xamarin.AndroidX.Browser": "1.3.0.5",
@@ -4030,7 +4030,7 @@
           "Xamarin.Google.Android.Material": "1.3.0.1"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-android30.0/Microsoft.Maui.Graphics.dll": {}
@@ -5017,14 +5017,14 @@
       }
     },
     "net6.0-ios13.6": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-ios13.6/Microsoft.Maui.Graphics.dll": {}
@@ -5065,14 +5065,14 @@
       }
     },
     "net6.0-ios13.6/android-arm64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-ios13.6/Microsoft.Maui.Graphics.dll": {}
@@ -5113,14 +5113,14 @@
       }
     },
     "net6.0-ios13.6/android-x86": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-ios13.6/Microsoft.Maui.Graphics.dll": {}
@@ -5161,14 +5161,14 @@
       }
     },
     "net6.0-ios13.6/iossimulator-x64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-ios13.6/Microsoft.Maui.Graphics.dll": {}
@@ -5209,14 +5209,14 @@
       }
     },
     "net6.0-ios13.6/maccatalyst-x64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-ios13.6/Microsoft.Maui.Graphics.dll": {}
@@ -5257,14 +5257,14 @@
       }
     },
     "net6.0-maccatalyst13.5": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-maccatalyst13.5/Microsoft.Maui.Graphics.dll": {}
@@ -5305,14 +5305,14 @@
       }
     },
     "net6.0-maccatalyst13.5/android-arm64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-maccatalyst13.5/Microsoft.Maui.Graphics.dll": {}
@@ -5353,14 +5353,14 @@
       }
     },
     "net6.0-maccatalyst13.5/android-x86": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-maccatalyst13.5/Microsoft.Maui.Graphics.dll": {}
@@ -5401,14 +5401,14 @@
       }
     },
     "net6.0-maccatalyst13.5/iossimulator-x64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-maccatalyst13.5/Microsoft.Maui.Graphics.dll": {}
@@ -5449,14 +5449,14 @@
       }
     },
     "net6.0-maccatalyst13.5/maccatalyst-x64": {
-      "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
+      "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Maui.Graphics": "6.0.100-preview.6.299",
+          "Microsoft.Maui.Graphics": "6.0.100-preview.7.358",
           "Reloadify3000": "1.0.6"
         }
       },
-      "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
+      "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
         "type": "package",
         "compile": {
           "lib/net6.0-maccatalyst13.5/Microsoft.Maui.Graphics.dll": {}
@@ -5498,21 +5498,21 @@
     }
   },
   "libraries": {
-    "Microsoft.Maui.Dependencies/6.0.100-preview.6.1003": {
-      "sha512": "H5dtrGv0GoDK0sPfV7BtfNgKodPrVUP2BwGiKSW0rZewOnc5pJaTXKtf5FcmY2xirjb/LxwiBsaVKXhP1nEKLg==",
+    "Microsoft.Maui.Dependencies/6.0.100-preview.7.1345": {
+      "sha512": "7RgmtsNXqJm8BjnFcMjpfuHLofVYgxUDWr2uPHoeIGL+/3RMvZXSQS45Eq7eRP+DD+9Omw9sghFd+Knxcxd7Kg==",
       "type": "package",
-      "path": "microsoft.maui.dependencies/6.0.100-preview.6.1003",
+      "path": "microsoft.maui.dependencies/6.0.100-preview.7.1345",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "microsoft.maui.dependencies.6.0.100-preview.6.1003.nupkg.sha512",
+        "microsoft.maui.dependencies.6.0.100-preview.7.1345.nupkg.sha512",
         "microsoft.maui.dependencies.nuspec"
       ]
     },
-    "Microsoft.Maui.Graphics/6.0.100-preview.6.299": {
-      "sha512": "6wHD1XXxiD5hAcTRkcCbWV8PV+Xk2mQqdKR+oKQxMV19aSoB02GEwTOrAoZZ/o4tK6jVhZE0Tfrr8AcRGAHlwA==",
+    "Microsoft.Maui.Graphics/6.0.100-preview.7.358": {
+      "sha512": "kD4Tc6+woI/O1jgpgidkpg2PWoYJZtEm1a8ajrFJW9VIKKUl/yv2qhfQul28Lw+DCV75HcMwwOs2ssmzHQq+kg==",
       "type": "package",
-      "path": "microsoft.maui.graphics/6.0.100-preview.6.299",
+      "path": "microsoft.maui.graphics/6.0.100-preview.7.358",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5538,7 +5538,7 @@
         "lib/xamarin.ios10/Microsoft.Maui.Graphics.pdb",
         "lib/xamarin.mac20/Microsoft.Maui.Graphics.dll",
         "lib/xamarin.mac20/Microsoft.Maui.Graphics.pdb",
-        "microsoft.maui.graphics.6.0.100-preview.6.299.nupkg.sha512",
+        "microsoft.maui.graphics.6.0.100-preview.7.358.nupkg.sha512",
         "microsoft.maui.graphics.nuspec"
       ]
     },
@@ -6599,13 +6599,13 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-android30.0": [
-      "Microsoft.Maui.Dependencies >= 6.0.100-preview.6.1003"
+      "Microsoft.Maui.Dependencies >= 6.0.100-preview.7.1345"
     ],
     "net6.0-ios13.6": [
-      "Microsoft.Maui.Dependencies >= 6.0.100-preview.6.1003"
+      "Microsoft.Maui.Dependencies >= 6.0.100-preview.7.1345"
     ],
     "net6.0-maccatalyst13.5": [
-      "Microsoft.Maui.Dependencies >= 6.0.100-preview.6.1003"
+      "Microsoft.Maui.Dependencies >= 6.0.100-preview.7.1345"
     ]
   },
   "packageFolders": {
@@ -6665,7 +6665,7 @@
         "dependencies": {
           "Microsoft.Maui.Dependencies": {
             "target": "Package",
-            "version": "[6.0.100-preview.6.1003, )",
+            "version": "[6.0.100-preview.7.1345, )",
             "autoReferenced": true
           }
         },
@@ -6682,43 +6682,43 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.Android.Runtime.android-arm64",
-            "version": "[30.0.100-preview.6.62, 30.0.100-preview.6.62]"
+            "version": "[30.0.100-preview.7.110, 30.0.100-preview.7.110]"
           },
           {
             "name": "Microsoft.Android.Runtime.android-x86",
-            "version": "[30.0.100-preview.6.62, 30.0.100-preview.6.62]"
+            "version": "[30.0.100-preview.7.110, 30.0.100-preview.7.110]"
           },
           {
             "name": "Microsoft.AspNetCore.App.Runtime.linux-arm64",
-            "version": "[6.0.0-preview.6.21355.2, 6.0.0-preview.6.21355.2]"
+            "version": "[6.0.0-preview.7.21378.6, 6.0.0-preview.7.21378.6]"
           },
           {
             "name": "Microsoft.Maui.Controls.Runtime.android",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Core.Runtime.android",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Essentials.Runtime.android",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Extensions",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.linux-arm64",
-            "version": "[6.0.0-preview.6.21352.12, 6.0.0-preview.6.21352.12]"
+            "version": "[6.0.0-preview.7.21377.19, 6.0.0-preview.7.21377.19]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.android-arm64",
-            "version": "[6.0.0-preview.6.21352.12, 6.0.0-preview.6.21352.12]"
+            "version": "[6.0.0-preview.7.21377.19, 6.0.0-preview.7.21377.19]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.android-x86",
-            "version": "[6.0.0-preview.6.21352.12, 6.0.0-preview.6.21352.12]"
+            "version": "[6.0.0-preview.7.21377.19, 6.0.0-preview.7.21377.19]"
           }
         ],
         "frameworkReferences": {
@@ -6741,14 +6741,14 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
       },
       "net6.0-ios13.6": {
         "targetAlias": "net6.0-ios",
         "dependencies": {
           "Microsoft.Maui.Dependencies": {
             "target": "Package",
-            "version": "[6.0.100-preview.6.1003, )",
+            "version": "[6.0.100-preview.7.1345, )",
             "autoReferenced": true
           }
         },
@@ -6765,27 +6765,27 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.iOS.Runtime.iossimulator-x64",
-            "version": "[15.0.100-preview.6.63, 15.0.100-preview.6.63]"
+            "version": "[15.0.100-preview.7.230, 15.0.100-preview.7.230]"
           },
           {
             "name": "Microsoft.Maui.Controls.Runtime.ios",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Core.Runtime.ios",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Essentials.Runtime.ios",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Extensions",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.iossimulator-x64",
-            "version": "[6.0.0-preview.6.21352.12, 6.0.0-preview.6.21352.12]"
+            "version": "[6.0.0-preview.7.21377.19, 6.0.0-preview.7.21377.19]"
           }
         ],
         "frameworkReferences": {
@@ -6808,14 +6808,14 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
       },
       "net6.0-maccatalyst13.5": {
         "targetAlias": "net6.0-maccatalyst",
         "dependencies": {
           "Microsoft.Maui.Dependencies": {
             "target": "Package",
-            "version": "[6.0.100-preview.6.1003, )",
+            "version": "[6.0.100-preview.7.1345, )",
             "autoReferenced": true
           }
         },
@@ -6833,27 +6833,27 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.MacCatalyst.Runtime.maccatalyst-x64",
-            "version": "[15.0.100-preview.6.63, 15.0.100-preview.6.63]"
+            "version": "[15.0.100-preview.7.230, 15.0.100-preview.7.230]"
           },
           {
             "name": "Microsoft.Maui.Controls.Runtime.maccatalyst",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Core.Runtime.maccatalyst",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Essentials.Runtime.maccatalyst",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.Maui.Extensions",
-            "version": "[6.0.100-preview.6.1003, 6.0.100-preview.6.1003]"
+            "version": "[6.0.100-preview.7.1345, 6.0.100-preview.7.1345]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.maccatalyst-x64",
-            "version": "[6.0.0-preview.6.21352.12, 6.0.0-preview.6.21352.12]"
+            "version": "[6.0.0-preview.7.21377.19, 6.0.0-preview.7.21377.19]"
           }
         ],
         "frameworkReferences": {
@@ -6876,7 +6876,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

@@ -18,14 +18,14 @@ build_metadata.AdditionalFiles.ManifestResourceName = HelloMaui.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.ItemSpec = C:\Repositories\crossp\MAUI\HelloMaui\App.xaml
 
-[C:/Repositories/crossp/MAUI/HelloMaui/LoginPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = HelloMaui.LoginPage.xaml
-build_metadata.AdditionalFiles.TargetPath = LoginPage.xaml
-build_metadata.AdditionalFiles.ItemSpec = C:\Repositories\crossp\MAUI\HelloMaui\LoginPage.xaml
-
 [C:/Repositories/crossp/MAUI/HelloMaui/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = HelloMaui.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.ItemSpec = C:\Repositories\crossp\MAUI\HelloMaui\MainPage.xaml
+
+[C:/Repositories/crossp/MAUI/HelloMaui/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HelloMaui.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
+build_metadata.AdditionalFiles.ItemSpec = C:\Repositories\crossp\MAUI\HelloMaui\Views\LoginPage.xaml

@@ -2,7 +2,7 @@ package crc648afdc667cfb0dccb;
 
 
 public class FormsViewPager
-	extends androidx.viewpager.widget.ViewPager
+	extends crc64338477404e88479c.MauiViewPager
 	implements
 		mono.android.IGCUserPeer
 {
@@ -10,8 +10,6 @@ public class FormsViewPager
 	public static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_onInterceptTouchEvent:(Landroid/view/MotionEvent;)Z:GetOnInterceptTouchEvent_Landroid_view_MotionEvent_Handler\n" +
-			"n_onTouchEvent:(Landroid/view/MotionEvent;)Z:GetOnTouchEvent_Landroid_view_MotionEvent_Handler\n" +
 			"";
 		mono.android.Runtime.register ("Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat.FormsViewPager, Microsoft.Maui.Controls.Compatibility", FormsViewPager.class, __md_methods);
 	}
@@ -31,22 +29,6 @@ public class FormsViewPager
 		if (getClass () == FormsViewPager.class)
 			mono.android.TypeManager.Activate ("Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat.FormsViewPager, Microsoft.Maui.Controls.Compatibility", "Android.Content.Context, Mono.Android:Android.Util.IAttributeSet, Mono.Android", this, new java.lang.Object[] { p0, p1 });
 	}
-
-
-	public boolean onInterceptTouchEvent (android.view.MotionEvent p0)
-	{
-		return n_onInterceptTouchEvent (p0);
-	}
-
-	private native boolean n_onInterceptTouchEvent (android.view.MotionEvent p0);
-
-
-	public boolean onTouchEvent (android.view.MotionEvent p0)
-	{
-		return n_onTouchEvent (p0);
-	}
-
-	private native boolean n_onTouchEvent (android.view.MotionEvent p0);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

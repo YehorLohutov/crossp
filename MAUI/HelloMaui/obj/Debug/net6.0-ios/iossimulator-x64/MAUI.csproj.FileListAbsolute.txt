@@ -202,6 +202,9 @@ C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libS
 C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libicudata.a
 C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libicui18n.a
 C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libicuuc.a
+C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libmono-component-debugger-static.a
+C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libmono-component-debugger-stub-static.a
+C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libmono-component-debugger.dylib
 C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libmono-component-diagnostics_tracing-static.a
 C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libmono-component-diagnostics_tracing-stub-static.a
 C:\Repositories\crossp\MAUI\HelloMaui\bin\Debug\net6.0-ios\iossimulator-x64\libmono-component-diagnostics_tracing.dylib
@@ -250,9 +253,10 @@ C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\core
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.AssemblyInfoInputs.cache
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.AssemblyInfo.cs
+C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.ImplicitNamespaceImports.cs
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.csproj.CoreCompileInputs.cache
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\XamlC.stamp
-C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.csproj.CopyComplete
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.dll
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\ref\MAUI.dll
 C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.pdb
+C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-ios\iossimulator-x64\MAUI.csproj.AssemblyReference.cache

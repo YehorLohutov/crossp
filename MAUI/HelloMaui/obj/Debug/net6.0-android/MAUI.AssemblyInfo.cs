@@ -18,8 +18,8 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("MAUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MAUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0")]
-[assembly: System.Runtime.Versioning.TargetPlatformAttribute("android30.0")]
-[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("android30.0")]
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Android30.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Android30.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

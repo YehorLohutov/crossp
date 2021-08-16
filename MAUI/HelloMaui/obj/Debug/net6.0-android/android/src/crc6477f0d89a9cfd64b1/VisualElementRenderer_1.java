@@ -12,7 +12,6 @@ public abstract class VisualElementRenderer_1
 		__md_methods = 
 			"n_onInterceptTouchEvent:(Landroid/view/MotionEvent;)Z:GetOnInterceptTouchEvent_Landroid_view_MotionEvent_Handler\n" +
 			"n_dispatchTouchEvent:(Landroid/view/MotionEvent;)Z:GetDispatchTouchEvent_Landroid_view_MotionEvent_Handler\n" +
-			"n_focusSearch:(Landroid/view/View;I)Landroid/view/View;:GetFocusSearch_Landroid_view_View_IHandler\n" +
 			"n_onConfigurationChanged:(Landroid/content/res/Configuration;)V:GetOnConfigurationChanged_Landroid_content_res_Configuration_Handler\n" +
 			"n_onLayout:(ZIIII)V:GetOnLayout_ZIIIIHandler\n" +
 			"n_draw:(Landroid/graphics/Canvas;)V:GetDraw_Landroid_graphics_Canvas_Handler\n" +
@@ -60,14 +59,6 @@ public abstract class VisualElementRenderer_1
 	}
 
 	private native boolean n_dispatchTouchEvent (android.view.MotionEvent p0);
-
-
-	public android.view.View focusSearch (android.view.View p0, int p1)
-	{
-		return n_focusSearch (p0, p1);
-	}
-
-	private native android.view.View n_focusSearch (android.view.View p0, int p1);
 
 
 	public void onConfigurationChanged (android.content.res.Configuration p0)

@@ -1,6 +1,8 @@
 AssemblyName=MAUI.dll
+				AOTCompiler=
 				AOTOutputDirectory=obj\Debug\net6.0-maccatalyst\maccatalyst-x64\nativelibraries/aot-output/
 				CacheDirectory=C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\linker-cache
+				
 				Debug=true
 				DeploymentTarget=
 				
@@ -169,24 +171,28 @@ FrameworkAssembly=WindowsBase
 FrameworkAssembly=mscorlib
 FrameworkAssembly=netstandard
 FrameworkAssembly=System.Private.CoreLib
+				GlobalizationDataFile=
 				Interpreter=
 				IntermediateLinkDir=obj\Debug\net6.0-maccatalyst\maccatalyst-x64\linked\
 				InvariantGlobalization=true
 				ItemsDirectory=C:\Repositories\crossp\MAUI\HelloMaui\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\linker-items
 				IsSimulatorBuild=
+				LibMonoLinkMode=dylib
+				LibXamarinLinkMode=dylib
 				LinkMode=SdkOnly
 				MarshalManagedExceptionMode=
 				MarshalObjectiveCExceptionMode=
 				Optimize=
-				PartialStaticRegistrarLibrary=C:\Users\logut\.nuget\packages\microsoft.maccatalyst.runtime.maccatalyst-x64\15.0.100-preview.6.63/runtimes/maccatalyst-x64/native/Microsoft.MacCatalyst.registrar.a
+				PartialStaticRegistrarLibrary=C:\Users\logut\.nuget\packages\microsoft.maccatalyst.runtime.maccatalyst-x64\15.0.100-preview.7.230/runtimes/maccatalyst-x64/native/Microsoft.MacCatalyst.registrar.a
 				Platform=MacCatalyst
 				PlatformAssembly=Xamarin.MacCatalyst.dll
 				Registrar=
 				RuntimeConfigurationFile=runtimeconfig.bin
 				SdkDevPath=
-				SdkRootDirectory=C:\Program Files\dotnet\packs\Microsoft.MacCatalyst.Sdk\15.0.100-preview.6.63\
+				SdkRootDirectory=C:\Program Files\dotnet\packs\Microsoft.MacCatalyst.Sdk\15.0.100-preview.7.230\
 				SdkVersion=
 				TargetArchitectures=x86_64
 				TargetFramework=.NETCoreApp,Version=v6.0,Profile=maccatalyst
+				UseLlvm=False
 				Verbosity=0
 				XamarinRuntime=MonoVM
