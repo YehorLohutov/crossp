@@ -14,7 +14,9 @@ import { AdShowStats } from '../models/adshowstats'
   providedIn: 'root'
 })
 export class CrosspService {
-  protected readonly baseUrl = 'https://crossp.azurewebsites.net/';
+  protected readonly baseUrl = 
+    //'https://localhost:44389/'
+    'https://crossp.azurewebsites.net/';
   protected readonly cookieTokenName = 'token';
   protected readonly apiVersion = "1.0";
   protected headers: HttpHeaders;
