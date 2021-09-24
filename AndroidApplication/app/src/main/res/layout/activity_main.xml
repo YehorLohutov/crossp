@@ -58,6 +58,7 @@
         android:layout_marginTop="100dp"
         android:clickable="true"
         android:onClick="onStickerClick"
+        android:rotation="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button">

@@ -17,11 +17,6 @@ import java.util.ArrayList;
 
 public class Crossp {
 
-    public static final String CROSSP_LOG_TAG = "crossp";
-    private static final String SERVER_URL = "https://crossp.azurewebsites.net/";
-    private static final String API_VERSION = "1.0";
-    private static final String EXTERNAL_ID = "9b0731aa-5966-453f-9d26-042c6c192400";
-
     private static Crossp instance = null;
     public static Crossp getInstance() {
         if (instance == null)
@@ -72,7 +67,7 @@ public class Crossp {
     private void loadAvailableAds(OnAdsLoadedListener onAdsLoadedListener, OnAdsFailedToLoadListener onAdsFailedToLoadListener) {
         new Thread(new Runnable() {
             public void run() {
-                String url = SERVER_URL + "Clients/availableads?api-version=" + API_VERSION + "&externalId=" + EXTERNAL_ID;
+                String url = Settings.SERVER_URL + "Clients/availableads?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID;
                 LoadAdsThread loadAdsThread = new LoadAdsThread( url );
                 loadAdsThread.start();
                 try{
@@ -80,7 +75,7 @@ public class Crossp {
                 }
                 catch(InterruptedException e){
                     String errorMessage = e.getMessage();
-                    Log.e(CROSSP_LOG_TAG, errorMessage);
+                    Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
                     onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
                     return;
                 }
@@ -90,7 +85,7 @@ public class Crossp {
                 if (ads == null || ads.length == 0)
                 {
                     String errorMessage = loadAdsThread.getErrorMessage();
-                    Log.e(CROSSP_LOG_TAG, errorMessage);
+                    Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
                     onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
                     return;
                 }
@@ -98,7 +93,7 @@ public class Crossp {
                 LoadFileThread[] loadFileThreads = new LoadFileThread[ads.length];
                 for (int i = 0; i < loadFileThreads.length; i++)
                 {
-                    String requestUrl = SERVER_URL + "Clients/adfile?api-version=" + API_VERSION + "&adFileId=" + ads[i].getFile().getId();
+                    String requestUrl = Settings.SERVER_URL + "Clients/adfile?api-version=" + Settings.API_VERSION + "&adFileId=" + ads[i].getFile().getId();
                     loadFileThreads[i] = new LoadFileThread(requestUrl);
                     loadFileThreads[i].start();
                 }
@@ -109,7 +104,7 @@ public class Crossp {
                     }
                     catch(InterruptedException e){
                         String errorMessage = e.getMessage();
-                        Log.e(CROSSP_LOG_TAG, errorMessage);
+                        Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
                         onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
                         return;
                     }
@@ -123,7 +118,7 @@ public class Crossp {
                     if (fileData == null || fileData.length == 0)
                     {
                         String errorMessage = loadFileThreads[i].getErrorMessage();
-                        Log.e(CROSSP_LOG_TAG, errorMessage);
+                        Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
                         continue;
                     }
 
@@ -132,7 +127,7 @@ public class Crossp {
 
                 if (availableAds.size() == 0) {
                     String errorMessage = "AvailableAds count = 0";
-                    Log.e(CROSSP_LOG_TAG, errorMessage);
+                    Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
                     onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
                 }
 
@@ -220,12 +215,12 @@ public class Crossp {
     }
 
     private void adShowReport(AvailableAd ad) {
-        String requestUrl = SERVER_URL + "Clients/adshowreport?api-version=" + API_VERSION + "&externalId=" + EXTERNAL_ID + "&adId=" + ad.getAd().getId();
+        String requestUrl = Settings.SERVER_URL + "Clients/adshowreport?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID + "&adId=" + ad.getAd().getId();
         new ReportAdShowThread(requestUrl).start();
     }
 
     private void adClickReport(AvailableAd ad) {
-        String requestUrl = SERVER_URL + "Clients/adclickreport?api-version=" + API_VERSION + "&externalId=" + EXTERNAL_ID + "&adId=" + ad.getAd().getId();
+        String requestUrl = Settings.SERVER_URL + "Clients/adclickreport?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID + "&adId=" + ad.getAd().getId();
         new ReportAdShowThread(requestUrl).start();
     }
 }

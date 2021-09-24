@@ -36,7 +36,7 @@ public class LoadAdsThread extends Thread {
             jsonArray = loadJsonArray();
         } catch (Exception e) {
             errorMessage = e.getMessage() + " Error while loading ads from server.";
-            Log.e(Crossp.CROSSP_LOG_TAG, errorMessage);
+            Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
             return;
         }
 
@@ -44,7 +44,7 @@ public class LoadAdsThread extends Thread {
             ads = parseAdsFrom(jsonArray);
         } catch (Exception e) {
             errorMessage = e.getMessage();
-            Log.e(Crossp.CROSSP_LOG_TAG, errorMessage);
+            Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
             return;
         }
     }

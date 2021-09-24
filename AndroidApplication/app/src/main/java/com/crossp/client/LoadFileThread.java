@@ -35,7 +35,7 @@ public class LoadFileThread extends Thread{
             data = loadFile();
         } catch (Exception e) {
             errorMessage = e.getMessage() + " Error while loading ad file from server.";
-            Log.e(Crossp.CROSSP_LOG_TAG, errorMessage);
+            Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
             return;
         }
     }
