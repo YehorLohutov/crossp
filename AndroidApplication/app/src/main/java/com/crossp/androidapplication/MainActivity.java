@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        if (!Crossp.getInstance().getInitialized())
+        if (!Crossp.getInstance().readyToShow())
             return;
         Crossp.getInstance().showRandomAd(stickerLayout, videoView);
     }
