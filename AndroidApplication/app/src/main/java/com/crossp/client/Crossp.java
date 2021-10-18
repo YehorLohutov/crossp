@@ -6,8 +6,20 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,202 +37,285 @@ public class Crossp {
     }
 
     private Context context;
-    private ArrayList<AvailableAd> availableAds;
-    private AvailableAd activeAd;
+    private ArrayList<Ad> availableAds;
+    private AdData activeAdData;
+    private AdData nextAdData;
 
-    private boolean initialized;
-    private boolean initializing;
-    public boolean getInitialized() { return initialized; }
+    public enum State { NotInitialized, Initializing, Initialized, PreparingToShow, ReadyToShow }
+    private State currentState;
+    public State getCurrentState() { return currentState; }
+
+    public boolean readyToShow() { return currentState == State.ReadyToShow; }
 
     private Crossp() {
         context = null;
         availableAds = null;
-        activeAd = null;
-        initialized = false;
-        initializing = false;
+        activeAdData = null;
+        nextAdData = null;
+        currentState = State.NotInitialized;
     }
 
     public void initialize(Context context, OnInitializationCompletedListener onInitializationCompletedListener, OnInitializationFailedListener onInitializationFailedListener) {
-        if (initialized || initializing)
+        if (currentState == State.Initialized || currentState == State.Initializing)
             return;
         this.context = context;
-        initializing = true;
+        currentState = State.Initializing;
 
         loadAvailableAds(new OnAdsLoadedListener() {
             @Override
-            public void onAdsLoaded(ArrayList<AvailableAd> loadedAvailableAds) {
-                initialized = true;
-                initializing = false;
-                availableAds = loadedAvailableAds;
+            public void onAdsLoaded(ArrayList<Ad> ads) {
+                availableAds = ads;
+                currentState = State.Initialized;
+                //prepareNextAdData(null);
                 onInitializationCompletedListener.onInitializationCompleted();
             }
         }, new OnAdsFailedToLoadListener() {
             @Override
             public void OnAdsFailedToLoad(String errorMessage) {
-                initialized = false;
-                initializing = false;
+                currentState = State.NotInitialized;
                 onInitializationFailedListener.onInitializationFailed(errorMessage);
             }
         });
     }
 
     private void loadAvailableAds(OnAdsLoadedListener onAdsLoadedListener, OnAdsFailedToLoadListener onAdsFailedToLoadListener) {
-        new Thread(new Runnable() {
-            public void run() {
-                String url = Settings.SERVER_URL + "Clients/availableads?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID;
-                LoadAdsThread loadAdsThread = new LoadAdsThread( url );
-                loadAdsThread.start();
-                try{
-                    loadAdsThread.join();
-                }
-                catch(InterruptedException e){
-                    String errorMessage = e.getMessage();
-                    Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
-                    onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
-                    return;
-                }
 
-                Ad[] ads = loadAdsThread.getAds();
 
-                if (ads == null || ads.length == 0)
-                {
-                    String errorMessage = loadAdsThread.getErrorMessage();
-                    Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
-                    onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
-                    return;
-                }
+        RequestQueue mainQueue = Volley.newRequestQueue(context);
+        String url = Settings.SERVER_URL + "Clients/availableads?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID;
 
-                LoadFileThread[] loadFileThreads = new LoadFileThread[ads.length];
-                for (int i = 0; i < loadFileThreads.length; i++)
-                {
-                    String requestUrl = Settings.SERVER_URL + "Clients/adfile?api-version=" + Settings.API_VERSION + "&adFileId=" + ads[i].getFile().getId();
-                    loadFileThreads[i] = new LoadFileThread(requestUrl);
-                    loadFileThreads[i].start();
-                }
-                for (int i = 0; i < loadFileThreads.length; i++)
-                {
-                    try{
-                        loadFileThreads[i].join();
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ArrayList<Ad> result = null;
+                        try {
+                            result = parseAdsFrom(response);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                            onAdsFailedToLoadListener.OnAdsFailedToLoad(ex.getMessage());
+                        }
+                        //
+                        if (result == null || result.size() == 0)
+                        {
+                            onAdsFailedToLoadListener.OnAdsFailedToLoad("Loaded ads array is null or empty.");
+                            return;
+                        }
+                        else
+                        {
+                            onAdsLoadedListener.onAdsLoaded(result);
+                            return;
+                        }
                     }
-                    catch(InterruptedException e){
-                        String errorMessage = e.getMessage();
-                        Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
-                        onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
-                        return;
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        onAdsFailedToLoadListener.OnAdsFailedToLoad(error.getMessage());
                     }
-                }
+        });
+        mainQueue.add(jsonArrayRequest);
+    }
 
-                ArrayList<AvailableAd> availableAds = new ArrayList<AvailableAd>();
-                for(int i = 0; i < ads.length; i++)
-                {
-                    byte[] fileData = loadFileThreads[i].getData();
+    private void loadAdData(Ad ad, OnAdDataLoadedListener onAdDataLoadedListener, OnAdsFailedToLoadListener onAdsFailedToLoadListener) {
+       try {
+           RequestQueue loadAdDataQueue = Volley.newRequestQueue(context);
 
-                    if (fileData == null || fileData.length == 0)
-                    {
-                        String errorMessage = loadFileThreads[i].getErrorMessage();
-                        Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
-                        continue;
-                    }
+           String requestUrl = Settings.SERVER_URL + "Clients/adfile?api-version=" + Settings.API_VERSION + "&adFileId=" + ad.getFile().getId();
+           FileDataRequest fileDataRequest = new FileDataRequest(requestUrl, response -> {
+               AdData adData = new AdData(ad, response, ad.getFile().getExtension().equals(".mp4") ? AdData.FileType.Video : AdData.FileType.Image);
+               onAdDataLoadedListener.onAdDataLoaded(adData);
+           }, error -> {
+               onAdsFailedToLoadListener.OnAdsFailedToLoad(error.getMessage());
+           });
+           loadAdDataQueue.add(fileDataRequest);
+       } catch (Exception exception) {
+           onAdsFailedToLoadListener.OnAdsFailedToLoad(exception.getMessage());
+       }
+    }
 
-                    availableAds.add(new AvailableAd(ads[i], fileData, ads[i].getFile().getExtension().equals(".mp4") ? AvailableAd.FileType.Video : AvailableAd.FileType.Image));
-                }
 
-                if (availableAds.size() == 0) {
-                    String errorMessage = "AvailableAds count = 0";
-                    Log.e(Settings.CROSSP_LOG_TAG, errorMessage);
-                    onAdsFailedToLoadListener.OnAdsFailedToLoad(errorMessage);
-                }
-
-                onAdsLoadedListener.onAdsLoaded(availableAds);
+    private ArrayList<Ad> parseAdsFrom (JSONArray jsonArray) throws Exception {
+        ArrayList<Ad> result = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                result.add(parseAdFrom(jsonArray.getJSONObject(i)));
+            } catch (JsonSyntaxException e) {
+                throw new Exception(e.getMessage() + " Error while parsing ads json array.");
             }
-        }).start();
+        }
+        return result;
+    }
+
+    private Ad parseAdFrom (JSONObject jsonObject) throws Exception{
+        Ad result = null;
+        Gson gson = new Gson();
+        try {
+            result = gson.fromJson(jsonObject.toString(), Ad.class);
+        } catch (JsonSyntaxException e) {
+            throw new Exception(e.getMessage() + " Error while parsing ad json object.");
+        }
+        return result;
     }
 
     public void showRandomAd(View clickEventCaller, VideoView view) {
-
-        AvailableAd ad = getRandomAvailableAd();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String fileName = "crossptemp.mp4";
-                File externalDir = context.getExternalFilesDir(null);
-                File file = new File(externalDir, fileName);
-                if(!file.exists()) {
-                    try {
-                        file.createNewFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return;
-                    }
+        if (currentState == State.NotInitialized || currentState == State.Initializing) {
+            return;
+        }
+        else if (currentState == State.Initialized)
+        {
+            prepareNextAdData(new OnAdDataPreparedListener() {
+                @Override
+                public void onAdDataPrepared() {
+                    showRandomAd(clickEventCaller, view);
                 }
-                FileOutputStream out = null;
-                try {
-                    out = new FileOutputStream(file);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                try {
-                    out.write(ad.getFileData());
-                    out.flush();
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
+            });
+            return;
+        }
+        else if (currentState == State.PreparingToShow)
+        {
+            return;
+        }
 
-                view.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        activeAd = ad;
+        activeAdData = nextAdData;
+        prepareNextAdData(null);
 
-                        clickEventCaller.setVisibility(View.VISIBLE);
-                        clickEventCaller.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                adClickReport(activeAd);
-
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(activeAd.getAd().getUrl()));
-                                intent.setPackage("com.android.vending");
-                                context.startActivity(intent);
-                            }
-                        });
-
-                        Uri uri = Uri.fromFile(file);
-                        view.setVisibility(View.VISIBLE);
-                        view.setVideoURI(uri);
-                        view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer mp) {
-                                mp.setLooping(true);
-                            }
-                        });
-                        view.start();
-
-                        adShowReport(activeAd);
-                    }
-                });
+        String fileName = "crossptemp.mp4";
+        File externalDir = context.getExternalFilesDir(null);
+        File file = new File(externalDir, fileName);
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
             }
-        }).start();
+        }
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        try {
+            out.write(activeAdData.getFileData());
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        clickEventCaller.setVisibility(View.VISIBLE);
+        clickEventCaller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adClickReport(activeAdData);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(activeAdData.getAd().getUrl()));
+                intent.setPackage("com.android.vending");
+                context.startActivity(intent);
+            }
+        });
+
+        Uri uri = Uri.fromFile(file);
+        view.setVisibility(View.VISIBLE);
+        view.setVideoURI(uri);
+        view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+        view.start();
+
+        adShowReport(activeAdData);
     }
 
     private int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    private AvailableAd getRandomAvailableAd() {
+    private Ad getRandomAvailableAd() {
         return availableAds.get(getRandomNumber(0, availableAds.size()));
     }
 
-    private void adShowReport(AvailableAd ad) {
-        String requestUrl = Settings.SERVER_URL + "Clients/adshowreport?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID + "&adId=" + ad.getAd().getId();
-        new ReportAdShowThread(requestUrl).start();
+    public void prepareNextAdData(OnAdDataPreparedListener onAdDataPreparedListener) {
+        if (currentState == State.NotInitialized || currentState == State.Initializing || currentState == State.PreparingToShow)
+            return;
+        currentState = State.PreparingToShow;
+        Ad nextAd = getRandomAvailableAd();
+//        if (activeAdData != null && activeAdData.getAd().getId() == nextAd.getId())
+//        {
+//            nextAdData = activeAdData;
+//            return;
+//        }
+        loadAdData(nextAd, new OnAdDataLoadedListener() {
+            @Override
+            public void onAdDataLoaded(AdData adData) {
+                nextAdData = adData;
+                currentState = State.ReadyToShow;
+                if (onAdDataPreparedListener != null) {
+                    onAdDataPreparedListener.onAdDataPrepared();
+                }
+            }
+        }, new OnAdsFailedToLoadListener() {
+            @Override
+            public void OnAdsFailedToLoad(String errorMessage) {
+                currentState = State.Initialized;
+            }
+        });
     }
 
-    private void adClickReport(AvailableAd ad) {
+    private void adShowReport(AdData ad) {
+        String requestUrl = Settings.SERVER_URL + "Clients/adshowreport?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID + "&adId=" + ad.getAd().getId();
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        HttpResultCodeRequest stringRequest = new HttpResultCodeRequest(requestUrl,
+                new Response.Listener<Integer>() {
+                    @Override
+                    public void onResponse(Integer response) {
+                        if (response == 200) {
+                            Log.i(Settings.CROSSP_LOG_TAG, "Ad id: " + ad.getAd().getId() + " show report successful.");
+                        } else {
+                            Log.i(Settings.CROSSP_LOG_TAG, "Ad id: " + ad.getAd().getId() + " show report not successful.");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                     @Override
+                     public void onErrorResponse(VolleyError error) {
+                         Log.i(Settings.CROSSP_LOG_TAG, "Ad id: " + ad.getAd().getId() + " show report not successful. " + error.getMessage());
+                     }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    private void adClickReport(AdData ad) {
         String requestUrl = Settings.SERVER_URL + "Clients/adclickreport?api-version=" + Settings.API_VERSION + "&externalId=" + Settings.EXTERNAL_ID + "&adId=" + ad.getAd().getId();
-        new ReportAdShowThread(requestUrl).start();
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        HttpResultCodeRequest stringRequest = new HttpResultCodeRequest(requestUrl,
+                new Response.Listener<Integer>() {
+                    @Override
+                    public void onResponse(Integer response) {
+                        if (response == 200) {
+                            Log.i(Settings.CROSSP_LOG_TAG, "Ad id: " + ad.getAd().getId() + " click report successful.");
+                        } else {
+                            Log.i(Settings.CROSSP_LOG_TAG, "Ad id: " + ad.getAd().getId() + " click report not successful.");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(Settings.CROSSP_LOG_TAG, "Ad id: " + ad.getAd().getId() + " click report not successful. " + error.getMessage());
+            }
+        });
+
+        queue.add(stringRequest);
     }
 }

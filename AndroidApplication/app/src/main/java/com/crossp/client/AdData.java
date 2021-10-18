@@ -1,6 +1,6 @@
 package com.crossp.client;
 
-public class AvailableAd {
+public class AdData {
     public enum FileType { Image, Video }
 
     private Ad ad;
@@ -18,7 +18,7 @@ public class AvailableAd {
         type = null;
     }
 
-    public AvailableAd(Ad ad, byte[] fileData, FileType type)
+    public AdData(Ad ad, byte[] fileData, FileType type)
     {
         this.ad = ad;
         this.fileData = fileData;
