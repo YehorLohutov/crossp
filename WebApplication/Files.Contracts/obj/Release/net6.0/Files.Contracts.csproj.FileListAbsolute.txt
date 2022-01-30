@@ -1,0 +1,12 @@
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\bin\Release\net6.0\Files.Contracts.deps.json
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\bin\Release\net6.0\Files.Contracts.dll
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\bin\Release\net6.0\ref\Files.Contracts.dll
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\bin\Release\net6.0\Files.Contracts.pdb
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.csproj.AssemblyReference.cache
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.AssemblyInfoInputs.cache
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.AssemblyInfo.cs
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.csproj.CoreCompileInputs.cache
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.dll
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\ref\Files.Contracts.dll
+C:\Repositories\crosspV2\WebApplication\Files.Contracts\obj\Release\net6.0\Files.Contracts.pdb

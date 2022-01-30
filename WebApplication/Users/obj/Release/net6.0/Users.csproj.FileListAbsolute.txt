@@ -1,0 +1,16 @@
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\Users.deps.json
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\Users.dll
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\ref\Users.dll
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\Users.pdb
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\Users.Contracts.dll
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\Users.Contracts.pdb
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.csproj.AssemblyReference.cache
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.AssemblyInfoInputs.cache
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.AssemblyInfo.cs
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.csproj.CoreCompileInputs.cache
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.csproj.CopyComplete
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.dll
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\ref\Users.dll
+C:\Repositories\crosspV2\WebApplication\Users\obj\Release\net6.0\Users.pdb
+C:\Repositories\crosspV2\WebApplication\Users\bin\Release\net6.0\UsersConfig.json

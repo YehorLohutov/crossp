@@ -1,0 +1,12 @@
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\bin\Release\net6.0\Projects.DataTransferObjects.deps.json
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\bin\Release\net6.0\Projects.DataTransferObjects.dll
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\bin\Release\net6.0\ref\Projects.DataTransferObjects.dll
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\bin\Release\net6.0\Projects.DataTransferObjects.pdb
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.csproj.AssemblyReference.cache
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.AssemblyInfoInputs.cache
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.AssemblyInfo.cs
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.csproj.CoreCompileInputs.cache
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.dll
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\ref\Projects.DataTransferObjects.dll
+C:\Repositories\crosspV2\WebApplication\Projects.DataTransferObjects\obj\Release\net6.0\Projects.DataTransferObjects.pdb

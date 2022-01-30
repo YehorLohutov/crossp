@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a1bc95a6-866e-4190-8d2b-98997afcf10b": {
+      "ProjectGuid": "a1bc95a6-866e-4190-8d2b-98997afcf10b",
+      "DisplayName": "WebApplication",
+      "ColorIndex": 0
+    },
+    "f3928fcb-e9d7-4a9d-a800-5d177affb799": {
+      "ProjectGuid": "f3928fcb-e9d7-4a9d-a800-5d177affb799",
+      "DisplayName": "Users",
+      "ColorIndex": 1
+    },
+    "712da596-9cac-43a3-9288-29a877453df3": {
+      "ProjectGuid": "712da596-9cac-43a3-9288-29a877453df3",
+      "DisplayName": "Users.Contracts",
+      "ColorIndex": 2
+    },
+    "b99ea027-7ea3-454e-bf30-d57dceec48bb": {
+      "ProjectGuid": "b99ea027-7ea3-454e-bf30-d57dceec48bb",
+      "DisplayName": "WebAPI",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "74b66cf8-b07e-49a7-84c1-5ea7b7d99541": {
+      "ProjectGuid": "74b66cf8-b07e-49a7-84c1-5ea7b7d99541",
+      "DisplayName": "Projects",
+      "ColorIndex": 4
+    },
+    "dde17259-6aa8-4211-9587-5a972d58697a": {
+      "ProjectGuid": "dde17259-6aa8-4211-9587-5a972d58697a",
+      "DisplayName": "Projects.Contracts",
+      "ColorIndex": 5
+    },
+    "cdd3c79a-5969-4a3c-b1ab-5703faa1b107": {
+      "ProjectGuid": "cdd3c79a-5969-4a3c-b1ab-5703faa1b107",
+      "DisplayName": "Projects.DataTransferObjects",
+      "ColorIndex": 6
+    },
+    "270f3508-2d9e-4a58-931f-997a2bfd02fc": {
+      "ProjectGuid": "270f3508-2d9e-4a58-931f-997a2bfd02fc",
+      "DisplayName": "Files",
+      "ColorIndex": 7
+    },
+    "3b4a1b05-3d78-4249-ac6a-4e7d343bece1": {
+      "ProjectGuid": "3b4a1b05-3d78-4249-ac6a-4e7d343bece1",
+      "DisplayName": "Files.Contracts",
+      "ColorIndex": 8
+    },
+    "a85d452e-2654-4951-bb90-692d3c54105a": {
+      "ProjectGuid": "a85d452e-2654-4951-bb90-692d3c54105a",
+      "DisplayName": "Files.DataTransferObjects",
+      "ColorIndex": 9
+    },
+    "bb3aa391-9222-4eb2-b044-e48496a5c915": {
+      "ProjectGuid": "bb3aa391-9222-4eb2-b044-e48496a5c915",
+      "DisplayName": "Ads",
+      "ColorIndex": 10
+    },
+    "132becfa-c33e-4c36-ab50-32964bbae886": {
+      "ProjectGuid": "132becfa-c33e-4c36-ab50-32964bbae886",
+      "DisplayName": "Ads.DataTransferObjects",
+      "ColorIndex": 11
+    }
+  },
+  "NextColorIndex": 12
+}
