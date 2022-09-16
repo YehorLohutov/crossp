@@ -1,0 +1,12 @@
+C:\Repositories\crossp\WebApplication\ML\bin\Debug\net6.0\ML.deps.json
+C:\Repositories\crossp\WebApplication\ML\bin\Debug\net6.0\ML.dll
+C:\Repositories\crossp\WebApplication\ML\bin\Debug\net6.0\ML.pdb
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.csproj.AssemblyReference.cache
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.AssemblyInfoInputs.cache
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.AssemblyInfo.cs
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.csproj.CoreCompileInputs.cache
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.dll
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\refint\ML.dll
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ML.pdb
+C:\Repositories\crossp\WebApplication\ML\obj\Debug\net6.0\ref\ML.dll

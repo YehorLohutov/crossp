@@ -103,7 +103,6 @@ C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\UsersConfig.json
 C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\WebAPI.deps.json
 C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\WebAPI.runtimeconfig.json
 C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\WebAPI.dll
-C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\ref\WebAPI.dll
 C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\WebAPI.pdb
 C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\AutoMapper.dll
 C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
@@ -188,3 +187,6 @@ C:\Repositories\crossp\WebApplication\WebAPI\obj\Debug\net6.0\WebAPI.dll
 C:\Repositories\crossp\WebApplication\WebAPI\obj\Debug\net6.0\ref\WebAPI.dll
 C:\Repositories\crossp\WebApplication\WebAPI\obj\Debug\net6.0\WebAPI.pdb
 C:\Repositories\crossp\WebApplication\WebAPI\obj\Debug\net6.0\WebAPI.genruntimeconfig.cache
+C:\Repositories\crossp\WebApplication\WebAPI\obj\Debug\net6.0\refint\WebAPI.dll
+C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\ML.dll
+C:\Repositories\crossp\WebApplication\WebAPI\bin\Debug\net6.0\ML.pdb

@@ -10,6 +10,7 @@
         "dependencies": {
           "Ads": "1.0.0",
           "Files": "1.0.0",
+          "ML": "1.0.0",
           "MassTransit.AspNetCore": "7.3.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.1",
           "Projects": "1.0.0",
@@ -674,6 +675,17 @@
           "Files.DataTransferObjects.dll": {}
         }
       },
+      "ML/1.0.0": {
+        "dependencies": {
+          "MassTransit.AspNetCore": "7.3.0",
+          "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.1",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1"
+        },
+        "runtime": {
+          "ML.dll": {}
+        }
+      },
       "Projects/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
@@ -1221,6 +1233,11 @@
       "sha512": ""
     },
     "Files.DataTransferObjects/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ML/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

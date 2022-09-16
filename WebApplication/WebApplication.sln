@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.32014.148
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{C59F28AB-A826-4367-9A9D-4A1086CFDE7A}"
 EndProject
@@ -33,9 +33,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{8D90
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ads", "Ads", "{7B267D87-DE73-4F5B-BD7A-7564658348B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads", "Ads\Ads\Ads.csproj", "{BB3AA391-9222-4EB2-B044-E48496A5C915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads", "Ads\Ads\Ads.csproj", "{BB3AA391-9222-4EB2-B044-E48496A5C915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.DataTransferObjects", "Ads.DataTransferObjects\Ads.DataTransferObjects.csproj", "{132BECFA-C33E-4C36-AB50-32964BBAE886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.DataTransferObjects", "Ads.DataTransferObjects\Ads.DataTransferObjects.csproj", "{132BECFA-C33E-4C36-AB50-32964BBAE886}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ML", "ML", "{9AB5CDD9-3533-472A-AF4F-44338B59A8BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML", "ML\ML.csproj", "{F5517D93-6D27-4BD8-AFBA-D91496164FC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,10 @@ Global
 		{132BECFA-C33E-4C36-AB50-32964BBAE886}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{132BECFA-C33E-4C36-AB50-32964BBAE886}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{132BECFA-C33E-4C36-AB50-32964BBAE886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5517D93-6D27-4BD8-AFBA-D91496164FC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5517D93-6D27-4BD8-AFBA-D91496164FC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5517D93-6D27-4BD8-AFBA-D91496164FC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5517D93-6D27-4BD8-AFBA-D91496164FC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +115,8 @@ Global
 		{7B267D87-DE73-4F5B-BD7A-7564658348B1} = {8D90C48E-4862-477C-AE04-FAC9407BCF63}
 		{BB3AA391-9222-4EB2-B044-E48496A5C915} = {7B267D87-DE73-4F5B-BD7A-7564658348B1}
 		{132BECFA-C33E-4C36-AB50-32964BBAE886} = {7B267D87-DE73-4F5B-BD7A-7564658348B1}
+		{9AB5CDD9-3533-472A-AF4F-44338B59A8BC} = {8D90C48E-4862-477C-AE04-FAC9407BCF63}
+		{F5517D93-6D27-4BD8-AFBA-D91496164FC6} = {9AB5CDD9-3533-472A-AF4F-44338B59A8BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {042CF0C2-9E1F-4693-8F8C-5651C686F529}

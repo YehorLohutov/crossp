@@ -17,7 +17,6 @@ C:\Repositories\crosspV2\WebApplication\Users\bin\Debug\net6.0\UsersConfig.json
 C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\UsersConfig.json
 C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\Users.deps.json
 C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\Users.dll
-C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\ref\Users.dll
 C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\Users.pdb
 C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\Users.Contracts.dll
 C:\Repositories\crossp\WebApplication\Users\bin\Debug\net6.0\Users.Contracts.pdb
@@ -30,3 +29,4 @@ C:\Repositories\crossp\WebApplication\Users\obj\Debug\net6.0\Users.csproj.CopyCo
 C:\Repositories\crossp\WebApplication\Users\obj\Debug\net6.0\Users.dll
 C:\Repositories\crossp\WebApplication\Users\obj\Debug\net6.0\ref\Users.dll
 C:\Repositories\crossp\WebApplication\Users\obj\Debug\net6.0\Users.pdb
+C:\Repositories\crossp\WebApplication\Users\obj\Debug\net6.0\refint\Users.dll

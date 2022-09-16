@@ -12,7 +12,6 @@ C:\Repositories\crosspV2\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.C
 C:\Repositories\crosspV2\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.Contracts.csproj.AssemblyReference.cache
 C:\Repositories\crossp\WebApplication\Users.Contracts\bin\Debug\net6.0\Users.Contracts.deps.json
 C:\Repositories\crossp\WebApplication\Users.Contracts\bin\Debug\net6.0\Users.Contracts.dll
-C:\Repositories\crossp\WebApplication\Users.Contracts\bin\Debug\net6.0\ref\Users.Contracts.dll
 C:\Repositories\crossp\WebApplication\Users.Contracts\bin\Debug\net6.0\Users.Contracts.pdb
 C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.Contracts.csproj.AssemblyReference.cache
 C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.Contracts.GeneratedMSBuildEditorConfig.editorconfig
@@ -22,3 +21,4 @@ C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.Con
 C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.Contracts.dll
 C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\ref\Users.Contracts.dll
 C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\Users.Contracts.pdb
+C:\Repositories\crossp\WebApplication\Users.Contracts\obj\Debug\net6.0\refint\Users.Contracts.dll

@@ -19,7 +19,6 @@ C:\Repositories\crosspV2\WebApplication\Ads\Ads\obj\Debug\net6.0\ref\Ads.dll
 C:\Repositories\crosspV2\WebApplication\Ads\Ads\obj\Debug\net6.0\Ads.pdb
 C:\Repositories\crossp\WebApplication\Ads\Ads\bin\Debug\net6.0\Ads.deps.json
 C:\Repositories\crossp\WebApplication\Ads\Ads\bin\Debug\net6.0\Ads.dll
-C:\Repositories\crossp\WebApplication\Ads\Ads\bin\Debug\net6.0\ref\Ads.dll
 C:\Repositories\crossp\WebApplication\Ads\Ads\bin\Debug\net6.0\Ads.pdb
 C:\Repositories\crossp\WebApplication\Ads\Ads\bin\Debug\net6.0\Ads.DataTransferObjects.dll
 C:\Repositories\crossp\WebApplication\Ads\Ads\bin\Debug\net6.0\Files.Contracts.dll
@@ -36,3 +35,4 @@ C:\Repositories\crossp\WebApplication\Ads\Ads\obj\Debug\net6.0\Ads.csproj.CopyCo
 C:\Repositories\crossp\WebApplication\Ads\Ads\obj\Debug\net6.0\Ads.dll
 C:\Repositories\crossp\WebApplication\Ads\Ads\obj\Debug\net6.0\ref\Ads.dll
 C:\Repositories\crossp\WebApplication\Ads\Ads\obj\Debug\net6.0\Ads.pdb
+C:\Repositories\crossp\WebApplication\Ads\Ads\obj\Debug\net6.0\refint\Ads.dll

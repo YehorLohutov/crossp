@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ads\Ads\Ads.csproj" />
     <ProjectReference Include="..\Files\Files.csproj" />
+    <ProjectReference Include="..\ML\ML.csproj" />
     <ProjectReference Include="..\Projects\Projects.csproj" />
     <ProjectReference Include="..\Users\Users.csproj" />
   </ItemGroup>

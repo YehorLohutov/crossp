@@ -19,7 +19,6 @@ C:\Repositories\crosspV2\WebApplication\Files\obj\Debug\net6.0\ref\Files.dll
 C:\Repositories\crosspV2\WebApplication\Files\obj\Debug\net6.0\Files.pdb
 C:\Repositories\crossp\WebApplication\Files\bin\Debug\net6.0\Files.deps.json
 C:\Repositories\crossp\WebApplication\Files\bin\Debug\net6.0\Files.dll
-C:\Repositories\crossp\WebApplication\Files\bin\Debug\net6.0\ref\Files.dll
 C:\Repositories\crossp\WebApplication\Files\bin\Debug\net6.0\Files.pdb
 C:\Repositories\crossp\WebApplication\Files\bin\Debug\net6.0\Files.Contracts.dll
 C:\Repositories\crossp\WebApplication\Files\bin\Debug\net6.0\Files.DataTransferObjects.dll
@@ -36,3 +35,4 @@ C:\Repositories\crossp\WebApplication\Files\obj\Debug\net6.0\Files.csproj.CopyCo
 C:\Repositories\crossp\WebApplication\Files\obj\Debug\net6.0\Files.dll
 C:\Repositories\crossp\WebApplication\Files\obj\Debug\net6.0\ref\Files.dll
 C:\Repositories\crossp\WebApplication\Files\obj\Debug\net6.0\Files.pdb
+C:\Repositories\crossp\WebApplication\Files\obj\Debug\net6.0\refint\Files.dll

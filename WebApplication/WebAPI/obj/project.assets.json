@@ -1006,6 +1006,25 @@
           "bin/placeholder/Files.DataTransferObjects.dll": {}
         }
       },
+      "ML/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MassTransit.AspNetCore": "7.3.0",
+          "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.1",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1"
+        },
+        "compile": {
+          "bin/placeholder/ML.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ML.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Projects/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2900,6 +2919,11 @@
       "path": "../Files.DataTransferObjects/Files.DataTransferObjects.csproj",
       "msbuildProject": "../Files.DataTransferObjects/Files.DataTransferObjects.csproj"
     },
+    "ML/1.0.0": {
+      "type": "project",
+      "path": "../ML/ML.csproj",
+      "msbuildProject": "../ML/ML.csproj"
+    },
     "Projects/1.0.0": {
       "type": "project",
       "path": "../Projects/Projects.csproj",
@@ -2930,6 +2954,7 @@
     "net6.0": [
       "Ads >= 1.0.0",
       "Files >= 1.0.0",
+      "ML >= 1.0.0",
       "MassTransit.AspNetCore >= 7.3.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.1",
       "Projects >= 1.0.0",
@@ -2974,6 +2999,9 @@
             },
             "C:\\Repositories\\crossp\\WebApplication\\Files\\Files.csproj": {
               "projectPath": "C:\\Repositories\\crossp\\WebApplication\\Files\\Files.csproj"
+            },
+            "C:\\Repositories\\crossp\\WebApplication\\ML\\ML.csproj": {
+              "projectPath": "C:\\Repositories\\crossp\\WebApplication\\ML\\ML.csproj"
             },
             "C:\\Repositories\\crossp\\WebApplication\\Projects\\Projects.csproj": {
               "projectPath": "C:\\Repositories\\crossp\\WebApplication\\Projects\\Projects.csproj"
@@ -3025,7 +3053,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

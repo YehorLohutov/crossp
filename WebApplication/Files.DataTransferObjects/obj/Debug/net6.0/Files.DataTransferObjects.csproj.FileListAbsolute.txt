@@ -12,7 +12,6 @@ C:\Repositories\crosspV2\WebApplication\Files.DataTransferObjects\obj\Debug\net6
 C:\Repositories\crosspV2\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\Files.DataTransferObjects.pdb
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\bin\Debug\net6.0\Files.DataTransferObjects.deps.json
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\bin\Debug\net6.0\Files.DataTransferObjects.dll
-C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\bin\Debug\net6.0\ref\Files.DataTransferObjects.dll
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\bin\Debug\net6.0\Files.DataTransferObjects.pdb
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\Files.DataTransferObjects.csproj.AssemblyReference.cache
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\Files.DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
@@ -22,3 +21,4 @@ C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\Files.DataTransferObjects.dll
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\ref\Files.DataTransferObjects.dll
 C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\Files.DataTransferObjects.pdb
+C:\Repositories\crossp\WebApplication\Files.DataTransferObjects\obj\Debug\net6.0\refint\Files.DataTransferObjects.dll
